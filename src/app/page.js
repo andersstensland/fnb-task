@@ -24,11 +24,9 @@ async function getContent() {
 // Log content to console
 getContent().then((content) => console.log(content));
 
-// Insert the return component calling `getContent()` below
-
 export default function Home() {
   return (
-    <div className="p-4">
+    <div className="flex p-4 flex-col space-between">
       <h3 className="font-bold text-xl mt-4 mb-4">
         In Cabin Delivery Information
       </h3>
@@ -42,14 +40,14 @@ export default function Home() {
         Payment on delivery. We only accept credit card payments for this
         service. A room service fee (50DKK) will be added to your order.
       </p>
-      <div className="p-6 bg-gray-200 flex flex-row">
+      <div className="p-4 bg-gray-200 flex flex-row gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-12 h-12"
+          className="w-24 h-24 items-start"
         >
           <path
             strokeLinecap="round"
@@ -65,7 +63,7 @@ export default function Home() {
       </div>
       <div className="mt-32" />
       <hr className="border-gray-200 my-4" />
-      <Button variant="outline" className="bg-orange-300 flex-end">
+      <Button variant="outline" className="bg-orange-300 flex-end w-1/3">
         See Menu{"   "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

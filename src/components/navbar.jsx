@@ -4,17 +4,21 @@ import FjordLineImage from "../../public/Fjordline_logo.svg";
 import Image from "next/image";
 
 export default function Navbar() {
-  // add tailwind
   return (
-    <nav className="w-full bg-red-600">
-      <ul className="flex space-between">
+    <nav className="w-full bg-customRed p-2">
+      <ul className="flex justify-between items-center">
         <li className="w-full h-full">
-          <Link href="/" className="">
-            <Image src={FjordLineImage} alt="Fjordline logo" />
+          <Link href="/">
+            <Image
+              src={FjordLineImage}
+              alt="Fjordline logo"
+              width={150}
+              height={50}
+            />
           </Link>
         </li>
-        <li className="w-full flex items-center text-white">
-          <a className="flex justify-items-end">Cabin 8316</a>
+        <li className="text-white">
+          <a>Cabin 8316</a>
         </li>
       </ul>
     </nav>
