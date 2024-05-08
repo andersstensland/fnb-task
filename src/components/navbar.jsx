@@ -14,6 +14,7 @@ export default function Navbar() {
               alt="Fjordline logo"
               width={150}
               height={50}
+              aspectRatio={3 / 1}
             />
           </Link>
         </li>

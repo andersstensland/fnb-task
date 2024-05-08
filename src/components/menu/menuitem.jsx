@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
 
@@ -36,3 +38,5 @@ const MenuItem = ({ item, onUpdate }) => {
     </div>
   );
 };
+
+export default MenuItem;
