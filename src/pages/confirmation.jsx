@@ -7,12 +7,12 @@ export default function Confirmation() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen px-4 py-2">
-        <h1 className="text-xl font-bold text-center mt-4 mb-6">
+      <div className="flex flex-col items-center justify-between p-4">
+        <h1 className="text-xl font-bold text-center">
           Thank you for ordering with us.
         </h1>
 
-        <div className="relative w-32 h-32 mb-4">
+        <div className="relative w-32 h-32 mb-8">
           <svg
             className="absolute inset-0 m-auto"
             width="128"
@@ -31,7 +31,6 @@ export default function Confirmation() {
               stroke="gray"
               strokeWidth="2"
             ></circle>
-            <path d="M12 6v6l4 2" stroke="black" strokeWidth="2"></path>
           </svg>
           <div className="absolute inset-0 flex justify-center items-center">
             <span className="text-lg font-bold">20-30 min</span>
