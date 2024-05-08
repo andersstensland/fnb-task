@@ -18,7 +18,40 @@ const Menu = () => {
       <SecondNavbar />
       <MenuNavbar />
       <div className="container mx-auto p-4">
-        <div className="p-4 rounded-lg shadow-md"></div>
+        <div>
+          <MenuCategory
+            category={{
+              name: "Appetizers",
+              items: [
+                {
+                  id: 1,
+                  name: "Spring Rolls",
+                  price: 59,
+                  description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum libero non viverra tincidunt. " +
+                    "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ",
+                },
+                {
+                  id: 2,
+                  name: "Potstickers",
+                  price: 69,
+                  description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum libero non viverra tincidunt. " +
+                    "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ",
+                },
+                {
+                  id: 3,
+                  name: "Edamame",
+                  price: 39,
+                  description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum libero non viverra tincidunt. " +
+                    "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ",
+                },
+              ],
+            }}
+            onUpdate={updateOrder}
+          />
+        </div>
       </div>
     </>
   );

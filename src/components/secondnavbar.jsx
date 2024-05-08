@@ -1,4 +1,17 @@
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function SecondNavbar() {
   return (
@@ -22,9 +35,34 @@ export default function SecondNavbar() {
           Delivery 25 - 35 min
         </li>
         <li className="text-white w-1/3">
-          <Button variant="outline" className="bg-orange-300 font-bold">
-            Change
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <div className="bg-orange-300 p-2 rounded-md">Change</div>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delivery</AlertDialogTitle>
+                <AlertDialogDescription>
+                  <RadioGroup defaultValue="option-one">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="option-one" id="option-one" />
+                      <Label htmlFor="option-one">As soon as possible</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="option-two" id="option-two" />
+                      <Label htmlFor="option-two">
+                        Choose time for pre-order
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </li>
       </ul>
     </nav>
