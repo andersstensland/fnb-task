@@ -37,7 +37,9 @@ export default function SecondNavbar() {
         <li className="text-white w-1/3">
           <AlertDialog>
             <AlertDialogTrigger>
-              <div className="bg-orange-300 p-2 rounded-md">Change</div>
+              <div className="bg-orange-300 p-2 rounded-md text-black font-bold">
+                Change
+              </div>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>

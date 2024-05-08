@@ -27,9 +27,9 @@ async function getContent() {
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <div className="flex flex-col justify-between h-full">
-        <div className="p-4">
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow p-4">
           <h3 className="font-bold text-xl mt-4 mb-4">
             In Cabin Delivery Information
           </h3>
@@ -60,7 +60,6 @@ export default function Home() {
                 d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
               />
             </svg>
-
             <p className="font-bold text-md">
               Please note that orders that include alcohol will be refused on
               delivery if proof of age is not provided to the crew upon
@@ -68,7 +67,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="p-4">
+        <div className="p-4 mt-auto bg-white shadow-t-md">
           <hr className="border-gray-200 my-4" />
           <div className="flex justify-end">
             <Link href="/menu" passHref>
