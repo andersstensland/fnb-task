@@ -1,3 +1,4 @@
+import MenuItem from "./menuitem";
 const MenuCategory = ({ category, onUpdate }) => {
   return (
     <div className="my-4">
@@ -8,3 +9,5 @@ const MenuCategory = ({ category, onUpdate }) => {
     </div>
   );
 };
+
+export default MenuCategory;
