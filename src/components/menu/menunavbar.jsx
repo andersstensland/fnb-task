@@ -1,22 +1,44 @@
 export default function MenuNavbar() {
   return (
-    <>
-      <nav className="w-full pl-4 border">
-        <ul className="flex flex-row justify-between items-end pt-6 pb-2 text-gray-400">
-          <li className="text-black font-bold">
-            <a>Food</a>
-          </li>
-          <li className="">
-            <a>Alcohol</a>
-          </li>
-          <li className="">
-            <a>Soft drinks</a>
-          </li>
-          <li className="">
-            <a>Other</a>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <nav className="w-full p-4 border-b">
+      <ul className="flex justify-between items-end text-gray-400">
+        <li className="font-bold text-black border-b-2 border-orange-500 pb-2">
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Food
+          </a>
+        </li>
+        <li className="hover:text-black">
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Alcohol
+          </a>
+        </li>
+        <li className="hover:text-black">
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Soft drinks
+          </a>
+        </li>
+        <li className="hover:text-black">
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            Other
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 }
