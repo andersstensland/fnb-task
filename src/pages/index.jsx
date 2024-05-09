@@ -1,28 +1,7 @@
-import { client } from "@/lib/sanity/client";
-import { Button } from "@/components/ui/button";
+import "../styles/globals.css";
 import Link from "next/link";
-import "@/styles/globals.css";
-import Navbar from "@/components/navbar";
-
-/*
-async function getContent() {
-  const CONTENT_QUERY = `*[_type == "documentation"] {
-  ...,
-  image {
-    ...,
-    asset->
-  },
-  sections[] {
-    section {
-      ...
-    }
-  }
-}
-`;
-  const content = await client.fetch(CONTENT_QUERY);
-  return content;
-}
-*/
+import Navbar from "../components/navbar";
+import { Button } from "../components/ui/button";
 
 export default function Home() {
   return (

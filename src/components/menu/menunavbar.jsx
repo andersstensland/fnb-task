@@ -1,22 +1,23 @@
-export default function MenuNavbar() {
+import React from "react";
+
+export default function MenuNavbar({
+  categories,
+  onCategoryChange,
+  activeCategoryId,
+}) {
   return (
-    <>
-      <nav className="w-full pl-4 border">
-        <ul className="flex flex-row justify-between items-end pt-6 pb-2 text-gray-400">
-          <li className="text-black font-bold">
-            <a>Food</a>
+    <nav className="w-full p-4 border-b overflow-x-auto">
+      <ul className="flex justify-start items-center space-x-4">
+        {categories.map((category) => (
+          <li
+            key={category.id}
+            className={`font-bold text-black hover:text-orange-500 cursor-pointer ${category.id === activeCategoryId ? "border-b-2 border-orange-500 pb-2" : ""}`}
+            onClick={() => onCategoryChange(category.id)}
+          >
+            {category.name}
           </li>
-          <li className="">
-            <a>Alcohol</a>
-          </li>
-          <li className="">
-            <a>Soft drinks</a>
-          </li>
-          <li className="">
-            <a>Other</a>
-          </li>
-        </ul>
-      </nav>
-    </>
+        ))}
+      </ul>
+    </nav>
   );
 }
