@@ -11,7 +11,7 @@ export default function MenuNavbar({
         {categories.map((category) => (
           <li
             key={category.id}
-            className={`font-bold text-black hover:text-orange-500 cursor-pointer ${category.id === activeCategoryId ? "border-b-2 border-orange-500 pb-2" : ""}`}
+            className={`font-bold text-black hover:text-orange-500 cursor-pointer ${category.id === activeCategoryId ? "border-b-2 border-orange-300 pb-2" : ""}`}
             onClick={() => onCategoryChange(category.id)}
           >
             {category.name}

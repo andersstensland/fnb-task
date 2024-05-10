@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Payment() {
   // Example state to manage inputs; expand as needed.
@@ -74,7 +75,7 @@ export default function Payment() {
             variant="solid"
             className="bg-orange-300 text-white font-bold w-full py-3"
           >
-            Go to payment
+            <Link href="confirmation">Go to payment</Link>
           </Button>
         </div>
       </div>
