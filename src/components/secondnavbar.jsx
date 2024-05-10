@@ -12,21 +12,18 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useEffect } from "react";
+import Link from "next/link";
 
 export default function SecondNavbar() {
-  const [deliveryOption, setDeliveryOption] = useState("asap");
-  const [selectedTime, setSelectedTime] = useState("14:30"); // default time or dynamically load the earliest available time
+  const [selectedValue, setSelectedValue] = useState("asap");
 
-  // Handle delivery option change
-  const handleDeliveryOptionChange = (e) => {
-    console.log(e.target.value);
-    setDeliveryOption(e.target.value);
-  };
+  // selected stime
+  const [selectedTime, setSelectedTime] = useState("09:00");
 
-  // Handle time change
-  const handleTimeChange = (e) => {
-    console.log(e.target.value);
-    setSelectedTime(e.target.value);
+  const handleValueChange = (value) => {
+    console.log(value); // Log the value directly
+    setSelectedValue(value);
   };
 
   return (
@@ -59,23 +56,31 @@ export default function SecondNavbar() {
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>Delivery</AlertDialogTitle>
-                <AlertDialogDescription>
+                <div>
                   <RadioGroup
-                    onChange={handleDeliveryOptionChange}
-                    defaultValue={deliveryOption}
+                    onValueChange={handleValueChange}
+                    value={selectedValue}
                   >
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="asap" id="asap" />
+                      <RadioGroupItem
+                        value="asap"
+                        id="asap"
+                        checked={selectedValue === "asap"}
+                      />
                       <Label htmlFor="asap">As soon as possible</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="pre-order" id="pre-order" />
+                      <RadioGroupItem
+                        value="pre-order"
+                        id="pre-order"
+                        checked={selectedValue === "pre-order"}
+                      />
                       <Label htmlFor="pre-order">
                         Choose time for pre-order
                       </Label>
                     </div>
                   </RadioGroup>
-                  {deliveryOption === "pre-order" && (
+                  {selectedValue === "pre-order" && (
                     <form className="max-w-[8.5rem] mx-auto mt-4">
                       <label
                         htmlFor="time"
@@ -91,7 +96,7 @@ export default function SecondNavbar() {
                           min="09:00"
                           max="18:00"
                           value={selectedTime}
-                          onChange={handleTimeChange}
+                          onChange={handleValueChange}
                           required
                         />
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -102,20 +107,22 @@ export default function SecondNavbar() {
                             viewBox="0 0 24 24"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                             />
                           </svg>
                         </span>
                       </div>
                     </form>
                   )}
-                </AlertDialogDescription>
+                </div>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
+                <AlertDialogAction>
+                  <Link href="order">Continue</Link>
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

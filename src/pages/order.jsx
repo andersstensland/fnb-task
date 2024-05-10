@@ -1,11 +1,10 @@
-import { useState } from "react";
-import MenuItem from "@/components/menu/menuitem";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import "@/styles/globals.css";
 import Navbar from "@/components/navbar";
-import SecondNavbar from "@/components/secondnavbar";
 import OrderItem from "@/components/order/orderitem";
+import SecondNavbar from "@/components/secondnavbar";
+import { Button } from "@/components/ui/button";
+import "@/styles/globals.css";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Order() {
   const [items, setItems] = useState([
