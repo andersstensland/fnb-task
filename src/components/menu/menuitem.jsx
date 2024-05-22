@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "../ui/button";
 
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
@@ -39,6 +40,10 @@ const MenuItem = ({ item, onUpdate }) => {
           +
         </button>
       </div>
+      <Button variant="outline" className="bg-orange-300">
+        {" "}
+        Add to cart{" "}
+      </Button>
     </div>
   );
 };
