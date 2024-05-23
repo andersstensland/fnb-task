@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 import "@/styles/globals.css";
+import CartFooter from "@/components/cartfooter";
 
 const categoriesData = [
   {
@@ -140,10 +141,21 @@ const Menu = () => {
     setActiveCategoryId(categoryId);
   };
 
-  // Find the active category based on activeCategoryId
   const activeCategory = categories.find(
     (category) => category.id === activeCategoryId
   );
+
+  const itemCount = Object.values(order).reduce(
+    (sum, quantity) => sum + quantity,
+    0
+  );
+  const total = Object.keys(order).reduce((sum, itemId) => {
+    const item = activeCategory.subcategories
+      .map((sub) => sub.items)
+      .flat()
+      .find((item) => item.id === parseInt(itemId));
+    return sum + (item ? item.price * order[itemId] : 0);
+  }, 0);
 
   return (
     <>
@@ -156,6 +168,9 @@ const Menu = () => {
       <div className="container mx-auto p-4">
         <MenuCategory category={activeCategory} onUpdate={updateOrder} />
       </div>
+
+      {/* Render cart component on added order remove if order length is 0 */}
+      {itemCount > 0 && <CartFooter itemCount={itemCount} total={total} />}
     </>
   );
 };
