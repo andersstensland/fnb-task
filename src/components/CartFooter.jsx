@@ -1,8 +1,8 @@
-import React from "react"; // Importing shopping cart icon from react-icons
-import Link from "next/link"; // Importing Link from next
+import React from "react";
+import Link from "next/link";
 
 function CartFooter({ itemCount, total }) {
-  if (itemCount === 0) return null; // If there are no items, don't display the component
+  if (itemCount === 0) return null;
 
   return (
     <>
