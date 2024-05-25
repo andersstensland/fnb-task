@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FullScreenModal from "./FullScreenModal";
+import FullScreenModal from "@/components/modals/fullscreenmodal";
 
 const ProductDetailsModal = ({ product, isOpen, onClose }) => {
   const [selectedToppings, setSelectedToppings] = useState([]);

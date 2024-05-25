@@ -4,8 +4,8 @@ import MenuCategory from "@/components/menu/menucategory";
 import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
-import "@/styles/globals.css";
 import CartFooter from "@/components/cartfooter";
+import "@/styles/globals.css";
 
 const categoriesData = [
   {
