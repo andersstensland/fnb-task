@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+import ProductDetailsModal from "../modals/productdetails";
 
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleIncrement = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    onUpdate(item.id, newCount);
+    setCount(count + 1);
+    onUpdate(item.id, count + 1);
   };
 
   const handleDecrement = () => {
     if (count > 0) {
-      const newCount = count - 1;
-      setCount(newCount);
-      onUpdate(item.id, newCount);
+      setCount(count - 1);
+      onUpdate(item.id, count - 1);
     }
+  };
+
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
   };
 
   return (
@@ -40,10 +44,16 @@ const MenuItem = ({ item, onUpdate }) => {
           +
         </button>
       </div>
-      <Button variant="outline" className="bg-orange-300">
-        {" "}
-        Add to cart{" "}
+      <Button variant="outline" className="bg-orange-300" onClick={toggleModal}>
+        Add to cart
       </Button>
+      <ProductDetailsModal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+        item={item}
+        count={count}
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };
