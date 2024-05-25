@@ -1,7 +1,4 @@
 // pages/api/menu.js
-
-import client from "../../lib/sanity";
-
 export default async function handler(req, res) {
   try {
     // Construct a query to fetch menu categories, including subcategories and items
