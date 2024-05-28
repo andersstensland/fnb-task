@@ -44,9 +44,6 @@ export default function Confirmation() {
         <div className="w-full mb-4">
           <div className="text-left w-full p-4">
             <div className="mb-2">
-              1X Pizza Pepperoni <span className="float-right">179,00</span>
-            </div>
-            <div className="mb-2">
               1X Coca Cola <span className="float-right">39,00</span>
             </div>
             <div className="mb-2">
