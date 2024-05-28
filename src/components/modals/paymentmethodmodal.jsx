@@ -19,12 +19,12 @@ const PaymentMethodModal = () => {
           Pay now
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="rounded-lg p-6 w-full max-w-md mx-auto">
-        <AlertDialogHeader className="flex justify-between items-center">
-          <AlertDialogTitle className="text-lg font-bold">
+      <AlertDialogContent className="rounded-t-3xl p-6 w-full max-w-md mx-auto">
+        <AlertDialogHeader className="items-center flex flex-row justify-between">
+          <AlertDialogTitle className="items-center text-lg font-bold">
             Payment methods
           </AlertDialogTitle>
-          <AlertDialogCancel className="text-gray-400 hover:text-gray-600">
+          <AlertDialogCancel className="text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -43,19 +43,11 @@ const PaymentMethodModal = () => {
         <div className="space-y-4 mt-4">
           <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
             <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <img
+                src="https://toppng.com/uploads/preview/banner-cards-vector-credit-card-credit-card-icon-11563108027vvkoq7v820.png"
+                alt="Google Pay"
                 className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 9l3 3-3 3m5-6h6m-6 0h-6m0 0h6"
-                />
-              </svg>
+              />
               Credit card
             </div>
             <svg
@@ -75,7 +67,7 @@ const PaymentMethodModal = () => {
           <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
             <div className="flex items-center">
               <img
-                src="/google-pay.svg"
+                src="https://toppng.com/uploads/preview/google-logo-transparent-png-11659866441wanynck5pd.png"
                 alt="Google Pay"
                 className="h-6 w-6 mr-2"
               />
@@ -98,7 +90,7 @@ const PaymentMethodModal = () => {
           <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
             <div className="flex items-center">
               <img
-                src="/apple-pay.svg"
+                src="https://toppng.com/uploads/preview/apple-pay-logo-png-11536003336zy6omnlwgf.png"
                 alt="Apple Pay"
                 className="h-6 w-6 mr-2"
               />
@@ -121,7 +113,7 @@ const PaymentMethodModal = () => {
           <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
             <div className="flex items-center">
               <img
-                src="/vipps.svg"
+                src="https://vipps.no/media/images/vipps_logo_rgb.width-400.jpegquality-60.png"
                 alt="VIPPS"
                 className="h-6 w-6 mr-2"
               />
