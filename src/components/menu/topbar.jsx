@@ -2,8 +2,8 @@ import React from "react";
 
 const TopBar = () => {
   return (
-    <div className="flex justify-between items-center p-4 bg-white">
-      <div className="flex items-center">
+    <div className="flex flex-cols items-center p-4 bg-white">
+      <div className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-gray-500 mr-2"
@@ -19,7 +19,7 @@ const TopBar = () => {
         <span className="font-medium">Opening hours:</span>{" "}
         <strong className="ml-1">Open</strong> Closing 22:00
       </div>
-      <div className="flex items-center">
+      <div className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-gray-500 mr-2"

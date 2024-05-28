@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Label } from "@/components/ui/label";
 
 const ProductDetailsModal = ({ item, isOpen, onClose }) => {
   const [size, setSize] = useState("Medium");
@@ -55,7 +56,7 @@ const ProductDetailsModal = ({ item, isOpen, onClose }) => {
   }
 
   return isOpen ? (
-    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-28">
+    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-32">
       <div className="bg-white rounded-lg w-full max-w-lg mx-auto overflow-auto h-full">
         <button onClick={onClose} className="absolute top-22.5 right-0 p-4">
           ✖️
@@ -86,24 +87,46 @@ const ProductDetailsModal = ({ item, isOpen, onClose }) => {
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>Allergies</AccordionTrigger>
-                <AccordionContent>Wheat, Egg, Milk</AccordionContent>
+                <AccordionContent>{item.allergies}</AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
           <div className="mt-4">
+            <h3 className="font-semibold">Remove topping:</h3>
+            {Object.keys(item.content).map((toppingKey) => (
+              <div
+                key={toppingKey}
+                className="flex justify-between items-center"
+              >
+                <Label
+                  htmlFor="email"
+                  onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
+                  checked={toppings.includes({ name: toppingKey, cost: 10 })}
+                >
+                  {toppingKey}
+                </Label>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4">
             <h3 className="font-semibold">Extra topping:</h3>
-            {["Pineapple", "Ham", "Cheese", "Sauce"].map((topping) => (
-              <div key={topping} className="flex justify-between items-center">
-                <span>{topping}</span>
-                <input
-                  type="checkbox"
-                  onChange={() => toggleTopping({ name: topping, cost: 10 })}
-                />
+            {Object.keys(item.content).map((toppingKey) => (
+              <div
+                key={toppingKey}
+                className="flex justify-between items-center bg-gray-100 p-2 rounded-md"
+              >
+                <Label
+                  onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
+                  checked={toppings.includes({ name: toppingKey, cost: 10 })}
+                >
+                  {toppingKey}
+                </Label>
               </div>
             ))}
           </div>
         </div>
-        <div className="fixed w-full p-4 justify-between items-center bg-orange-300 bottom-0 rounded-md">
+
+        <div className="fixed w-full p-4 justify-between items-center bg-orange-300 bottom-0 rounded-t-xl">
           <div className="">
             <span>Antall</span>
             <span>{totalCost}</span>
