@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const ProductDetailsModal = ({ product, isOpen, onClose }) => {
+const ProductDetailsModal = ({ item, isOpen, onClose }) => {
   const [size, setSize] = useState("Medium");
   const [quantity, setQuantity] = useState(1);
   const [toppings, setToppings] = useState([]);
@@ -55,13 +55,13 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
   }
 
   return isOpen ? (
-    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-14">
+    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-28">
       <div className="bg-white rounded-lg w-full max-w-lg mx-auto overflow-auto h-full">
-        <button onClick={onClose} className="absolute top-10 right-0 p-8">
+        <button onClick={onClose} className="absolute top-22.5 right-0 p-4">
           ✖️
         </button>
         <div className="p-4">
-          <h2 className="text-2xl font-bold">Pineapple Ham Pizza</h2>
+          <h2 className="text-2xl font-bold">{item.name}</h2>
           <div className="my-4">
             <img
               src="path_to_pizza_image.png"
