@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const ProductDetailsModal = ({ item, isOpen, onClose }) => {
   const [size, setSize] = useState("Medium");
@@ -96,31 +97,51 @@ const ProductDetailsModal = ({ item, isOpen, onClose }) => {
             {Object.keys(item.content).map((toppingKey) => (
               <div
                 key={toppingKey}
-                className="flex justify-between items-center"
+                className="flex justify-between items-center rounded-md"
+                onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
+                checked={toppings.includes({ name: toppingKey, cost: 10 })}
               >
                 <Label
-                  htmlFor="email"
+                  key={toppingKey}
+                  className="flex justify-between items-center"
                   onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
                   checked={toppings.includes({ name: toppingKey, cost: 10 })}
                 >
                   {toppingKey}
                 </Label>
+                <Checkbox id="terms" className="mt-2" />
               </div>
             ))}
           </div>
           <div className="mt-4">
             <h3 className="font-semibold">Extra topping:</h3>
             {Object.keys(item.content).map((toppingKey) => (
-              <div
-                key={toppingKey}
-                className="flex justify-between items-center bg-gray-100 p-2 rounded-md"
-              >
+              <div key={toppingKey} className="flex justify-between">
                 <Label
+                  key={toppingKey}
+                  className="flex justify-between items-center rounded-md"
                   onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
                   checked={toppings.includes({ name: toppingKey, cost: 10 })}
                 >
                   {toppingKey}
                 </Label>
+                <Checkbox id="terms" className="mt-2" />
+              </div>
+            ))}
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold">Add sides:</h3>
+            {Object.keys(item.content).map((toppingKey) => (
+              <div key={toppingKey} className="flex justify-between">
+                <Label
+                  key={toppingKey}
+                  className="flex justify-between items-center rounded-md"
+                  onChange={() => toggleTopping({ name: toppingKey, cost: 10 })}
+                  checked={toppings.includes({ name: toppingKey, cost: 10 })}
+                >
+                  {toppingKey}
+                </Label>
+                <Checkbox id="terms" className="mt-2" />
               </div>
             ))}
           </div>

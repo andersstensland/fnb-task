@@ -2,7 +2,7 @@ import React from "react";
 
 const TopBar = () => {
   return (
-    <div className="flex flex-cols items-center p-4 bg-white">
+    <div className="flex flex-col items-center p-4 bg-white justify-between">
       <div className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
