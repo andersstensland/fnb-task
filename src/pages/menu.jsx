@@ -6,6 +6,7 @@ import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 import CartFooter from "@/components/cartfooter";
 import "@/styles/globals.css";
+import TopBar from "@/components/menu/topbar";
 
 const categoriesData = [
   {
@@ -161,6 +162,7 @@ const Menu = () => {
     <>
       <Navbar />
       <SecondNavbar />
+      <TopBar />
       <MenuNavbar
         categories={categories}
         onCategoryChange={handleCategoryChange}

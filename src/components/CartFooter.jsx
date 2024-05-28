@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-function CartFooter({ itemCount, total }) {
+export default function CartFooter({ itemCount, total }) {
   if (itemCount === 0) return null;
 
   return (
@@ -32,5 +32,3 @@ function CartFooter({ itemCount, total }) {
     </>
   );
 }
-
-export default CartFooter;
