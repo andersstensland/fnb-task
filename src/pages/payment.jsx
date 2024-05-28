@@ -24,23 +24,30 @@ export default function Payment() {
           {/* Container centered with mx-auto and width restrictions */}
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
           <div className="w-full mb-4">
-            <label className="block text-sm font-bold mb-2">Delivery</label>
+          
+          <label className="block text-sm font-bold mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 inline-block mr-1">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            Delivery
+          </label>
+
             <RadioGroup defaultValue="option-one">
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-one" id="option-one" />
+              <RadioGroupItem className="border-orange-300 border-2" value="option-one" id="option-one" />
               <Label htmlFor="option-one">As soon as possible (25-35min)</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-two" id="option-two" />
+              <RadioGroupItem className="border-orange-300 border-2" value="option-two" id="option-two" />
               <Label htmlFor="option-two">Choose time to pre-order</Label>
             </div>
           </RadioGroup>
             </div>
           <div className="w-full mb-4">
-          <label className="block text-sm font-bold mb-2">Choose where you wan to eat!</label>
+          <label className="block text-sm font-bold mb-2">Choose where you want to eat!</label>
           <div className="flex justify-between m-1">
-        <button className="w-40 px-8 py-4 text-xl border-2 border-gray-400 rounded-lg">Delivery</button>
-        <button className="w-40 px-8 py-4 text-xl border-2 border-gray-400 rounded-lg">Pick up</button>
+        <button className="w-40 px-8 py-4 text-xl border-2 border-orange-300 rounded-lg">Delivery</button>
+        <button className="w-40 px-8 py-4 text-xl border-2 border-orange-300 rounded-lg">Pick up</button>
           </div>
             </div>
             <OrderSummary/>
