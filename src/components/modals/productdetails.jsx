@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ProductDetailsModal = ({ product, isOpen, onClose }) => {
   const [size, setSize] = useState("Medium");
@@ -15,6 +21,21 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
       }
     });
   };
+
+  // Toggle body scroll on modal open/close
+  useEffect(() => {
+    const body = document.body;
+    if (isOpen) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "visible";
+    }
+
+    // Clean up function to reset overflow when component unmounts or modal closes
+    return () => {
+      body.style.overflow = "visible";
+    };
+  }, [isOpen]);
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
@@ -34,9 +55,9 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
   }
 
   return isOpen ? (
-    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center">
-      <div className="bg-white rounded-lg w-full max-w-lg h-full">
-        <button onClick={onClose} className="absolute top-10 right-0 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-14">
+      <div className="bg-white rounded-lg w-full max-w-lg mx-auto overflow-auto h-full">
+        <button onClick={onClose} className="absolute top-10 right-0 p-8">
           ✖️
         </button>
         <div className="p-4">
@@ -62,8 +83,12 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
           <div className="text-xl font-semibold mt-2">{totalCost} NOK</div>
           <p className="mt-2">Pizza with pineapple and ham</p>
           <div className="mt-4">
-            <h3 className="font-semibold">Allergies:</h3>
-            {/* Example allergen list */}
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Allergies</AccordionTrigger>
+                <AccordionContent>Wheat, Egg, Milk</AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
           <div className="mt-4">
             <h3 className="font-semibold">Extra topping:</h3>
@@ -79,7 +104,10 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
           </div>
         </div>
         <div className="fixed w-full p-4 justify-between items-center bg-orange-300 bottom-0 rounded-md">
-          <span>Antall</span>
+          <div className="">
+            <span>Antall</span>
+            <span>{totalCost}</span>
+          </div>
           <div className="flex items-center">
             <button
               onClick={() => handleQuantityChange(-1)}
