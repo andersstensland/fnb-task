@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-
+import OrderSummary from "@/components/payment/ordersummary";
+import Order from "./order";
 
 
 
@@ -42,6 +43,7 @@ export default function Payment() {
         <button className="w-40 px-8 py-4 text-xl border-2 border-gray-400 rounded-lg">Pick up</button>
           </div>
             </div>
+            <OrderSummary/>
           <div className="w-full mb-4">
             <label className="block text-sm font-bold mb-2">
               Leave a message (optional)
@@ -69,7 +71,6 @@ export default function Payment() {
             </div>
           </div>
         </div>
-
         <div className="w-full max-w-4xl mx-auto px-4">
           <Button
             variant="solid"
