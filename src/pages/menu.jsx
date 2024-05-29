@@ -6,7 +6,6 @@ import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 import "@/styles/globals.css";
 import CartFooter from "@/components/cartfooter";
-
 const categoriesData = [
   {
     id: 1,
