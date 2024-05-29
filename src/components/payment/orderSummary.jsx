@@ -18,7 +18,7 @@ const OrderSummary = ({}) => {
             <p className="mr-auto font-bold">Products</p>
             <p className="ml-auto font-bold">Price (Nok)</p>
         </div>
-            <hr class="mt-1.5 mb-6 h-0.5 border-t-0 bg-neutral-300 dark:bg-/10" />
+            <hr className="mt-1.5 mb-6 h-0.5 border-t-0 bg-neutral-300 dark:bg-/10" />
             <Button
           variant="solid"
           className="bg-orange-300 text-white font-bold w-full py-3 mb-3"

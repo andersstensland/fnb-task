@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogCancel,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import Link from 'next/link';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 
 const DeliveryModal = ({ trigger }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionClick = (option) => {
+    console.log(`Option ${option} clicked`);
+    setSelectedOption(selectedOption === option ? null : option); // Toggle selection
+  };
+
   return (
-    <AlertDialog>
+    <AlertDialog isOpen={isOpen} onDismiss={() => setIsOpen(false)}>
       <AlertDialogTrigger>
         {trigger}
       </AlertDialogTrigger>
@@ -40,68 +45,30 @@ const DeliveryModal = ({ trigger }) => {
           </AlertDialogCancel>
         </AlertDialogHeader>
         <div className="space-y-4 mt-4">
-          <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
-            <div className="flex items-center">
-              {/* First button content */}
-              <h3>Pick up point A</h3>
+          <RadioGroup value={selectedOption} onChange={setSelectedOption}>
+            <div className={`flex items-center justify-between space-x-4 p-4 rounded-lg bg-white shadow-md cursor-pointer ${selectedOption === 'A' ? 'bg-gray-100' : ''}`} onClick={() => handleOptionClick('A')}>
+              <label htmlFor="option-A" className="text-base font-semibold flex-grow-1">
+                Pick up point A
+              </label>
+              <RadioGroupItem value="A" id="option-A" className="h-6 w-6 mt-1" />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
-            <div className="flex items-center">
-              {/* Second button content */}
-              <h3>Pick up point B</h3>
+            <div className={`flex items-center justify-between space-x-4 p-4 rounded-lg bg-white shadow-md cursor-pointer ${selectedOption === 'B' ? 'bg-gray-100' : ''}`} onClick={() => handleOptionClick('B')}>
+              <label htmlFor="option-B" className="text-base font-semibold flex-grow-1">
+                Pick up point B
+              </label>
+              <RadioGroupItem value="B" id="option-B" className="h-6 w-6 mt-1" />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
-            <div className="flex items-center">
-              {/* Third button content */}
-              <h3>Pick up point C</h3>
+            <div className={`flex items-center justify-between space-x-4 p-4 rounded-lg bg-white shadow-md cursor-pointer ${selectedOption === 'C' ? 'bg-gray-100' : ''}`} onClick={() => handleOptionClick('C')}>
+              <label htmlFor="option-C" className="text-base font-semibold flex-grow-1">
+                Pick up point C
+              </label>
+              <RadioGroupItem value="C" id="option-C" className="h-6 w-6 mt-1" />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          
+          </RadioGroup>
         </div>
       </AlertDialogContent>
     </AlertDialog>
   );
-}
+};
 
 export default DeliveryModal;
