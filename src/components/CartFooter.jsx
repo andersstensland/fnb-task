@@ -1,12 +1,12 @@
 import React from "react"; // Importing shopping cart icon from react-icons
 import Link from "next/link"; // Importing Link from next
 
-function CartFooter({ itemCount, total }) {
+function CartFooter({ itemCount, total, navigation }) {
   if (itemCount === 0) return null; // If there are no items, don't display the component
+
 
   return (
     <>
-      <Link href="/payment">
         <div className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md">
           <div className="flex items-center">
             <svg
@@ -28,7 +28,6 @@ function CartFooter({ itemCount, total }) {
           <button className="font-bold">Til betaling</button>
           <span>{total} kr</span>
         </div>
-      </Link>
     </>
   );
 }

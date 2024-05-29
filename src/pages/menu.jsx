@@ -6,6 +6,7 @@ import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 import "@/styles/globals.css";
 import CartFooter from "@/components/cartfooter";
+import Link from "next/link";
 
 const categoriesData = [
   {
@@ -170,7 +171,7 @@ const Menu = () => {
       </div>
 
       {/* Render cart component on added order remove if order length is 0 */}
-      {itemCount > 0 && <CartFooter itemCount={itemCount} total={total} />}
+      {itemCount > 0 && <Link href="/payment"><CartFooter itemCount={itemCount} total={total} /> </Link>}
     </>
   );
 };

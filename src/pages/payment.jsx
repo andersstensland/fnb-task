@@ -6,15 +6,20 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import OrderSummary from "@/components/payment/ordersummary";
-import Order from "./order";
+import CartFooter from "@/components/CartFooter";
+import DeliveryModal from "@/components/payment/deliverymodal";
 
 
 
 
-export default function Payment() {
+export default function Payment(trigger) {
   const [deliveryTime, setDeliveryTime] = useState("ASAP 20-30 minutes");
   const [paymentMethod, setPaymentMethod] = useState("Visa XXXX");
   const [message, setMessage] = useState("");
+
+  const handleCartFooter = () => {
+    DeliveryModal
+  }
 
   return (
     <>
@@ -47,9 +52,13 @@ export default function Payment() {
                 <button className="w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
                   Delivery
                 </button>
-                <button className="w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
-                  Pick up
-                </button>
+                <DeliveryModal
+                trigger={
+                  <button className="w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
+                    Pick up
+                  </button>
+                }
+              />
               </div>
             </div>
             <OrderSummary/>
@@ -63,23 +72,27 @@ export default function Payment() {
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>
+
           <div className="w-full mb-4">
-            <div className="p-2">
-              <div className="mb-2">
-                1X Pizza Pepperoni <span className="float-right">179,00</span>
-              </div>
-              <div className="mb-2">
-                1X Coca Cola <span className="float-right">39,00</span>
-              </div>
-              <div className="mb-2">
-                Delivery cost <span className="float-right">50,00</span>
-              </div>
-              <div className="mt-4 font-bold">
-                Total <span className="float-right">268,00</span>
-              </div>
+          <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
+            <div className="mb-2 text-black">
+              1X Pizza Pepperoni <span className="float-right">179,00</span>
+            </div>
+            <hr className="border-t border-gray-300 my-2" />
+            <div className="mb-2 text-black">
+              1X Coca Cola <span className="float-right">39,00</span>
+            </div>
+            <hr className="border-t border-gray-300 my-2" />
+            <div className="mb-2 text-black">
+              Delivery cost <span className="float-right">50,00</span>
+            </div>
+            <hr className="border-t border-gray-300 my-2" />
+            <div className="mt-4 font-bold text-black">
+              Total <span className="float-right">268,00</span>
             </div>
           </div>
         </div>
+      </div>
         <div className="w-full max-w-4xl mx-auto px-4">
           <Button
             variant="solid"
@@ -91,6 +104,10 @@ export default function Payment() {
           </Button>
         </div>
       </div>
+      <Link href="/confirmation">
+      <CartFooter onClick={handleCartFooter} />
+      </Link>
+      
     </>
   );
 }
