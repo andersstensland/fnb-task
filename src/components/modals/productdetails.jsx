@@ -37,8 +37,8 @@ const ProductDetailsModal = ({ item, isOpen, onClose }) => {
   function handleAddBasket() {}
 
   return isOpen ? (
-    <div className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-start pt-32">
-      <div className="bg-white rounded-lg w-full max-w-lg mx-auto overflow-y-auto h-full">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start pt-10">
+      <div className="relative bg-white rounded-lg w-full max-w-lg mx-auto overflow-auto h-[90vh] shadow-lg">
         <button onClick={onClose} className="absolute top-22.5 right-0 p-4">
           ✖️
         </button>
@@ -79,10 +79,6 @@ const ProductDetailsModal = ({ item, isOpen, onClose }) => {
           <div className="mt-4">
             <h3 className="font-semibold">Extra topping:</h3>
             <ToppingItem item={item} topping={item.content} />
-          </div>
-          <div className="mt-4">
-            <h3 className="font-semibold">Add sides:</h3>
-            <ToppingItem item={item} topping={toppings} />
           </div>
         </div>
 
