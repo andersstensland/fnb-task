@@ -36,7 +36,8 @@ export default {
           title: 'Alternative Text',
           type: 'string',
           description: 'Important for SEO and accessibility.',
-          validation: (Rule) => Rule.error('You must fill out the alternative text.').required(),
+          validation: (Rule: any) =>
+            Rule.error('You must fill out the alternative text.').required(),
         },
       ],
     },
