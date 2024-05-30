@@ -7,7 +7,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import CreditCardForm from "./CreditCardForm";
+import CreditCardForm from "./creditcardform";
 
 const PaymentMethodModal = () => {
   const [showCreditCardForm, setShowCreditCardForm] = useState(false);
@@ -21,7 +21,8 @@ const PaymentMethodModal = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6">
+          className="w-6 h-6"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -47,7 +48,8 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -60,7 +62,8 @@ const PaymentMethodModal = () => {
             <div className="space-y-4 mt-4">
               <button
                 onClick={() => setShowCreditCardForm(true)}
-                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
+                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg"
+              >
                 <div className="flex items-center">
                   <img
                     src="https://toppng.com/uploads/preview/banner-cards-vector-credit-card-credit-card-icon-11563108027vvkoq7v820.png"
@@ -74,7 +77,8 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -98,7 +102,8 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -121,7 +126,8 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -144,7 +150,8 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
