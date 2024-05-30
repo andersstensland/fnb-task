@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Orderitemcard from './Orderitemcard';
 import { Button } from "@/components/ui/button";
 
 const OrderSummary = () => {
   // Sample items
-  const items = [
-    { name: "Pineapple ham pizza", price: "179" },
-    { name: "Tandoori wrap", price: "65" }
-  ];
+  const [items, setItems] = useState([
+    { name: "Pineapple ham pizza", price: 179, quantity: 1 },
+    { name: "Tandoori wrap", price: 65, quantity: 1 }
+  ]);
 
-  const totalPrice = items.reduce((total, item) => total + parseFloat(item.price), 0);
+  const updateQuantity = (itemName, newQuantity) => {
+    const updatedItems = items.map(item =>
+      item.name === itemName ? { ...item, quantity: newQuantity } : item
+    );
+    setItems(updatedItems);
+  };
+
+  const totalPrice = items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
   return (
     <div className='mt-7'>
@@ -26,7 +33,7 @@ const OrderSummary = () => {
       </div>
       <hr className="mt-1.5 mb-6 h-0.5 border-t-0 bg-neutral-300 dark:bg-/10" />
       {items.map((item, index) => (
-        <Orderitemcard key={index} item={item} />
+        <Orderitemcard key={index} item={item} updateQuantity={updateQuantity} />
       ))}
       <div className="flex justify-between items-center font-bold text-xl mt-4 mb-3 p-4 border-t border-b border-gray-300">
         <span>Total</span>

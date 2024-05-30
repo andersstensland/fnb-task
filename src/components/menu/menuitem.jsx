@@ -27,6 +27,13 @@ const MenuItem = ({ item, onUpdate }) => {
     }
   };
 
+  const updateQuantity = (itemName, newQuantity) => {
+    // Implement your logic to update the quantity for the item
+    console.log(`Updating quantity for ${itemName} to ${newQuantity}`);
+    // This function should update the quantity of the item in your state or wherever it's managed
+    // For now, let's just log the item name and the new quantity
+  };
+
   return (
     <div className="flex flex-col justify-between my-2 border rounded-sm p-4">
       <div className="flex flex-row justify-between my-2">
@@ -59,7 +66,7 @@ const MenuItem = ({ item, onUpdate }) => {
         count={count}
         onUpdate={onUpdate}
       />
-      {selectedItem && <Orderitemcard item={selectedItem} />}
+      {selectedItem && <Orderitemcard item={selectedItem} updateQuantity={updateQuantity} />} {/* Pass updateQuantity as a prop */}
     </div>
   );
 };
