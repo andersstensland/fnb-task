@@ -4,7 +4,7 @@ import MenuCategory from "@/components/menu/menucategory";
 import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
-import CartFooter from "@/components/cartfooter";
+//import CartFooter from "@/components/cartfooter";
 import "@/styles/globals.css";
 import TopBar from "@/components/menu/topbar";
 
