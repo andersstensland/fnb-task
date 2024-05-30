@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 
 export default function Payment() {
   const [deliveryTime, setDeliveryTime] = useState("ASAP 20-30 minutes");
@@ -13,6 +14,7 @@ export default function Payment() {
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
+        <PaymentMethodModal />
         <div className="w-full max-w-4xl mx-auto">
           {/* Container centered with mx-auto and width restrictions */}
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
@@ -22,8 +24,7 @@ export default function Payment() {
               <span>{deliveryTime}</span>
               <button
                 onClick={() => setDeliveryTime("Edit Mode")}
-                className="text-blue-500"
-              >
+                className="text-blue-500">
                 Change
               </button>
             </div>
@@ -34,8 +35,7 @@ export default function Payment() {
               <span>{paymentMethod}</span>
               <button
                 onClick={() => setPaymentMethod("Edit Mode")}
-                className="text-blue-500"
-              >
+                className="text-blue-500">
                 Change
               </button>
             </div>
@@ -71,8 +71,7 @@ export default function Payment() {
         <div className="w-full max-w-4xl mx-auto px-4">
           <Button
             variant="solid"
-            className="bg-orange-300 text-white font-bold w-full py-3"
-          >
+            className="bg-orange-300 text-white font-bold w-full py-3">
             <Link href="/confirmation">
               <div className="w-full h-full inline-block">Go to payment</div>
             </Link>
