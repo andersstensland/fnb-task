@@ -47,6 +47,7 @@ export default function Payment() {
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
+        <PaymentMethodModal />
         <div className="w-full max-w-4xl mx-auto">
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
           <div className="w-full mb-4">
@@ -68,26 +69,16 @@ export default function Payment() {
               Delivery
             </label>
             <RadioGroup defaultValue="option-one">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  className="border-orange-300 border-2"
-                  value="option-one"
-                  id="option-one"
-                />
-                <Label htmlFor="option-one">
-                  As soon as possible (25-35min)
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  className="border-orange-300 border-2"
-                  value="option-two"
-                  id="option-two"
-                />
-                <Label htmlFor="option-two">Choose time to pre-order</Label>
-              </div>
-            </RadioGroup>
-          </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-one" id="option-one" />
+              <Label htmlFor="option-one">As soon as possible (25-35min)</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-two" id="option-two" />
+              <Label htmlFor="option-two">Choose time to pre-order</Label>
+            </div>
+          </RadioGroup>
+            </div>
           <div className="w-full mb-4">
             <label className="block text-sm font-bold mb-2">
               Choose where you want to eat!
@@ -133,7 +124,17 @@ export default function Payment() {
             
           />
         </div>
-       
+
+        <div className="w-full max-w-4xl mx-auto px-4">
+          <Button
+            variant="solid"
+            className="bg-orange-300 text-white font-bold w-full py-3"
+          >
+            <Link href="/confirmation">
+              <div className="w-full h-full inline-block">Go to payment</div>
+            </Link>
+          </Button>
+        </div>
       </div>
       <Link href="/confirmation">
         <CartFooter />
