@@ -214,7 +214,7 @@ const Menu = () => {
       </div>
 
       {/* Render cart component on added order remove if order length is 0 */}
-      {itemCount > 0 && <CartFooter itemCount={itemCount} total={total} />}
+      {/*itemCount > 0 && <CartFooter itemCount={itemCount} total={total} />*/}
     </>
   );
 };
