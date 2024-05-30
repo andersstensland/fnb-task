@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import ProductDetailsModal from "../modals/productdetails";
+import Orderitemcard from "../payment/orderitemcard";
 
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -20,6 +22,9 @@ const MenuItem = ({ item, onUpdate }) => {
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
+    if (!isModalOpen) {
+      setSelectedItem(item); // Set the selected item when the modal is opened
+    }
   };
 
   return (
@@ -54,6 +59,7 @@ const MenuItem = ({ item, onUpdate }) => {
         count={count}
         onUpdate={onUpdate}
       />
+      {selectedItem && <Orderitemcard item={selectedItem} />}
     </div>
   );
 };
