@@ -10,6 +10,7 @@ import CartFooter from "@/components/CartFooter";
 import DeliveryModal from "@/components/payment/deliverymodal";
 import SecondNavbar from "@/components/secondnavbar";
 import Paymentsummary from "@/components/payment/paymentsummary";
+import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 
 export default function Payment() {
   const [deliveryOption, setDeliveryOption] = useState("delivery");
@@ -69,76 +70,96 @@ export default function Payment() {
               Delivery
             </label>
             <RadioGroup defaultValue="option-one">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-one" id="option-one" />
-              <Label htmlFor="option-one">As soon as possible (25-35min)</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-two" id="option-two" />
-              <Label htmlFor="option-two">Choose time to pre-order</Label>
-            </div>
-          </RadioGroup>
-            </div>
-          <div className="w-full mb-4">
-            <label className="block text-sm font-bold mb-2">
-              Choose where you want to eat!
-            </label>
-            <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="option-one" id="option-one" />
+                <Label htmlFor="option-one">As soon as possible (25-35min)</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="option-two" id="option-two" />
+                <Label htmlFor="option-two">Choose time to pre-order</Label>
+              </div>
+            </RadioGroup>
+            <div className="flex justify-between items-center p-3 bg-gray-200">
+              <span>{deliveryTime}</span>
               <button
-                className="w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
-                onClick={() => handleOptionClick("delivery")}
+                onClick={() => setDeliveryTime("Edit Mode")}
+                className="text-blue-500"
               >
-                Delivery
+                Change
               </button>
-              <DeliveryModal
-                trigger={
-                  <button className="w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
-                    Pick up
-                  </button>
-                }
-                handleOptionClick={handleOptionClick} // Pass the callback function
-              />
             </div>
           </div>
-
-          <OrderSummary items={items} updateQuantity={updateQuantity} />
-
           <div className="w-full mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="message">
-              Leave a message (optional)
-            </label>
-            <textarea
-              id="message"
-              className="w-full h-24 p-2 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 shadow-sm"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Write your message here..."
+            <label className="block text-sm font-bold mb-2">Payment</label>
+            <div className="flex justify-between items-center p-3 bg-gray-200">
+              <span>{paymentMethod}</span>
+              <button
+                onClick={() => setPaymentMethod("Edit Mode")}
+                className="text-blue-500"
+              >
+                Change
+              </button>
+            </div>
+            <div className="w-full mb-4">
+              <label className="block text-sm font-bold mb-2">
+                Choose where you want to eat!
+              </label>
+              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
+                <button
+                  className="w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+                  onClick={() => handleOptionClick("delivery")}
+                >
+                  Delivery
+                </button>
+                <DeliveryModal
+                  trigger={
+                    <button className="w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
+                      Pick up
+                    </button>
+                  }
+                  handleOptionClick={handleOptionClick} // Pass the callback function
+                />
+              </div>
+            </div>
+
+            <OrderSummary items={items} updateQuantity={updateQuantity} />
+
+            <div className="w-full mb-4">
+              <label className="block text-sm font-bold mb-2" htmlFor="message">
+                Leave a message (optional)
+              </label>
+              <textarea
+                id="message"
+                className="w-full h-24 p-2 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 shadow-sm"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Write your message here..."
+              />
+            </div>
+
+            {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
+            <Paymentsummary
+              deliveryOption={deliveryOption}
+              deliveryCost={deliveryCost}
+              items={items}
             />
           </div>
 
-          {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
-          <Paymentsummary
-            deliveryOption={deliveryOption}
-            deliveryCost={deliveryCost}
-            items={items}
-            
-          />
+          <div className="w-full max-w-4xl mx-auto px-4">
+            <Button
+              variant="solid"
+              className="bg-orange-300 text-white font-bold w-full py-3"
+            >
+              <Link href="/confirmation">
+                <div className="w-full h-full inline-block">Go to payment</div>
+              </Link>
+            </Button>
+          </div>
         </div>
-
-        <div className="w-full max-w-4xl mx-auto px-4">
-          <Button
-            variant="solid"
-            className="bg-orange-300 text-white font-bold w-full py-3"
-          >
-            <Link href="/confirmation">
-              <div className="w-full h-full inline-block">Go to payment</div>
-            </Link>
-          </Button>
-        </div>
+        <Link href="/confirmation">
+          <CartFooter />
+        </Link>
       </div>
-      <Link href="/confirmation">
-        <CartFooter />
-      </Link>
     </>
   );
 }
