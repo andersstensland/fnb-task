@@ -1,10 +1,8 @@
-import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -12,8 +10,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useEffect } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function SecondNavbar() {
   const [selectedValue, setSelectedValue] = useState("asap");
