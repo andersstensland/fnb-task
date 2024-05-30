@@ -1,7 +1,13 @@
 import { fetchMenuCategories } from "@/lib/fetchMenu";
 import useSWR from "swr";
+import MenuNavbar from "@/components/menu/menunavbar";
+import MenuCategory from "@/components/menu/menucategory";
+import { useState } from "react";
+import "@/styles/globals.css";
 
 const FetchMenu = ({ initialData }) => {
+  const [activeCategoryId, setActiveCategoryId] = useState(null);
+
   const { data: menuCategories, error } = useSWR(
     "menuCategoriesKey",
     fetchMenuCategories,
@@ -11,23 +17,22 @@ const FetchMenu = ({ initialData }) => {
     }
   );
 
+  const handleCategoryChange = (categoryId) => {
+    setActiveCategoryId(categoryId);
+  };
+
   if (error) return <div>Failed to load</div>;
   if (!menuCategories) return <div>Loading...</div>;
 
   return (
     <div>
-      <h1>Menu Categories</h1>
-      {menuCategories.map((category) => (
-        <div key={category._id}>
-          <h2>{category.name}</h2>
-          <ul>
-            {category.subcategories &&
-              category.subcategories.map((sub) => (
-                <li key={sub._id}>{sub.name || "Untitled"}</li>
-              ))}
-          </ul>
-        </div>
-      ))}
+      <MenuNavbar
+        categories={menuCategories}
+        onCategoryChange={handleCategoryChange}
+      />
+      <div className="container mx-auto p-4">
+        <MenuCategory category={menuCategories} />
+      </div>
     </div>
   );
 };
