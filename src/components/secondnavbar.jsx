@@ -119,7 +119,7 @@ export default function SecondNavbar() {
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction>
-                  <Link href="order">Continue</Link>
+                  <Link href="payment">Continue</Link>
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
