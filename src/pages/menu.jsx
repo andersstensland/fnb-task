@@ -5,7 +5,11 @@ import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 //import CartFooter from "@/components/cartfooter";
+//import CartFooter from "@/components/cartfooter";
 import "@/styles/globals.css";
+import TopBar from "@/components/menu/topbar";
+import CartFooter from "@/components/cartfooter";
+import Link from "next/link";
 import TopBar from "@/components/menu/topbar";
 
 const categoriesData = [
@@ -23,6 +27,9 @@ const categoriesData = [
             price: 65,
             description:
               "Wrap with pulled tandoori chicken, peppers, and cabbage.",
+            content: { chicken: true, peppers: true, cabbage: true },
+            allergies: ["chicken"],
+            sides: ["fries", "coleslaw"],
             content: { chicken: true, peppers: true, cabbage: true },
             allergies: ["chicken"],
             sides: ["fries", "coleslaw"],
@@ -47,6 +54,14 @@ const categoriesData = [
             },
             allergies: ["dairy", "gluten"],
             sides: ["garlic bread", "salad"],
+            content: {
+              tomato: true,
+              cheese: true,
+              oregano: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
           },
           {
             id: 122,
@@ -56,12 +71,25 @@ const categoriesData = [
             content: { tomato: true, cheese: true, ham: true, mushrooms: true },
             allergies: ["dairy", "gluten"],
             sides: ["garlic bread", "salad"],
+            content: { tomato: true, cheese: true, ham: true, mushrooms: true },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
           },
           {
             id: 123,
             name: "Pizza Meatlover",
             price: 179,
             description: "Tomato sauce, cheese, onion, beef, ham, pepperoni.",
+            content: {
+              tomato: true,
+              cheese: true,
+              onion: true,
+              beef: true,
+              ham: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
             content: {
               tomato: true,
               cheese: true,
@@ -95,12 +123,18 @@ const categoriesData = [
             content: { barley: true },
             allergies: ["gluten"],
             sides: [],
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
           },
           {
             id: 212,
             name: "Imported Beer",
             price: 70,
             description: "A premium imported beer for fine tastes.",
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
             content: { barley: true },
             allergies: ["gluten"],
             sides: [],
@@ -117,6 +151,9 @@ const categoriesData = [
             name: "Red Wine",
             price: 90,
             description: "Rich and smooth red wine.",
+            content: { grapes: true },
+            allergies: [],
+            sides: ["cheese platter"],
             content: { grapes: true },
             allergies: [],
             sides: ["cheese platter"],
@@ -152,12 +189,18 @@ const categoriesData = [
             content: { caffeine: true },
             allergies: [],
             sides: [],
+            content: { caffeine: true },
+            allergies: [],
+            sides: [],
           },
           {
             id: 312,
             name: "Lemon-Lime",
             price: 25,
             description: "Refreshing lemon and lime blend.",
+            content: { lemon: true, lime: true },
+            allergies: [],
+            sides: [],
             content: { lemon: true, lime: true },
             allergies: [],
             sides: [],
@@ -204,6 +247,7 @@ const Menu = () => {
     <>
       <Navbar />
       <SecondNavbar />
+      <TopBar />
       <TopBar />
       <MenuNavbar
         categories={categories}
