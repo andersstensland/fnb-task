@@ -120,11 +120,13 @@ export default function Payment() {
             </div>
 
             {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
-            {/*<PaymentSummary
-              deliveryOption={deliveryOption}
-              deliveryCost={deliveryCost}
-              items={items}
-                />*/}
+            {
+              <PaymentSummary
+                deliveryOption={deliveryOption}
+                deliveryCost={deliveryCost}
+                items={items}
+              />
+            }
           </div>
         </div>
       </div>
