@@ -1,8 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Paymentsummary = ({ deliveryOption, deliveryCost, items }) => {
+const PaymentSummary = ({ deliveryOption, deliveryCost, items }) => {
   // Calculate total price based on items' quantities and prices
-  const totalPrice = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="w-full mb-14">
@@ -10,13 +13,17 @@ const Paymentsummary = ({ deliveryOption, deliveryCost, items }) => {
         {items.map((item, index) => (
           <div key={index}>
             <div className="mb-2 text-black">
-              {item.quantity}X {item.name} <span className="float-right">{item.price * item.quantity},00</span>
+              {item.quantity}X {item.name}{" "}
+              <span className="float-right">
+                {item.price * item.quantity},00
+              </span>
             </div>
             <hr className="border-t border-gray-300 my-2" />
           </div>
         ))}
         <div className="mb-2 text-black">
-          {deliveryOption === 'delivery' ? 'Delivery' : 'Pick Up'} <span className="float-right">{deliveryCost}</span>
+          {deliveryOption === "delivery" ? "Delivery" : "Pick Up"}{" "}
+          <span className="float-right">{deliveryCost}</span>
         </div>
         <hr className="border-t border-gray-300 my-2" />
         <div className="mt-4 font-bold text-black">
@@ -25,6 +32,6 @@ const Paymentsummary = ({ deliveryOption, deliveryCost, items }) => {
       </div>
     </div>
   );
-}
+};
 
-export default Paymentsummary;
+export default PaymentSummary;
