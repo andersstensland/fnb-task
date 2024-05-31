@@ -10,6 +10,7 @@ import CartFooter from "@/components/CartFooter";
 import DeliveryModal from "@/components/payment/deliverymodal";
 import SecondNavbar from "@/components/secondnavbar";
 import Paymentsummary from "@/components/payment/paymentsummary";
+
 import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 
 export default function Payment() {
@@ -51,6 +52,7 @@ export default function Payment() {
         <PaymentMethodModal />
         <div className="w-full max-w-4xl mx-auto">
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
+
           <div className="w-full mb-4">
             <label className="block text-sm font-bold mb-2">
               <svg
@@ -87,19 +89,11 @@ export default function Payment() {
               >
                 Change
               </button>
-            </div>
+            </div>=
           </div>
+
           <div className="w-full mb-4">
             <label className="block text-sm font-bold mb-2">Payment</label>
-            <div className="flex justify-between items-center p-3 bg-gray-200">
-              <span>{paymentMethod}</span>
-              <button
-                onClick={() => setPaymentMethod("Edit Mode")}
-                className="text-blue-500"
-              >
-                Change
-              </button>
-            </div>
             <div className="w-full mb-4">
               <label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
@@ -143,17 +137,6 @@ export default function Payment() {
               deliveryCost={deliveryCost}
               items={items}
             />
-          </div>
-
-          <div className="w-full max-w-4xl mx-auto px-4">
-            <Button
-              variant="solid"
-              className="bg-orange-300 text-white font-bold w-full py-3"
-            >
-              <Link href="/confirmation">
-                <div className="w-full h-full inline-block">Go to payment</div>
-              </Link>
-            </Button>
           </div>
         </div>
         <Link href="/confirmation">
