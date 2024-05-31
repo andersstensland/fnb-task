@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const Orderitemcard = ({ item, updateQuantity }) => {
+const OrderItemCard = ({ item, updateQuantity }) => {
   const handleIncrement = () => {
     updateQuantity(item.name, item.quantity + 1); // Increase the quantity
   };
@@ -17,12 +17,18 @@ const Orderitemcard = ({ item, updateQuantity }) => {
       {/* Product Name and Price */}
       <div className="flex flex-col mr-4 w-1/3">
         {/* Product Name */}
-        <span className="text-base lg:text-lg font-semibold mb-1">{item.name}</span>
+        <span className="text-base lg:text-lg font-semibold mb-1">
+          {item.name}
+        </span>
         {/* Product Price */}
-        <span className="text-xs font-semibold lg:text-sm">{item.price},00</span>
+        <span className="text-xs font-semibold lg:text-sm">
+          {item.price},00
+        </span>
       </div>
       {/* Quantity Controls and Change Button */}
-      <div className="flex items-center w-2/3 justify-end"> {/* Change here */}
+      <div className="flex items-center w-2/3 justify-end">
+        {" "}
+        {/* Change here */}
         {/* Quantity Controls */}
         <div className="flex items-center">
           <button
