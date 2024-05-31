@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import CartFooter from "@/components/cartfooter";
+import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import Navbar from "@/components/navbar";
-import "@/styles/globals.css";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import DeliveryModal from "@/components/payment/deliverymodal";
+import OrderSummary from "@/components/payment/ordersummary";
+import Paymentsummary from "@/components/payment/paymentsummary";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import OrderSummary from "@/components/payment/ordersummary";
-import CartFooter from "@/components/CartFooter";
-import DeliveryModal from "@/components/payment/deliverymodal";
-import SecondNavbar from "@/components/secondnavbar";
-import Paymentsummary from "@/components/payment/paymentsummary";
-
-import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
+import "@/styles/globals.css";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Payment() {
   const [deliveryOption, setDeliveryOption] = useState("delivery");
@@ -74,22 +71,15 @@ export default function Payment() {
             <RadioGroup defaultValue="option-one">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-one" id="option-one" />
-                <Label htmlFor="option-one">As soon as possible (25-35min)</Label>
+                <Label htmlFor="option-one">
+                  As soon as possible (25-35min)
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
                 <Label htmlFor="option-two">Choose time to pre-order</Label>
               </div>
             </RadioGroup>
-            <div className="flex justify-between items-center p-3 bg-gray-200">
-              <span>{deliveryTime}</span>
-              <button
-                onClick={() => setDeliveryTime("Edit Mode")}
-                className="text-blue-500"
-              >
-                Change
-              </button>
-            </div>=
           </div>
 
           <div className="w-full mb-4">

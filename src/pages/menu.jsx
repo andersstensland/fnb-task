@@ -5,12 +5,9 @@ import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
 //import CartFooter from "@/components/cartfooter";
-//import CartFooter from "@/components/cartfooter";
 import "@/styles/globals.css";
 import TopBar from "@/components/menu/topbar";
-import CartFooter from "@/components/cartfooter";
-import Link from "next/link";
-import TopBar from "@/components/menu/topbar";
+//import Link from "next/link";
 
 const categoriesData = [
   {
