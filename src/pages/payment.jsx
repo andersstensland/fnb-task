@@ -2,7 +2,7 @@ import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import Navbar from "@/components/navbar";
 import DeliveryModal from "@/components/payment/deliverymodal";
 import OrderSummary from "@/components/payment/ordersummary";
-import PaymentSummary from "@/components/payment/paymentsummary";
+//import PaymentSummary from "@/components/payment/paymentsummary";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import "@/styles/globals.css";
@@ -120,11 +120,11 @@ export default function Payment() {
             </div>
 
             {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
-            <PaymentSummary
+            {/*<PaymentSummary
               deliveryOption={deliveryOption}
               deliveryCost={deliveryCost}
               items={items}
-            />
+                />*/}
           </div>
         </div>
       </div>
