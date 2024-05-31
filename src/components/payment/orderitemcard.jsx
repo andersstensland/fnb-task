@@ -56,4 +56,4 @@ const OrderItemCard = ({ item, updateQuantity }) => {
   );
 };
 
-export default Orderitemcard;
+export default OrderItemCard;

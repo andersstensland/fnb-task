@@ -1,7 +1,7 @@
 import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import Navbar from "@/components/navbar";
 import DeliveryModal from "@/components/payment/deliverymodal";
-import OrderSummary from "@/components/payment/ordersummary";
+//import OrderSummary from "@/components/payment/ordersummary";
 //import PaymentSummary from "@/components/payment/paymentsummary";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -104,7 +104,7 @@ export default function Payment() {
               </div>
             </div>
 
-            <OrderSummary items={items} updateQuantity={updateQuantity} />
+            {/*<OrderSummary items={items} updateQuantity={updateQuantity} />*/}
 
             <div className="w-full mb-4">
               <label className="block text-sm font-bold mb-2" htmlFor="message">
