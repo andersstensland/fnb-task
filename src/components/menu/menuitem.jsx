@@ -4,6 +4,7 @@ import ProductDetailsModal from "../modals/productdetails";
 
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleIncrement = () => {
@@ -18,6 +19,14 @@ const MenuItem = ({ item, onUpdate }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    if (!isAdded) {
+      setIsAdded(true);
+      onUpdate(item.id, count);
+    }
+    setModalOpen(true);
+  };
+
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
@@ -29,24 +38,34 @@ const MenuItem = ({ item, onUpdate }) => {
         <span className="text-lg font-bold">{item.price},-</span>
       </div>
       <p className="text-md">{item.description}</p>
-      <div className="flex items-center my-2">
-        <button
-          className="px-2 py-1 border border-gray-500 text-black rounded"
-          onClick={handleDecrement}
-        >
-          -
-        </button>
-        <span className="mx-2">{count}</span>
-        <button
-          className="px-2 py-1 border border-orange-500 text-black rounded"
-          onClick={handleIncrement}
-        >
-          +
-        </button>
-      </div>
-      <Button variant="outline" className="bg-orange-300" onClick={toggleModal}>
-        Add to cart
-      </Button>
+      {isAdded ? (
+        <div className="flex items-center justify-end my-2">
+          <Button variant="outline" className="bg-orange-300" onClick={handleAddToCart}>
+            Edit
+          </Button>
+          <div className="flex items-center ml-2">
+            <div className="  rounded flex items-center">
+              <button
+                className="px-2 py-1 border border-orange-300 text-black rounded shadow"
+                onClick={handleDecrement}
+              >
+                -
+              </button>
+              <span className="mx-2 text-black">{count}</span>
+              <button
+                className="px-2 py-1 border border-orange-300 text-black rounded shadow"
+                onClick={handleIncrement}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Button variant="outline" className="bg-orange-300" onClick={handleAddToCart}>
+          Add to cart
+        </Button>
+      )}
       <ProductDetailsModal
         isOpen={isModalOpen}
         onClose={toggleModal}
