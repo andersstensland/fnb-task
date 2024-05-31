@@ -245,7 +245,6 @@ const Menu = () => {
       <Navbar />
       <SecondNavbar />
       <TopBar />
-      <TopBar />
       <MenuNavbar
         categories={categories}
         onCategoryChange={handleCategoryChange}
