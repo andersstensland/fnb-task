@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import ProductDetailsModal from "../modals/productdetails";
+import Orderitemcard from "../payment/orderitemcard";
 
 const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -20,6 +22,16 @@ const MenuItem = ({ item, onUpdate }) => {
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
+    if (!isModalOpen) {
+      setSelectedItem(item); // Set the selected item when the modal is opened
+    }
+  };
+
+  const updateQuantity = (itemName, newQuantity) => {
+    // Implement your logic to update the quantity for the item
+    console.log(`Updating quantity for ${itemName} to ${newQuantity}`);
+    // This function should update the quantity of the item in your state or wherever it's managed
+    // For now, let's just log the item name and the new quantity
   };
 
   return (
@@ -54,6 +66,7 @@ const MenuItem = ({ item, onUpdate }) => {
         count={count}
         onUpdate={onUpdate}
       />
+      {selectedItem && <Orderitemcard item={selectedItem} updateQuantity={updateQuantity} />} {/* Pass updateQuantity as a prop */}
     </div>
   );
 };

@@ -4,8 +4,10 @@ import MenuCategory from "@/components/menu/menucategory";
 import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import MenuNavbar from "@/components/menu/menunavbar";
-import "@/styles/globals.css";
 import CartFooter from "@/components/cartfooter";
+import "@/styles/globals.css";
+import TopBar from "@/components/menu/topbar";
+import Link from "next/link";
 
 const categoriesData = [
   {
@@ -22,6 +24,12 @@ const categoriesData = [
             price: 65,
             description:
               "Wrap with pulled tandoori chicken, peppers, and cabbage.",
+            content: { chicken: true, peppers: true, cabbage: true },
+            allergies: ["chicken"],
+            sides: ["fries", "coleslaw"],
+            content: { chicken: true, peppers: true, cabbage: true },
+            allergies: ["chicken"],
+            sides: ["fries", "coleslaw"],
           },
           // Additional wrap items...
         ],
@@ -35,18 +43,60 @@ const categoriesData = [
             name: "Pizza Pepperoni",
             price: 179,
             description: "Tomato sauce, cheese, oregano, pepperoni.",
+            content: {
+              tomato: true,
+              cheese: true,
+              oregano: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
+            content: {
+              tomato: true,
+              cheese: true,
+              oregano: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
           },
           {
             id: 122,
             name: "Pizza Ham",
             price: 179,
             description: "Tomato sauce, cheese, ham, mushrooms.",
+            content: { tomato: true, cheese: true, ham: true, mushrooms: true },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
+            content: { tomato: true, cheese: true, ham: true, mushrooms: true },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
           },
           {
             id: 123,
             name: "Pizza Meatlover",
             price: 179,
             description: "Tomato sauce, cheese, onion, beef, ham, pepperoni.",
+            content: {
+              tomato: true,
+              cheese: true,
+              onion: true,
+              beef: true,
+              ham: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
+            content: {
+              tomato: true,
+              cheese: true,
+              onion: true,
+              beef: true,
+              ham: true,
+              pepperoni: true,
+            },
+            allergies: ["dairy", "gluten"],
+            sides: ["garlic bread", "salad"],
           },
           // Additional pizza items...
         ],
@@ -67,12 +117,24 @@ const categoriesData = [
             name: "Local Beer",
             price: 50,
             description: "A refreshing locally brewed beer.",
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
           },
           {
             id: 212,
             name: "Imported Beer",
             price: 70,
             description: "A premium imported beer for fine tastes.",
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
+            content: { barley: true },
+            allergies: ["gluten"],
+            sides: [],
           },
           // Additional beer items...
         ],
@@ -86,12 +148,21 @@ const categoriesData = [
             name: "Red Wine",
             price: 90,
             description: "Rich and smooth red wine.",
+            content: { grapes: true },
+            allergies: [],
+            sides: ["cheese platter"],
+            content: { grapes: true },
+            allergies: [],
+            sides: ["cheese platter"],
           },
           {
             id: 222,
             name: "White Wine",
             price: 90,
             description: "Crisp and refreshing white wine.",
+            content: { grapes: true },
+            allergies: [],
+            sides: ["cheese platter"],
           },
           // Additional wine items...
         ],
@@ -112,12 +183,24 @@ const categoriesData = [
             name: "Cola",
             price: 25,
             description: "Classic cola flavor.",
+            content: { caffeine: true },
+            allergies: [],
+            sides: [],
+            content: { caffeine: true },
+            allergies: [],
+            sides: [],
           },
           {
             id: 312,
             name: "Lemon-Lime",
             price: 25,
             description: "Refreshing lemon and lime blend.",
+            content: { lemon: true, lime: true },
+            allergies: [],
+            sides: [],
+            content: { lemon: true, lime: true },
+            allergies: [],
+            sides: [],
           },
           // Additional soda items...
         ],
@@ -161,6 +244,7 @@ const Menu = () => {
     <>
       <Navbar />
       <SecondNavbar />
+      <TopBar />
       <MenuNavbar
         categories={categories}
         onCategoryChange={handleCategoryChange}
@@ -170,7 +254,11 @@ const Menu = () => {
       </div>
 
       {/* Render cart component on added order remove if order length is 0 */}
-      {itemCount > 0 && <CartFooter itemCount={itemCount} total={total} />}
+      {itemCount > 0 && (
+        <Link href="payment">
+          <CartFooter itemCount={itemCount} total={total} />{" "}
+        </Link>
+      )}
     </>
   );
 };
