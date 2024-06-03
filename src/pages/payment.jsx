@@ -44,6 +44,28 @@ export default function Payment() {
     setDeliveryCost(option === "delivery" ? "50,00" : "0,00");
   };
 
+
+  // Retrieve data from sessionStorage on component mount
+  useEffect(() => {
+    const storedDeliveryOption = sessionStorage.getItem("deliveryOption");
+    const storedItems = sessionStorage.getItem("items");
+    const storedMessage = sessionStorage.getItem("message");
+    const storedDeliveryCost = sessionStorage.getItem("deliveryCost");
+
+    if (storedDeliveryOption) setDeliveryOption(storedDeliveryOption);
+    if (storedItems) setItems(JSON.parse(storedItems));
+    if (storedMessage) setMessage(storedMessage);
+    if (storedDeliveryCost) setDeliveryCost(storedDeliveryCost);
+  }, []);
+
+  // Store data in sessionStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem("deliveryOption", deliveryOption);
+    sessionStorage.setItem("items", JSON.stringify(items));
+    sessionStorage.setItem("message", message);
+    sessionStorage.setItem("deliveryCost", deliveryCost);
+  }, [deliveryOption, items, message, deliveryCost]);
+
   return (
     <>
       <Navbar />

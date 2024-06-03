@@ -10,7 +10,6 @@ import "@/styles/globals.css";
 import TopBar from "@/components/menu/topbar";
 import CartFooter from "@/components/cartfooter";
 import Link from "next/link";
-import TopBar from "@/components/menu/topbar";
 
 const categoriesData = [
   {
