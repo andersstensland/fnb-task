@@ -13,7 +13,7 @@ const FetchMenu = ({ initialData }) => {
     fetchMenuCategories,
     {
       initialData,
-      revalidateOnFocus: false, // Set true if you want to re-fetch when window gains focus
+      revalidateOnFocus: false,
     }
   );
 
