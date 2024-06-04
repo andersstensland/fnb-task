@@ -12,7 +12,19 @@ export function fetchMenuCategories() {
       "items": items[]->{
         _id,
         name,
-        description
+        "imageAsset": imageAsset->{
+          _id,
+          title,
+          description,
+          "image": {
+            "asset": image.asset->{
+              _id,
+              url
+            },
+          caption,
+          alt
+          }
+        }
       }
     }
   }
