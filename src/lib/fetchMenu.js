@@ -2,14 +2,20 @@ import client from "@/app/sanity/client";
 
 export function fetchMenuCategories() {
   const query = `
-    *[_type == "menuCategory"] {
+  *[_type == "menuCategory"] {
+    _id,
+    name,
+    "subcategories": subcategories[]->{
       _id,
       name,
-      "subcategories": subcategories[]->{
+      description,
+      "items": items[]->{
         _id,
-        name
+        name,
+        description
       }
     }
+  }
   `;
   return client.fetch(query);
 }

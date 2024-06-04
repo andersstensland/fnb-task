@@ -31,7 +31,7 @@ const FetchMenu = ({ initialData }) => {
         onCategoryChange={handleCategoryChange}
       />
       <div className="container mx-auto p-4">
-        <MenuCategory category={menuCategories} />
+        <MenuCategory categories={menuCategories} />
       </div>
     </div>
   );
