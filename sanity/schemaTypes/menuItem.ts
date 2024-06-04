@@ -18,5 +18,11 @@ export default {
       title: 'Description',
       type: 'text',
     },
+    {
+      name: 'imageAsset',
+      title: 'Image Asset',
+      type: 'reference',
+      to: [{type: 'imageAsset'}],
+    },
   ],
 }
