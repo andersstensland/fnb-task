@@ -17,8 +17,8 @@ export default function Navbar() {
             />
           </Link>
         </li>
-        <li className="text-white w-1/3">
-          <a>Cabin 8316</a>
+        <li className="text-white w-1/3 md:mr-2 text-end">
+          <a className="">Cabin 8316</a>
         </li>
       </ul>
     </nav>

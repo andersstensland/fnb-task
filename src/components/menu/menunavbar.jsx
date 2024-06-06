@@ -12,8 +12,7 @@ export default function MenuNavbar({
           <li
             key={category.id}
             className={`font-bold text-black hover:text-orange-500 cursor-pointer ${category.id === activeCategoryId ? "border-b-2 border-orange-300 pb-2" : ""}`}
-            onClick={() => onCategoryChange(category.id)}
-          >
+            onClick={() => onCategoryChange(category.id)}>
             {category.name}
           </li>
         ))}

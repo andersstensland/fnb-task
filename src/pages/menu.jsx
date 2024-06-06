@@ -249,14 +249,20 @@ const Menu = () => {
         categories={categories}
         onCategoryChange={handleCategoryChange}
       />
-      <div className="container mx-auto p-4">
-        <MenuCategory category={activeCategory} onUpdate={updateOrder} />
+      <div className="container flex-grow p-4 max-w-md mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 ">
+        <MenuCategory
+          category={activeCategory}
+          onUpdate={updateOrder}
+        />
       </div>
 
       {/* Render cart component on added order remove if order length is 0 */}
       {itemCount > 0 && (
         <Link href="payment">
-          <CartFooter itemCount={itemCount} total={total} />{" "}
+          <CartFooter
+            itemCount={itemCount}
+            total={total}
+          />{" "}
         </Link>
       )}
     </>

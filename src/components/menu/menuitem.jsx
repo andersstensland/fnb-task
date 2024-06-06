@@ -35,8 +35,8 @@ const MenuItem = ({ item, onUpdate }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between my-2 border rounded-sm p-4">
-      <div className="flex flex-row justify-between my-2">
+    <div className="flex flex-col justify-between my-2 border rounded-sm p-4 ">
+      <div className="flex flex-row justify-between my-2 ">
         <span className="text-lg">{item.name}</span>
         <span className="text-lg font-bold">{item.price},-</span>
       </div>
@@ -44,19 +44,20 @@ const MenuItem = ({ item, onUpdate }) => {
       <div className="flex items-center my-2">
         <button
           className="px-2 py-1 border border-gray-500 text-black rounded"
-          onClick={handleDecrement}
-        >
+          onClick={handleDecrement}>
           -
         </button>
         <span className="mx-2">{count}</span>
         <button
           className="px-2 py-1 border border-orange-500 text-black rounded"
-          onClick={handleIncrement}
-        >
+          onClick={handleIncrement}>
           +
         </button>
       </div>
-      <Button variant="outline" className="bg-orange-300" onClick={toggleModal}>
+      <Button
+        variant="outline"
+        className="bg-orange-300"
+        onClick={toggleModal}>
         Add to cart
       </Button>
       <ProductDetailsModal
@@ -66,7 +67,13 @@ const MenuItem = ({ item, onUpdate }) => {
         count={count}
         onUpdate={onUpdate}
       />
-      {selectedItem && <Orderitemcard item={selectedItem} updateQuantity={updateQuantity} />} {/* Pass updateQuantity as a prop */}
+      {selectedItem && (
+        <Orderitemcard
+          item={selectedItem}
+          updateQuantity={updateQuantity}
+        />
+      )}{" "}
+      {/* Pass updateQuantity as a prop */}
     </div>
   );
 };
