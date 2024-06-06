@@ -27,9 +27,6 @@ const categoriesData = [
             content: { chicken: true, peppers: true, cabbage: true },
             allergies: ["chicken"],
             sides: ["fries", "coleslaw"],
-            content: { chicken: true, peppers: true, cabbage: true },
-            allergies: ["chicken"],
-            sides: ["fries", "coleslaw"],
           },
           // Additional wrap items...
         ],
@@ -51,14 +48,6 @@ const categoriesData = [
             },
             allergies: ["dairy", "gluten"],
             sides: ["garlic bread", "salad"],
-            content: {
-              tomato: true,
-              cheese: true,
-              oregano: true,
-              pepperoni: true,
-            },
-            allergies: ["dairy", "gluten"],
-            sides: ["garlic bread", "salad"],
           },
           {
             id: 122,
@@ -68,25 +57,12 @@ const categoriesData = [
             content: { tomato: true, cheese: true, ham: true, mushrooms: true },
             allergies: ["dairy", "gluten"],
             sides: ["garlic bread", "salad"],
-            content: { tomato: true, cheese: true, ham: true, mushrooms: true },
-            allergies: ["dairy", "gluten"],
-            sides: ["garlic bread", "salad"],
           },
           {
             id: 123,
             name: "Pizza Meatlover",
             price: 179,
             description: "Tomato sauce, cheese, onion, beef, ham, pepperoni.",
-            content: {
-              tomato: true,
-              cheese: true,
-              onion: true,
-              beef: true,
-              ham: true,
-              pepperoni: true,
-            },
-            allergies: ["dairy", "gluten"],
-            sides: ["garlic bread", "salad"],
             content: {
               tomato: true,
               cheese: true,
@@ -120,18 +96,12 @@ const categoriesData = [
             content: { barley: true },
             allergies: ["gluten"],
             sides: [],
-            content: { barley: true },
-            allergies: ["gluten"],
-            sides: [],
           },
           {
             id: 212,
             name: "Imported Beer",
             price: 70,
             description: "A premium imported beer for fine tastes.",
-            content: { barley: true },
-            allergies: ["gluten"],
-            sides: [],
             content: { barley: true },
             allergies: ["gluten"],
             sides: [],
@@ -148,9 +118,6 @@ const categoriesData = [
             name: "Red Wine",
             price: 90,
             description: "Rich and smooth red wine.",
-            content: { grapes: true },
-            allergies: [],
-            sides: ["cheese platter"],
             content: { grapes: true },
             allergies: [],
             sides: ["cheese platter"],
@@ -186,18 +153,12 @@ const categoriesData = [
             content: { caffeine: true },
             allergies: [],
             sides: [],
-            content: { caffeine: true },
-            allergies: [],
-            sides: [],
           },
           {
             id: 312,
             name: "Lemon-Lime",
             price: 25,
             description: "Refreshing lemon and lime blend.",
-            content: { lemon: true, lime: true },
-            allergies: [],
-            sides: [],
             content: { lemon: true, lime: true },
             allergies: [],
             sides: [],
@@ -249,7 +210,7 @@ const Menu = () => {
         categories={categories}
         onCategoryChange={handleCategoryChange}
       />
-      <div className="container flex-grow p-4 max-w-md mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 ">
+      <div className="container mx-auto p-4 max-w-md md:max-w-xl lg:px-20 xl:px-32">
         <MenuCategory
           category={activeCategory}
           onUpdate={updateOrder}
