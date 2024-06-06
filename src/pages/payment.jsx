@@ -44,8 +44,7 @@ export default function Payment() {
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
-        <PaymentMethodModal />
-        <div className="w-full max-w-md mx-auto md:max-w-xl lg:max-w-xl">
+        <div className="w-full max-w-md mx-auto md:max-w-xl lg:max-w-2xl">
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
 
           <div className="w-full mb-4">
@@ -108,12 +107,10 @@ export default function Payment() {
               </div>
             </div>
 
-            {
-              <OrderSummary
-                items={items}
-                updateQuantity={updateQuantity}
-              />
-            }
+            <OrderSummary
+              items={items}
+              updateQuantity={updateQuantity}
+            />
 
             <div className="w-full mb-4">
               <label
@@ -130,16 +127,14 @@ export default function Payment() {
               />
             </div>
 
-            {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
-            {
-              <PaymentSummary
-                deliveryOption={deliveryOption}
-                deliveryCost={deliveryCost}
-                items={items}
-              />
-            }
+            <PaymentSummary
+              deliveryOption={deliveryOption}
+              deliveryCost={deliveryCost}
+              items={items}
+            />
           </div>
         </div>
+        <PaymentMethodModal />
       </div>
     </>
   );
