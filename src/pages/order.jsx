@@ -2,7 +2,6 @@ import Navbar from "@/components/navbar";
 import OrderItem from "@/components/order/orderitem";
 import SecondNavbar from "@/components/secondnavbar";
 import { Button } from "@/components/ui/button";
-import "@/styles/globals.css";
 import Link from "next/link";
 import { useState } from "react";
 

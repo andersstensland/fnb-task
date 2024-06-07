@@ -1,9 +1,7 @@
-"use client";
 import CartFooter from "@/components/cartfooter";
 import TopBar from "@/components/menu/topbar";
 import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
-import "@/styles/globals.css";
 import FetchMenu from "./api/fetchMenu";
 import Link from "next/link";
 import { useCart } from "@/context/cartcontext";

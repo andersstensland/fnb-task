@@ -5,7 +5,6 @@ import OrderSummary from "@/components/payment/ordersummary";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import "@/styles/globals.css";
 import { useCart } from "@/context/cartcontext";
 
 export default function Payment() {
@@ -24,23 +23,7 @@ export default function Payment() {
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
 
           <div className="w-full mb-4">
-            <label className="block text-sm font-bold mb-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-5 inline-block mr-1"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-              Delivery
-            </label>
+            <Label className="block text-sm font-bold mb-2">Delivery</Label>
             <RadioGroup defaultValue="option-one">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-one" id="option-one" />
@@ -58,9 +41,9 @@ export default function Payment() {
           <div className="w-full mb-4">
             <label className="block text-sm font-bold mb-2">Payment</label>
             <div className="w-full mb-4">
-              <label className="block text-sm font-bold mb-2">
+              <Label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
-              </label>
+              </Label>
               <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
                 <Button
                   className="bg-white text-black w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
