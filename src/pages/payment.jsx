@@ -2,44 +2,19 @@ import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import Navbar from "@/components/navbar";
 import DeliveryModal from "@/components/payment/deliverymodal";
 import OrderSummary from "@/components/payment/ordersummary";
-import PaymentSummary from "@/components/payment/paymentsummary";
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import "@/styles/globals.css";
-import { useState } from "react";
+import { useCart } from "@/context/cartcontext";
 
 export default function Payment() {
-  const [deliveryOption, setDeliveryOption] = useState("delivery");
-  const [message, setMessage] = useState("");
-  const [deliveryCost, setDeliveryCost] = useState("50,00");
-  const [items, setItems] = useState([
-    { name: "Pineapple ham pizza", price: 179, quantity: 1 },
-    { name: "Tandoori wrap", price: 65, quantity: 1 },
-  ]);
-
-  // Function to update the quantity of an item
-  const updateQuantity = (itemName, newQuantity) => {
-    setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.name === itemName) {
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      })
-    );
-  };
-
-  // Calculate total price based on items' quantities and prices
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
 
   const handleOptionClick = (option) => {
-    setDeliveryOption(option);
-    setDeliveryCost(option === "delivery" ? "50,00" : "0,00");
+    const cost = option === "delivery" ? 50 : 0;
+    setDeliveryCost(cost);
   };
-
   return (
     <>
       <Navbar />
@@ -87,24 +62,24 @@ export default function Payment() {
                 Choose where you want to eat!
               </label>
               <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
-                <button
-                  className="w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+                <Button
+                  className="bg-white text-black w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
                   onClick={() => handleOptionClick("delivery")}
                 >
                   Delivery
-                </button>
+                </Button>
                 <DeliveryModal
                   trigger={
-                    <button className="w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
+                    <Button className="bg-white text-black w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
                       Pick up
-                    </button>
+                    </Button>
                   }
                   handleOptionClick={handleOptionClick} // Pass the callback function
                 />
               </div>
             </div>
 
-            {<OrderSummary items={items} updateQuantity={updateQuantity} />}
+            <OrderSummary />
 
             <div className="w-full mb-4">
               <label className="block text-sm font-bold mb-2" htmlFor="message">
@@ -113,20 +88,20 @@ export default function Payment() {
               <textarea
                 id="message"
                 className="w-full h-24 p-2 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 shadow-sm"
-                value={message}
+                value={""}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your message here..."
               />
             </div>
 
             {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
-            {
+            {/*
               <PaymentSummary
                 deliveryOption={deliveryOption}
                 deliveryCost={deliveryCost}
                 items={items}
               />
-            }
+                */}
           </div>
         </div>
       </div>
