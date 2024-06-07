@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { useCart } from "@/context/cartcontext";
+import { useEffect } from "react";
 
 const ImageDisplay = ({ item }) => {
   const imageUrl = item.imageAsset?.image?.asset?.url;
@@ -23,14 +24,20 @@ const ImageDisplay = ({ item }) => {
 };
 
 const MenuItem = ({ item }) => {
-  const { addToCart, updateQuantity, getItemCount } = useCart();
+  const { addToCart, getItemCount } = useCart();
 
-  const [count, setCount] = useState(getItemCount(item._id));
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(getItemCount(item._id));
+  }, [item._id, getItemCount]);
 
   const handleAddOrUpdate = () => {
-    console.log("Add or update item:", item, count);
+    console.log("Item ID:", item._id);
+    console.log("Item details:", item);
+    console.log("Quantity to add:", 1);
 
-    addToCart(item, count);
+    addToCart(item._id, item, 1);
   };
 
   return (
@@ -38,19 +45,16 @@ const MenuItem = ({ item }) => {
       <div className="flex flex-col justify-between">
         <h2 className="text-lg font-semibold">{item.name}</h2>
         <span className="text-lg font-bold">{item.price},-</span>
-        <div className="flex-1">
-          <p className="text-sm text-gray-700">{item.description}</p>
-          <ImageDisplay item={item} />
-        </div>
-        <div className="flex justify-between">
-          <Button
-            variant="outline"
-            className="bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1 text-black"
-            onClick={handleAddOrUpdate}
-          >
-            Add to Cart
-          </Button>
-        </div>
+        <p className="text-sm text-gray-700">{item.description}</p>
+        <ImageDisplay item={item} />
+        <Button
+          variant="outline"
+          className="mt-2 bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1"
+          onClick={handleAddOrUpdate}
+        >
+          Add to Cart
+        </Button>
+        {count > 0 && <p className="text-sm text-gray-600">In cart: {count}</p>}
       </div>
     </div>
   );

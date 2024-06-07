@@ -6,6 +6,7 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({});
+  const [deliveryCost, setDeliveryCost] = useState(0);
 
   // Load and save cart from/to localStorage
   useEffect(() => {
@@ -20,7 +21,7 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const getItemCount = (cart) => {
-    if (!cart) return 0;
+    if (!cart) return;
     return Object.values(cart).reduce((total, item) => total + item.qty, 0);
   };
 
@@ -32,12 +33,25 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = (itemId, itemDetails, quantity) => {
+    if (quantity === undefined) {
+      console.error("Quantity was undefined, defaulting to 1");
+      quantity = 1;
+    }
+    if (typeof quantity !== "number" || isNaN(quantity)) {
+      console.error("Invalid quantity:", quantity);
+      return; // Exit the function if quantity is not valid
+    }
+    if (typeof itemDetails.price !== "number" || isNaN(itemDetails.price)) {
+      console.error("Invalid price:", itemDetails.price);
+      return; // Exit the function if price is not valid
+    }
+
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       if (newCart[itemId]) {
-        newCart[itemId].qty += quantity; // Increase qty if already in cart
+        newCart[itemId].qty += quantity;
       } else {
-        newCart[itemId] = { details: itemDetails, qty: quantity }; // Add new item with qty
+        newCart[itemId] = { ...itemDetails, qty: quantity };
       }
       return newCart;
     });

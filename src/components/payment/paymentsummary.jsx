@@ -1,33 +1,30 @@
 import React from "react";
+import { useCart } from "@/context/cartcontext";
 
-const PaymentSummary = ({ deliveryOption, deliveryCost, items }) => {
-  // Calculate total price based on items' quantities and prices
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+const PaymentSummary = ({ deliveryOption, deliveryCost }) => {
+  const { cart, getTotalCost } = useCart();
 
   return (
     <div className="w-full mb-14">
       <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
-        {items.map((item, index) => (
-          <div key={index}>
+        {Object.values(cart).map((item, index) => (
+          <div key={item.id || index}>
+            {" "}
+            // Ensure unique key, prefer item ID if available
             <div className="mb-2 text-black">
-              {item.quantity}X {item.name}{" "}
-              <span className="float-right">
-                {item.price * item.quantity},00
-              </span>
+              {item.qty}x {item.name}
+              <span className="float-right">${item.price * item.qty}.00</span>
             </div>
             <hr className="border-t border-gray-300 my-2" />
           </div>
         ))}
         <div className="mb-2 text-black">
-          {deliveryOption === "delivery" ? "Delivery" : "Pick Up"}{" "}
-          <span className="float-right">{deliveryCost}</span>
+          {deliveryOption === "delivery" ? "Delivery" : "Pick Up"}
+          <span className="float-right">${deliveryCost}</span>
         </div>
         <hr className="border-t border-gray-300 my-2" />
         <div className="mt-4 font-bold text-black">
-          Total <span className="float-right">{totalPrice},00</span>
+          Total <span className="float-right">${getTotalCost()},00</span>
         </div>
       </div>
     </div>

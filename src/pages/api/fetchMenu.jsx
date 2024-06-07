@@ -16,7 +16,6 @@ const FetchMenu = ({ initialData }) => {
       revalidateOnFocus: false,
     }
   );
-  const { getItemCount, cart } = useCart();
 
   // Define an update function or provide the functionality needed
   const handleUpdate = (item) => {
@@ -30,9 +29,6 @@ const FetchMenu = ({ initialData }) => {
 
   if (error) return <div>Failed to load</div>;
   if (!menuCategories) return <div>Loading...</div>;
-
-  console.log(cart);
-  console.log(getItemCount()); // returns 0 ?
 
   return (
     <div>
@@ -48,11 +44,6 @@ const FetchMenu = ({ initialData }) => {
           activeCategoryId={activeCategoryId}
         />
       </div>
-      {getItemCount() > 0 && (
-        <Link href="payment">
-          <CartFooter />
-        </Link>
-      )}
     </div>
   );
 };
