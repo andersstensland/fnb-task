@@ -4,12 +4,9 @@ import TopBar from "@/components/menu/topbar";
 import Navbar from "@/components/navbar";
 import SecondNavbar from "@/components/secondnavbar";
 import "@/styles/globals.css";
-import { useState } from "react";
 import FetchMenu from "./api/fetchMenu";
 
 const Menu = () => {
-  const [order, setOrder] = useState({});
-
   return (
     <>
       <Navbar />

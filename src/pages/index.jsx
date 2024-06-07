@@ -1,7 +1,7 @@
-import "../styles/globals.css";
 import Link from "next/link";
 import Navbar from "../components/navbar";
 import { Button } from "../components/ui/button";
+import "../styles/globals.css";
 
 export default function Home() {
   return (

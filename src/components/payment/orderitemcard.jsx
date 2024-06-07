@@ -2,6 +2,12 @@ import React from "react";
 import Link from "next/link";
 
 const OrderItemCard = ({ item, updateQuantity }) => {
+  // Calculate total price
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   const handleIncrement = () => {
     updateQuantity(item.name, item.quantity + 1); // Increase the quantity
   };

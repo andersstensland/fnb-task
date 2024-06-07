@@ -2,25 +2,26 @@ import React, { useState } from "react";
 import Link from "next/link";
 import OrderItemCard from "./orderitemcard";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const OrderSummary = () => {
-  // Sample items
-  const [items, setItems] = useState([
-    { name: "Pineapple ham pizza", price: 179, quantity: 1 },
-    { name: "Tandoori wrap", price: 65, quantity: 1 },
-  ]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    // This ensures code only runs client-side
+    const cartItems = localStorage.getItem("cart");
+    if (cartItems) {
+      setItems(JSON.parse(cartItems));
+    }
+  }, []);
 
   const updateQuantity = (itemName, newQuantity) => {
     const updatedItems = items.map((item) =>
       item.name === itemName ? { ...item, quantity: newQuantity } : item
     );
     setItems(updatedItems);
+    localStorage.setItem("cart", JSON.stringify(updatedItems));
   };
-
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   return (
     <div className="mt-7">
@@ -46,16 +47,23 @@ const OrderSummary = () => {
         <p className="ml-auto font-bold">Price (Nok)</p>
       </div>
       <hr className="mt-1.5 mb-6 h-0.5 border-t-0 bg-neutral-300 dark:bg-/10" />
-      {items.map((item, index) => (
-        <OrderItemCard
-          key={index}
-          item={item}
-          updateQuantity={updateQuantity}
-        />
-      ))}
+      {items.length > 0 ? (
+        Object.values(cart).map((item, index) => (
+          <OrderItemCard
+            key={index}
+            item={item.details}
+            quantity={item.qty}
+            updateQuantity={(newQty) =>
+              updateQuantity(item.details._id, newQty)
+            }
+          />
+        ))
+      ) : (
+        <p>No items in your cart.</p>
+      )}
       <div className="flex justify-between items-center font-bold text-xl mt-4 mb-3 p-4 border-t border-b border-gray-300">
         <span>Total</span>
-        <span>{totalPrice},-</span>
+        <span>{},-</span>
       </div>
       <Button
         variant="solid"
