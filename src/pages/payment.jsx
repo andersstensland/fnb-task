@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/context/cartcontext";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
@@ -39,7 +40,7 @@ export default function Payment() {
           </div>
 
           <div className="w-full mb-4">
-            <label className="block text-sm font-bold mb-2">Payment</label>
+            <Label className="block text-sm font-bold mb-2">Payment</Label>
             <div className="w-full mb-4">
               <Label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
@@ -65,10 +66,10 @@ export default function Payment() {
             <OrderSummary />
 
             <div className="w-full mb-4">
-              <label className="block text-sm font-bold mb-2" htmlFor="message">
+              <Label className="block text-sm font-bold mb-2" htmlFor="message">
                 Leave a message (optional)
-              </label>
-              <textarea
+              </Label>
+              <Textarea
                 id="message"
                 className="w-full h-24 p-2 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 shadow-sm"
                 value={""}
