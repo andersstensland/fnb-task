@@ -37,7 +37,7 @@ const FetchMenu = ({ initialData }) => {
         onCategoryChange={handleCategoryChange}
         activeCategoryId={activeCategoryId}
       />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 ">
         <MenuCategory
           categories={menuCategories}
           onUpdate={handleUpdate}

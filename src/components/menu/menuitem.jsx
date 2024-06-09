@@ -50,8 +50,7 @@ const MenuItem = ({ item }) => {
         <Button
           variant="outline"
           className="mt-2 bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1"
-          onClick={handleAddOrUpdate}
-        >
+          onClick={handleAddOrUpdate}>
           Add to Cart
         </Button>
         {count > 0 && <p className="text-sm text-gray-600">In cart: {count}</p>}

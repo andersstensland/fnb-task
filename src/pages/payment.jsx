@@ -20,20 +20,26 @@ export default function Payment() {
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
         <PaymentMethodModal />
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-md mx-auto md:max-w-xl lg:max-w-2xl">
           <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
 
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
             <RadioGroup defaultValue="option-one">
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-one" id="option-one" />
+                <RadioGroupItem
+                  value="option-one"
+                  id="option-one"
+                />
                 <Label htmlFor="option-one">
                   As soon as possible (25-35min)
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-two" id="option-two" />
+                <RadioGroupItem
+                  value="option-two"
+                  id="option-two"
+                />
                 <Label htmlFor="option-two">Choose time to pre-order</Label>
               </div>
             </RadioGroup>
@@ -45,16 +51,15 @@ export default function Payment() {
               <Label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
               </Label>
-              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
+              <div className="flex flex-col md:flex-row md:items-center  md:space-x-4">
                 <Button
-                  className="bg-white text-black w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
-                  onClick={() => handleOptionClick("delivery")}
-                >
+                  className="w-full gap-4 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+                  onClick={() => handleOptionClick("delivery")}>
                   Delivery
                 </Button>
                 <DeliveryModal
                   trigger={
-                    <Button className="bg-white text-black w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
+                    <Button className="w-full  md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
                       Pick up
                     </Button>
                   }
@@ -66,7 +71,9 @@ export default function Payment() {
             <OrderSummary />
 
             <div className="w-full mb-4">
-              <Label className="block text-sm font-bold mb-2" htmlFor="message">
+              <Label
+                className="block text-sm font-bold mb-2"
+                htmlFor="message">
                 Leave a message (optional)
               </Label>
               <Textarea
