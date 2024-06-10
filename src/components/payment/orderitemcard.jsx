@@ -1,57 +1,68 @@
 import React from "react";
+import { useCart } from "@/context/cartcontext";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-const OrderItemCard = ({ item, updateQuantity }) => {
-  const handleIncrement = () => {
-    updateQuantity(item.name, item.quantity + 1); // Increase the quantity
+const OrderItemCard = ({ item }) => {
+  const { addToCart, removeFromCart, getItemCount } = useCart();
+  const count = getItemCount(item._id);
+
+  const handleAddOrUpdate = () => {
+    addToCart(item._id, item, 1);
   };
 
   const handleDecrement = () => {
-    if (item.quantity > 0) {
-      updateQuantity(item.name, item.quantity - 1); // Decrease the quantity
+    if (count > 0) {
+      addToCart(item._id, item, -1);
     }
   };
 
+  const handleRemoveItem = () => {
+    removeFromCart(item._id);
+  };
+
   return (
-    <div className="flex justify-between items-start my-2 border rounded-lg shadow-md p-4">
-      {/* Product Name and Price */}
-      <div className="flex flex-col mr-4 w-1/3">
-        {/* Product Name */}
-        <span className="text-base lg:text-lg font-semibold mb-1">
-          {item.name}
-        </span>
-        {/* Product Price */}
-        <span className="text-xs font-semibold lg:text-sm">
-          {item.price},00
-        </span>
+    <div className="relative border rounded-lg shadow-md my-2 p-4 pt-12 pb-12 flex items-start justify-between">
+      {/* Card content layout adjusted for visual spacing */}
+      <div>
+        <span className="text-lg font-semibold">{item.name}</span>
+        <span className="text-sm block">{item.price},00</span>
       </div>
-      {/* Quantity Controls and Change Button */}
-      <div className="flex items-center w-2/3 justify-end">
-        {" "}
-        {/* Change here */}
-        {/* Quantity Controls */}
-        <div className="flex items-center">
-          <button
-            className="px-2 py-1 border bg-orange-300 text-black rounded mr-1"
-            onClick={handleDecrement}
-          >
-            -
-          </button>
-          <span className="mx-2">{item.quantity}</span>
-          <button
-            className="px-2 py-1 border bg-orange-300 text-black rounded ml-1"
-            onClick={handleIncrement}
-          >
-            +
-          </button>
-        </div>
-        {/* Change Button */}
-        <Link href="/menu">
-          <button className="px-1 py-1 ml-2 border bg-red-500 text-white rounded text-xs">
-            Change
-          </button>
-        </Link>
+      <div className="flex items-center">
+        <Button
+          className="text-black bg-customOrange rounded mr-2"
+          onClick={handleDecrement}
+        >
+          -
+        </Button>
+        <span>{count}</span>
+        <Button
+          className="text-black bg-customOrange rounded ml-2"
+          onClick={handleAddOrUpdate}
+        >
+          +
+        </Button>
       </div>
+      {/* Remove button with SVG */}
+      <button onClick={handleRemoveItem} className="absolute top-0 right-0 p-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <Link href="/menu">
+        <Button className="ml-2">Change</Button>
+      </Link>
     </div>
   );
 };

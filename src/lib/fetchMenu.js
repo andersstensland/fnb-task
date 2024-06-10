@@ -13,6 +13,7 @@ export function fetchMenuCategories() {
         _id,
         name,
         price,
+        description,
         "imageAsset": imageAsset->{
           _id,
           title,

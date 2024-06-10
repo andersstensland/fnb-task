@@ -34,8 +34,7 @@ export default function SecondNavbar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6"
-          >
+            className="w-6 h-6">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -44,10 +43,10 @@ export default function SecondNavbar() {
           </svg>
           Delivery 25 - 35 min
         </li>
-        <li className="text-white w-1/3">
+        <li className="text-white w-full flex justify-end">
           <AlertDialog>
             <AlertDialogTrigger>
-              <div className="bg-orange-300 p-2 rounded-md text-black font-bold">
+              <div className="bg-orange-300 p-2 rounded-md text-black font-bold mr-2">
                 Change
               </div>
             </AlertDialogTrigger>
@@ -57,8 +56,7 @@ export default function SecondNavbar() {
                 <div>
                   <RadioGroup
                     onValueChange={handleValueChange}
-                    value={selectedValue}
-                  >
+                    value={selectedValue}>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="asap"
@@ -82,8 +80,7 @@ export default function SecondNavbar() {
                     <form className="max-w-[8.5rem] mx-auto mt-4">
                       <label
                         htmlFor="time"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Select time:
                       </label>
                       <div className="flex">
@@ -102,8 +99,7 @@ export default function SecondNavbar() {
                             className="w-4 h-4 text-gray-500 dark:text-gray-400"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
+                            viewBox="0 0 24 24">
                             <path
                               fillRule="evenodd"
                               d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"

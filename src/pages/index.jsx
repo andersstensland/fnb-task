@@ -1,4 +1,3 @@
-import "../styles/globals.css";
 import Link from "next/link";
 import Navbar from "../components/navbar";
 import { Button } from "../components/ui/button";
@@ -8,7 +7,7 @@ export default function Home() {
     <>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <div className="flex-grow p-4">
+        <div className="flex-grow p-4 flex-grow p-4 max-w-md mx-auto">
           <h3 className="font-bold text-xl mt-4 mb-4">
             In Cabin Delivery Information
           </h3>
@@ -31,8 +30,7 @@ export default function Home() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-24 h-24 items-start"
-            >
+              className="w-24 h-24 items-start">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -49,8 +47,12 @@ export default function Home() {
         <div className="p-4 mt-auto bg-white shadow-t-md">
           <hr className="border-gray-200 my-4" />
           <div className="flex justify-end">
-            <Link href="/menu" passHref>
-              <Button variant="outline" className="bg-orange-300">
+            <Link
+              href="/menu"
+              passHref>
+              <Button
+                variant="outline"
+                className="bg-orange-300">
                 See Menu
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +60,7 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   strokeWidth={1}
                   stroke="currentColor"
-                  className="w-6 h-4"
-                >
+                  className="w-6 h-4">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

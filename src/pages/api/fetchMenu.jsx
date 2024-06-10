@@ -1,13 +1,13 @@
-import { fetchMenuCategories } from "@/lib/fetchMenu";
-import useSWR from "swr";
-import MenuNavbar from "@/components/menu/menunavbar";
 import MenuCategory from "@/components/menu/menucategory";
+import MenuNavbar from "@/components/menu/menunavbar";
+import { useCart } from "@/context/cartcontext";
+import { fetchMenuCategories } from "@/lib/fetchMenu";
 import { useState } from "react";
-import "@/styles/globals.css";
+import useSWR from "swr";
+import Link from "next/link";
 
 const FetchMenu = ({ initialData }) => {
-  const [activeCategoryId, setActiveCategoryId] = useState(null);
-
+  const [activeCategoryId, setActiveCategoryId] = useState(0);
   const { data: menuCategories, error } = useSWR(
     "menuCategoriesKey",
     fetchMenuCategories,
@@ -16,6 +16,12 @@ const FetchMenu = ({ initialData }) => {
       revalidateOnFocus: false,
     }
   );
+
+  // Define an update function or provide the functionality needed
+  const handleUpdate = (item) => {
+    // Implement update logic (could be a state update or an API call)
+    console.log("Update item:", item);
+  };
 
   const handleCategoryChange = (categoryId) => {
     setActiveCategoryId(categoryId);
@@ -29,9 +35,14 @@ const FetchMenu = ({ initialData }) => {
       <MenuNavbar
         categories={menuCategories}
         onCategoryChange={handleCategoryChange}
+        activeCategoryId={activeCategoryId}
       />
-      <div className="container mx-auto p-4">
-        <MenuCategory categories={menuCategories} />
+      <div className="container mx-auto p-4 ">
+        <MenuCategory
+          categories={menuCategories}
+          onUpdate={handleUpdate}
+          activeCategoryId={activeCategoryId}
+        />
       </div>
     </div>
   );

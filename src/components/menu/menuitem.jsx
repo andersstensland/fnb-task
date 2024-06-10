@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Button } from "../ui/button";
-import ProductDetailsModal from "../modals/productdetails";
 import Image from "next/image";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { useCart } from "@/context/cartcontext";
+import { useEffect } from "react";
 
 const ImageDisplay = ({ item }) => {
   const imageUrl = item.imageAsset?.image?.asset?.url;
@@ -16,59 +17,44 @@ const ImageDisplay = ({ item }) => {
         width={800}
         height={800}
         layout="responsive"
+        loading="lazy"
       />
-      <p>{imageCaption}</p>
     </div>
   ) : null;
 };
 
-const Counter = ({ count, setCount }) => (
-  <div className="flex items-center my-2">
-    <button
-      aria-label="Decrease item count"
-      className="px-2 py-1 border border-gray-500 text-black rounded"
-      onClick={() => setCount(count > 0 ? count - 1 : 0)}
-    >
-      -
-    </button>
-    <span className="mx-2">{count}</span>
-    <button
-      aria-label="Increase item count"
-      className="px-2 py-1 border border-orange-500 text-black rounded"
-      onClick={() => setCount(count + 1)}
-    >
-      +
-    </button>
-  </div>
-);
+const MenuItem = ({ item }) => {
+  const { addToCart, getItemCount } = useCart();
 
-const MenuItem = ({ item, onUpdate }) => {
   const [count, setCount] = useState(0);
-  const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    setCount(getItemCount(item._id));
+  }, [item._id, getItemCount]);
+
+  const handleAddOrUpdate = () => {
+    console.log("Item ID:", item._id);
+    console.log("Item details:", item);
+    console.log("Quantity to add:", 1);
+
+    addToCart(item._id, item, 1);
+  };
 
   return (
-    <div className="flex flex-col justify-between my-2 border rounded-sm p-4 bg-white shadow">
-      <div className="flex flex-row justify-between my-2">
-        <span className="text-lg">{item.name}</span>
+    <div className="flex flex-col justify-between my-2 p-4 bg-white shadow">
+      <div className="flex flex-col justify-between">
+        <h2 className="text-lg font-semibold">{item.name}</h2>
         <span className="text-lg font-bold">{item.price},-</span>
+        <p className="text-sm text-gray-700">{item.description}</p>
+        <ImageDisplay item={item} />
+        <Button
+          variant="outline"
+          className="mt-2 bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1"
+          onClick={handleAddOrUpdate}>
+          Add to Cart
+        </Button>
+        {count > 0 && <p className="text-sm text-gray-600">In cart: {count}</p>}
       </div>
-      <p className="text-md">{item.description}</p>
-      <ImageDisplay item={item} />
-      <Counter count={count} setCount={setCount} />
-      <Button
-        variant="outline"
-        className="bg-orange-300 hover:bg-orange-400 transition duration-200 ease-in-out"
-        onClick={() => setModalOpen(!isModalOpen)}
-      >
-        Add to cart
-      </Button>
-      <ProductDetailsModal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        item={item}
-        count={count}
-        onUpdate={onUpdate}
-      />
     </div>
   );
 };
