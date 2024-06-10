@@ -1,33 +1,36 @@
-import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
+import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
 import DeliveryModal from "@/components/payment/deliverymodal";
 import OrderSummary from "@/components/payment/ordersummary";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useCart } from "@/context/cartcontext";
 import { Textarea } from "@/components/ui/textarea";
+import { useCart } from "@/context/cartcontext";
 import { useRouter } from "next/router";
-import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
+import { useState } from "react";
+import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
+import { PickupModal } from "@/components/modals/pickupmodal";
 
 export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
-    setDeliveryCost(cost);
+    console.log(cost);
   };
 
   const handleBack = () => {
-    router.back(); // Using Next.js's router to go back
+    router.back();
   };
 
   return (
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
-        {/*<PaymentMethodModal />*/}
+        <PaymentMethodModal />
         <div className="w-full max-w-4xl mx-auto">
           <div className="flex items-center">
             <Button onClick={handleBack} className="mr-4" variant="ghost">
@@ -61,15 +64,12 @@ export default function Payment() {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
-                {
-                  <DeliveryTimeModal
-                    trigger={
-                      <Label htmlFor="option-two">
-                        Choose time to pre-order
-                      </Label>
-                    }
-                  />
-                }
+
+                <DeliveryTimeModal
+                  trigger={
+                    <Label htmlFor="option-two">Choose time to pre-order</Label>
+                  }
+                />
               </div>
             </RadioGroup>
           </div>
@@ -87,14 +87,7 @@ export default function Payment() {
                 >
                   Delivery
                 </Button>
-                <DeliveryModal
-                  trigger={
-                    <span className="bg-white text-black w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
-                      Pick up
-                    </span>
-                  }
-                  handleOptionClick={handleOptionClick} // Pass the callback function
-                />
+                <PickupModal />
               </div>
             </div>
 

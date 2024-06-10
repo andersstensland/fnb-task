@@ -39,7 +39,7 @@ const PaymentMethodModal = () => {
           />
         </svg>
         <span>{itemCount} </span>
-        <button className="font-bold text-center flex-1">Pay Now</button>
+        <span className="font-bold text-center flex-1">Pay Now</span>
         <span>{totalCost} kr</span>
       </AlertDialogTrigger>
       <AlertDialogContent className="rounded-t-3xl p-6 w-full max-w-md mx-auto">
