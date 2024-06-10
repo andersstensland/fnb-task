@@ -7,20 +7,19 @@ export default function Confirmation() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 bg-gray-100">
+      <div className="flex flex-col items-center justify-center p-4 bg-gray-100 min-h-screen">
         <h1 className="text-2xl font-extrabold text-center mt-4">
           Thank you for ordering with us.
         </h1>
 
-        <div className="relative w-full max-w-sm mb-11 mt-11 p-11 bg-white shadow-lg rounded-lg flex items-center">
+        <div className="relative w-full max-w-md mx-auto mb-11 mt-11 p-11 bg-white shadow-lg rounded-lg flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-12 w-12 text-red-700 mr-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth="2"
-          >
+            strokeWidth="2">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -33,11 +32,14 @@ export default function Confirmation() {
           </div>
         </div>
 
-        <p className="text-center mb-8 text-lg font-bold">
-          The order has been received and will be produced as soon as possible.
-        </p>
+        <div className="w-full max-w-md mx-auto mb-8">
+          <p className="text-center text-lg font-bold leading-snug">
+            The order has been received and will be produced as soon as
+            possible.
+          </p>
+        </div>
 
-        <div className="w-full mb-8">
+        <div className="w-full max-w-md mx-auto mb-8">
           <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
             <div className="mb-3 text-black">
               1X Pizza Pepperoni <span className="float-right">179,00</span>
@@ -57,17 +59,15 @@ export default function Confirmation() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col space-y-3">
+        <div className="w-full max-w-md mx-auto flex flex-col space-y-3">
           <Button
             variant="outline"
-            className="bg-gray-300 text-black font-bold w-full py-3"
-          >
+            className="bg-gray-300 text-black font-bold w-full py-3">
             <Link href="/orderhistory">Order history</Link>
           </Button>
           <Button
             variant="solid"
-            className="bg-[#FDBA74] text-black font-bold w-full py-3"
-          >
+            className="bg-[#FDBA74] text-black font-bold w-full py-3">
             <Link href="/menu">See the menu</Link>
           </Button>
         </div>
