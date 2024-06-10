@@ -56,7 +56,7 @@ export default function Home() {
             variant="outline"
             className="bg-orange-300 text-sm px-4 py-2 w-full"
           >
-            <a href="/api/auth/login">Login</a>
+            <Link href="/api/auth/login">Login</Link>
           </Button>
           <Link
             href="/menu"
