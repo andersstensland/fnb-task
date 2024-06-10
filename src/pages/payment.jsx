@@ -7,22 +7,48 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/context/cartcontext";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/router";
 
 export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
+  const router = useRouter();
 
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
     setDeliveryCost(cost);
   };
+
+  const handleBack = () => {
+    router.back(); // Using Next.js's router to go back
+  };
+
   return (
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
         <PaymentMethodModal />
         <div className="w-full max-w-4xl mx-auto">
-          <h1 className="text-xl font-bold my-4 text-center">Order Summary</h1>
-
+          <div className="flex items-center">
+            <Button onClick={handleBack} className="mr-4" variant="ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </Button>
+            <h1 className="text-xl font-bold my-4 text-center">
+              Order Summary
+            </h1>
+          </div>
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
             <RadioGroup defaultValue="option-one">

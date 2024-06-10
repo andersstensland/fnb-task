@@ -25,6 +25,11 @@ export const CartProvider = ({ children }) => {
     return Object.values(cart).reduce((total, item) => total + item.qty, 0);
   };
 
+  // get qty from cart item
+  const getQty = (itemId) => {
+    return cart[itemId] ? cart[itemId].qty : 0;
+  };
+
   const getTotalCost = () => {
     return Object.values(cart).reduce(
       (total, item) => total + item.price * item.qty,
@@ -84,6 +89,7 @@ export const CartProvider = ({ children }) => {
         updateQuantity,
         getItemCount,
         getTotalCost,
+        getQty,
       }}
     >
       {children}

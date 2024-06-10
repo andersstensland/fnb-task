@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const OrderItemCard = ({ item }) => {
-  const { addToCart, removeFromCart, getItemCount } = useCart();
-  const count = getItemCount(item._id);
+  const { addToCart, removeFromCart, getQty } = useCart();
+  const count = getQty(item._id);
 
   const handleAddOrUpdate = () => {
     addToCart(item._id, item, 1);
@@ -14,6 +14,9 @@ const OrderItemCard = ({ item }) => {
   const handleDecrement = () => {
     if (count > 0) {
       addToCart(item._id, item, -1);
+    }
+    if (count == 0) {
+      removeFromCart(item._id);
     }
   };
 
@@ -44,7 +47,11 @@ const OrderItemCard = ({ item }) => {
         </Button>
       </div>
       {/* Remove button with SVG */}
-      <button onClick={handleRemoveItem} className="absolute top-0 right-0 p-2">
+      <Button
+        onClick={handleRemoveItem}
+        className="absolute top-0 right-0 p-2 text-black"
+        variant="ghost"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -59,7 +66,7 @@ const OrderItemCard = ({ item }) => {
             d="M6 18L18 6M6 6l12 12"
           />
         </svg>
-      </button>
+      </Button>
       <Link href="/menu">
         <Button className="ml-2">Change</Button>
       </Link>

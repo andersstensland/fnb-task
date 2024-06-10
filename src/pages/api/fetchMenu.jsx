@@ -7,7 +7,7 @@ import useSWR from "swr";
 import Link from "next/link";
 
 const FetchMenu = ({ initialData }) => {
-  const [activeCategoryId, setActiveCategoryId] = useState(0);
+  const [activeCategoryId, setActiveCategoryId] = useState(1);
   const { data: menuCategories, error } = useSWR(
     "menuCategoriesKey",
     fetchMenuCategories,
