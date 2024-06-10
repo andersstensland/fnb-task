@@ -27,7 +27,7 @@ export default function Payment() {
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-4 w-full">
-        <PaymentMethodModal />
+        {/*<PaymentMethodModal />*/}
         <div className="w-full max-w-4xl mx-auto">
           <div className="flex items-center">
             <Button onClick={handleBack} className="mr-4" variant="ghost">
@@ -61,11 +61,15 @@ export default function Payment() {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
-                <DeliveryTimeModal
-                  trigger={
-                    <Label htmlFor="option-two">Choose time to pre-order</Label>
-                  }
-                />
+                {
+                  <DeliveryTimeModal
+                    trigger={
+                      <Label htmlFor="option-two">
+                        Choose time to pre-order
+                      </Label>
+                    }
+                  />
+                }
               </div>
             </RadioGroup>
           </div>
@@ -85,9 +89,9 @@ export default function Payment() {
                 </Button>
                 <DeliveryModal
                   trigger={
-                    <Button className="bg-white text-black w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
+                    <span className="bg-white text-black w-full mt-3 md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent">
                       Pick up
-                    </Button>
+                    </span>
                   }
                   handleOptionClick={handleOptionClick} // Pass the callback function
                 />

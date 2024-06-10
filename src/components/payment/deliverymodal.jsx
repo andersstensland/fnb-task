@@ -18,7 +18,7 @@ const DeliveryModal = ({ trigger, handleOptionClick }) => {
       <AlertDialogContent className="rounded-t-3xl p-6 w-full max-w-md mx-auto">
         <AlertDialogHeader className="items-center flex flex-row justify-between">
           <AlertDialogTitle className="items-center text-lg font-bold">
-            <h2>Choose pick-up point!</h2>
+            Choose pick-up point!
           </AlertDialogTitle>
           <AlertDialogCancel className="text-gray-400">
             <svg
