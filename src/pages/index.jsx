@@ -8,7 +8,7 @@ export default function Home() {
       <div className="flex flex-col max-h-screen">
         <Navbar />
         <div className="flex-grow p-4">
-          <h3 className="font-bold text-xl mt-4 mb-4">
+          <h3 className="font-bold text-lg mt-4 mb-4">
             In Cabin Delivery Information
           </h3>
           <p className="mb-4 text-md">
@@ -30,7 +30,7 @@ export default function Home() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-24 h-24 items-start"
+              className="w-24 h-24"
             >
               <path
                 strokeLinecap="round"
@@ -38,7 +38,7 @@ export default function Home() {
                 d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
               />
             </svg>
-            <p className="font-bold text-md">
+            <p className="font-bold text-sm">
               Please note that orders that include alcohol will be refused on
               delivery if proof of age is not provided to the crew upon
               delivery.
@@ -46,8 +46,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-gray-100 p-4 rounded shadow-md flex-1 p-4">
-          <h4 className="font-bold text-lg mb-2">Fjord Club Members</h4>
+        <div className="bg-gray-100 p-4 rounded shadow-md flex-1 p-4 m-4">
+          <h4 className="font-bold text-md mb-2">Fjord Club Members</h4>
           <p className="text-sm mb-4">
             Log in to access exclusive benefits and offers.
           </p>
@@ -60,7 +60,7 @@ export default function Home() {
           </Button>
           <Link
             href="/menu"
-            className="flex items-center text-gray-500 text-sm underline"
+            className="flex justify-center text-gray-500 text-sm underline mt-2"
           >
             Continue as Guest
           </Link>

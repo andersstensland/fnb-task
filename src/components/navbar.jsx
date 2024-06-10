@@ -14,7 +14,7 @@ export default function Navbar() {
               alt="Fjordline logo"
               width={150}
               height={50}
-              fetchpriority="high"
+              priority
             />
           </Link>
         </li>

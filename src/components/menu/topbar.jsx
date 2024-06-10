@@ -1,36 +1,53 @@
 import React from "react";
+import getTime from "@/lib/getTime";
 
 const TopBar = () => {
+  const timeString = getTime(); // Gets time as a string "hours:minutes"
+  const [hours, minutes] = timeString.split(":").map(Number); // Split by ':' and convert to numbers
+
+  // Determine if the current time is within the opening hours (10:00 to 21:59).
+  const isOpen = hours >= 10 && (hours < 22 || (hours === 22 && minutes === 0));
+
   return (
     <div className="flex flex-col items-center p-4 bg-white justify-between">
       <div className="flex justify-between w-full mb-2">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500 mr-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6"
           >
             <path
-              fillRule="evenodd"
-              d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 4a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 110 2h-4a1 1 0 01-1-1V5a1 1 0 011-1zM2 10a8 8 0 0116 0h-2a6 6 0 00-12 0H2z"
-              clipRule="evenodd"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
           <span className="font-medium">Opening hours:</span>{" "}
-          <strong className="ml-1 text-green-500">Open</strong>
+          <strong className="ml-1" style={{ color: isOpen ? "green" : "red" }}>
+            {isOpen ? "Open" : "Closed"}
+          </strong>
         </div>
-        <div>Closing 22:00</div>
+        <div>Closing at 22:00</div>
       </div>
       <div className="flex justify-between w-full">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500 mr-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6"
           >
-            <path d="M2.166 10a8 8 0 1115.668 0A8 8 0 012.166 10zM9 7a1 1 0 102 0 1 1 0 00-2 0zm.25 4.75a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM10 18a8 8 0 100-16 8 8 0 000 16z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
+            />
           </svg>
           <span>Language: English</span>
         </div>
