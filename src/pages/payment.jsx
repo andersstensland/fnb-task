@@ -1,6 +1,5 @@
 import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
-import DeliveryModal from "@/components/payment/deliverymodal";
 import OrderSummary from "@/components/payment/ordersummary";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";

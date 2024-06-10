@@ -6,6 +6,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <UserProvider>
+        {console.log("test")}
         <body>{children}</body>
       </UserProvider>
     </html>
