@@ -51,15 +51,13 @@ export default function Home() {
           <p className="text-sm mb-4">
             Log in to access exclusive benefits and offers.
           </p>
-          <Link href="/login" passHref>
-            <Button
-              as="span"
-              variant="outline"
-              className="bg-orange-300 text-sm px-4 py-2 w-full"
-            >
-              Log In
-            </Button>
-          </Link>
+          <Button
+            as="span"
+            variant="outline"
+            className="bg-orange-300 text-sm px-4 py-2 w-full"
+          >
+            <a href="/api/auth/login">Login</a>
+          </Button>
           <Link
             href="/menu"
             className="flex items-center text-gray-500 text-sm underline"
