@@ -1,5 +1,5 @@
 import React from "react";
-import MenuItem from "./menuitem"; // Ensure this is the correct import path
+import MenuItem from "./menuitem";
 
 const MenuCategory = ({ categories, onUpdate, activeCategoryId }) => {
   return (

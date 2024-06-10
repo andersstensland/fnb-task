@@ -40,14 +40,6 @@ const OrderSummary = () => {
         <span>Total</span>
         <span>{getTotalCost()},-</span>
       </div>
-      <Link href="/menu">
-        <Button
-          variant="solid"
-          className="w-full py-3 mb-3 bg-orange-300 hover:bg-orange-400 text-white"
-        >
-          See the menu
-        </Button>
-      </Link>
     </div>
   );
 };

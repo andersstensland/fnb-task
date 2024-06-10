@@ -9,8 +9,6 @@ import { useCart } from "@/context/cartcontext";
 const Menu = () => {
   const { getItemCount, cart } = useCart();
 
-  console.log(cart);
-  console.log(getItemCount(cart)); // returns 0 ?
   return (
     <>
       <Navbar />

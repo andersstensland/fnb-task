@@ -26,8 +26,8 @@ export default function CartFooter() {
           </svg>
           <span>{itemCount}</span>
         </div>
-        <button className="font-bold">Til betaling</button>
-        <span>{totalCost.toFixed(2)} kr</span>
+        <button className="font-bold">To payment</button>
+        <span>{totalCost} kr</span>
       </div>
     </>
   );

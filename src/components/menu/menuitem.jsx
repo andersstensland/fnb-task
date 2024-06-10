@@ -14,8 +14,8 @@ const ImageDisplay = ({ item }) => {
       <Image
         src={imageUrl}
         alt={imageAlt}
-        width={800}
-        height={800}
+        width={500}
+        height={500}
         layout="responsive"
         loading="lazy"
       />
@@ -49,11 +49,11 @@ const MenuItem = ({ item }) => {
         <ImageDisplay item={item} />
         <Button
           variant="outline"
-          className="mt-2 bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1"
-          onClick={handleAddOrUpdate}>
+          className="mt-2 bg-orange-300 hover:bg-orange-400 text-black transition duration-200 ease-in-out rounded px-4 py-1"
+          onClick={handleAddOrUpdate}
+        >
           Add to Cart
         </Button>
-        {count > 0 && <p className="text-sm text-gray-600">In cart: {count}</p>}
       </div>
     </div>
   );
