@@ -5,7 +5,7 @@ import { Button } from "../components/ui/button";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col max-h-screen">
         <Navbar />
         <div className="flex-grow p-4">
           <h3 className="font-bold text-xl mt-4 mb-4">
@@ -45,6 +45,29 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        <div className="bg-gray-100 p-4 rounded shadow-md flex-1 p-4">
+          <h4 className="font-bold text-lg mb-2">Fjord Club Members</h4>
+          <p className="text-sm mb-4">
+            Log in to access exclusive benefits and offers.
+          </p>
+          <Link href="/login" passHref>
+            <Button
+              as="span"
+              variant="outline"
+              className="bg-orange-300 text-sm px-4 py-2 w-full"
+            >
+              Log In
+            </Button>
+          </Link>
+          <Link
+            href="/menu"
+            className="flex items-center text-gray-500 text-sm underline"
+          >
+            Continue as Guest
+          </Link>
+        </div>
+
         <div className="p-4 mt-auto bg-white shadow-t-md">
           <hr className="border-gray-200 my-4" />
           <div className="flex justify-end">

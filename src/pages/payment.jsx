@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/context/cartcontext";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/router";
+import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 
 export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
@@ -60,7 +61,11 @@ export default function Payment() {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
-                <Label htmlFor="option-two">Choose time to pre-order</Label>
+                <DeliveryTimeModal
+                  trigger={
+                    <Label htmlFor="option-two">Choose time to pre-order</Label>
+                  }
+                />
               </div>
             </RadioGroup>
           </div>
