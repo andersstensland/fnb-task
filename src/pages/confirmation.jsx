@@ -1,13 +1,40 @@
+import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import "@/styles/globals.css";
 import Link from "next/link";
+import { useCart } from "@/context/cartcontext";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Confirmation() {
+  const { cart, getTotalCost, getItemCount } = useCart();
+
+  // We don't need a separate state for orderSummary since we're using the cart directly
+  const [orderSummary, setOrderSummary] = useState([]);
+
+  useEffect(() => {
+    // Convert cart object to array
+    const orderArray = Object.keys(cart).map((key) => cart[key]);
+    setOrderSummary(orderArray);
+  }, [cart]);
+
+  const calculateTotalAmount = () => {
+    return getTotalCost();
+  };
+
+  const calculateTotalItems = () => {
+    return getItemCount(cart);
+  };
+
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 bg-gray-100">
+      <div className="flex flex-col items-center justify-center p-4 bg-gray-100 min-h-screen">
         <h1 className="text-2xl font-extrabold text-center mt-4">
           Thank you for ordering with us.
         </h1>
@@ -19,8 +46,7 @@ export default function Confirmation() {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth="2"
-          >
+            strokeWidth="2">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -39,35 +65,51 @@ export default function Confirmation() {
 
         <div className="w-full mb-8">
           <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
-            <div className="mb-3 text-black">
-              1X Pizza Pepperoni <span className="float-right">179,00</span>
-            </div>
-            <hr className="border-t border-gray-300 my-4" />
-            <div className="mb-3 text-black">
-              1X Coca Cola <span className="float-right">39,00</span>
-            </div>
-            <hr className="border-t border-gray-300 my-4" />
-            <div className="mb-3 text-black">
-              Delivery cost <span className="float-right">50,00</span>
-            </div>
-            <hr className="border-t border-gray-300 my-4" />
-            <div className="mt-4 font-bold text-black">
-              Total <span className="float-right">268,00</span>
-            </div>
+            <Accordion
+              type="single"
+              collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>
+                  {calculateTotalItems()} items - Total:{" "}
+                  {calculateTotalAmount()},00
+                </AccordionTrigger>
+                <AccordionContent>
+                  {Array.isArray(orderSummary) && orderSummary.length > 0 ? (
+                    orderSummary.map((item, index) => (
+                      <div key={index}>
+                        <div className="mb-3 text-black">
+                          {item.qty}X {item.name}{" "}
+                          <span className="float-right">
+                            {item.price * item.qty},00
+                          </span>
+                        </div>
+                        <hr className="border-t border-gray-300 my-4" />
+                      </div>
+                    ))
+                  ) : (
+                    <div>No items in the cart.</div>
+                  )}
+                  <div className="mt-4 font-bold text-black">
+                    Total{" "}
+                    <span className="float-right">
+                      {calculateTotalAmount()},00
+                    </span>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
 
         <div className="w-full flex flex-col space-y-3">
           <Button
             variant="outline"
-            className="bg-gray-300 text-black font-bold w-full py-3"
-          >
+            className="bg-gray-300 text-black font-bold w-full py-3">
             <Link href="/orderhistory">Order history</Link>
           </Button>
           <Button
             variant="solid"
-            className="bg-[#FDBA74] text-black font-bold w-full py-3"
-          >
+            className="bg-[#FDBA74] text-black font-bold w-full py-3">
             <Link href="/menu">See the menu</Link>
           </Button>
         </div>
