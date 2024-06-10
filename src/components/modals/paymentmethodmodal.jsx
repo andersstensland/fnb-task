@@ -14,7 +14,7 @@ const PaymentMethodModal = () => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md w-full max-w-md md:max-w-xl lg:max-w-2xl mx-auto z-50">
+      <AlertDialogTrigger className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md w-full max-w-md md:max-w-xl lg:max-w-2xl mx-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
