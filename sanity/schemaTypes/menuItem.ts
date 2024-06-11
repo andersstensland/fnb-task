@@ -34,6 +34,11 @@ export default {
       type: 'text',
     },
     {
+      name: 'allergies',
+      title: 'Allergies',
+      type: 'text',
+    },
+    {
       name: 'imageAsset',
       title: 'Image Asset',
       type: 'reference',
