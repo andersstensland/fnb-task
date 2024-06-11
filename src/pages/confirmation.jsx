@@ -59,7 +59,7 @@ export default function Confirmation() {
             </div>
           </div>
 
-          <p className="text-center mb-4 text-lg font-bold">
+          <p className="text-center mb-6 text-lg font-bold">
             The order has been received and will be produced as soon as
             possible.
           </p>
@@ -80,7 +80,7 @@ export default function Confirmation() {
                     orderSummary.map((item, index) => (
                       <div key={index}>
                         <div className="mb-3 text-black">
-                          {item.qty}X {item.name}{" "}
+                          {item.qty}x {item.name}{" "}
                           <span className="float-right">
                             {item.price * item.qty},00
                           </span>
