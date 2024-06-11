@@ -69,8 +69,7 @@ const PaymentMethodModal = () => {
             <div className="space-y-4 mt-4">
               <button
                 onClick={() => setShowCreditCardForm(true)}
-                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black"
-              >
+                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black">
                 <div className="flex items-center">
                   <Image
                     src="https://toppng.com/uploads/preview/banner-cards-vector-credit-card-credit-card-icon-11563108027vvkoq7v820.png"
