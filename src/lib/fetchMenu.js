@@ -1,6 +1,6 @@
 import client from "@/app/sanity/client";
 
-export function fetchMenuCategories(language = "en") {
+export function fetchMenuCategories(language) {
   const query = `
     *[_type == "menuCategory"] {
       _id,
