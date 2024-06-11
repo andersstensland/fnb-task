@@ -1,8 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { useCart } from "@/context/cartcontext";
 
 const CreditCardForm = ({ onBack }) => {
+  const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
   const router = useRouter();
 
   const handleSubmit = (event) => {
@@ -15,15 +17,14 @@ const CreditCardForm = ({ onBack }) => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <button
-          onClick={onBack}
-          className="text-gray-400">
+        <button onClick={onBack} className="text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor">
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -101,8 +102,9 @@ const CreditCardForm = ({ onBack }) => {
             </div>
             <button
               type="submit"
-              className="w-full bg-yellow-500 text-black p-4 rounded-md text-lg">
-              Pay 175,00 KR
+              className="w-full bg-yellow-500 text-black p-4 rounded-md text-lg"
+            >
+              Pay {getTotalPrice} KR
             </button>
           </div>
         </form>

@@ -9,7 +9,7 @@ export default function CartFooter() {
 
   return (
     <>
-      <div className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md">
+      <div className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-black shadow-md rounded-md">
         <div className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,8 +17,7 @@ export default function CartFooter() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6"
-          >
+            className="w-6 h-6">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -27,8 +26,8 @@ export default function CartFooter() {
           </svg>
           <span>{itemCount}</span>
         </div>
-        <button className="font-bold">Til betaling</button>
-        <span>{totalCost.toFixed(2)} kr</span>
+        <button className="font-bold">To payment</button>
+        <span>{totalCost} kr</span>
       </div>
     </>
   );

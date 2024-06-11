@@ -9,13 +9,10 @@ import { useCart } from "@/context/cartcontext";
 const Menu = () => {
   const { getItemCount, cart } = useCart();
 
-  console.log(cart);
-  console.log(getItemCount(cart)); // returns 0 ?
   return (
     <>
       <Navbar />
       <SecondNavbar />
-      <TopBar />
       <FetchMenu />
       {/* Render cart component on added order remove if order length is 0 */}
       {getItemCount(cart) > 0 && (

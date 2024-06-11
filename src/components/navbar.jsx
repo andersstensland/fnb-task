@@ -14,10 +14,11 @@ export default function Navbar() {
               alt="Fjordline logo"
               width={150}
               height={50}
+              priority
             />
           </Link>
         </li>
-        <li className="text-white w-1/3">
+        <li className="text-white w-1/3 md:mr-2 text-end">
           <a>Cabin 8316</a>
         </li>
       </ul>

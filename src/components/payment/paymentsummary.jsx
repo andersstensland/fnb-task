@@ -9,8 +9,6 @@ const PaymentSummary = ({ deliveryOption, deliveryCost }) => {
       <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
         {Object.values(cart).map((item, index) => (
           <div key={item.id || index}>
-            {" "}
-            // Ensure unique key, prefer item ID if available
             <div className="mb-2 text-black">
               {item.qty}x {item.name}
               <span className="float-right">${item.price * item.qty}.00</span>

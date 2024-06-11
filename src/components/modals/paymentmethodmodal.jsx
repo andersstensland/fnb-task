@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -7,8 +6,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import CreditCardForm from "./creditcardform";
+import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cartcontext";
+import Image from "next/image";
+import { useState } from "react";
+import CreditCardForm from "./creditcardform";
 
 const PaymentMethodModal = () => {
   const [showCreditCardForm, setShowCreditCardForm] = useState(false);
@@ -21,15 +23,14 @@ const PaymentMethodModal = () => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md z-50">
+      <AlertDialogTrigger className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-black shadow-md rounded-md z-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
-        >
+          className="w-6 h-6">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -37,7 +38,7 @@ const PaymentMethodModal = () => {
           />
         </svg>
         <span>{itemCount} </span>
-        <button className="font-bold text-center flex-1">Pay Now</button>
+        <span className="font-bold text-center flex-1">Pay Now</span>
         <span>{totalCost} kr</span>
       </AlertDialogTrigger>
       <AlertDialogContent className="rounded-t-3xl p-6 w-full max-w-md mx-auto">
@@ -55,8 +56,7 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -69,13 +69,14 @@ const PaymentMethodModal = () => {
             <div className="space-y-4 mt-4">
               <button
                 onClick={() => setShowCreditCardForm(true)}
-                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg"
-              >
+                className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black">
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src="https://toppng.com/uploads/preview/banner-cards-vector-credit-card-credit-card-icon-11563108027vvkoq7v820.png"
                     alt="Credit Card"
                     className="h-6 w-6 mr-2"
+                    width={24}
+                    height={24}
                   />
                   Credit card
                 </div>
@@ -84,8 +85,7 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -95,12 +95,14 @@ const PaymentMethodModal = () => {
                 </svg>
               </button>
               {/* Other payment methods buttons */}
-              <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
+              <Button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black">
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src="https://toppng.com/uploads/preview/google-logo-transparent-png-11659866441wanynck5pd.png"
                     alt="Google Pay"
                     className="h-6 w-6 mr-2"
+                    width={24}
+                    height={24}
                   />
                   Google Pay
                 </div>
@@ -109,8 +111,7 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -118,13 +119,15 @@ const PaymentMethodModal = () => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
-              <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
+              </Button>
+              <Button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black">
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src="https://toppng.com/uploads/preview/apple-pay-logo-png-11536003336zy6omnlwgf.png"
                     alt="Apple Pay"
                     className="h-6 w-6 mr-2"
+                    width={24}
+                    height={24}
                   />
                   Apple Pay
                 </div>
@@ -133,8 +136,7 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -142,13 +144,15 @@ const PaymentMethodModal = () => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
-              <button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg">
+              </Button>
+              <Button className="flex items-center justify-between w-full p-3 bg-gray-100 rounded-lg text-black">
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src="https://vipps.no/media/images/vipps_logo_rgb.width-400.jpegquality-60.png"
                     alt="VIPPS"
                     className="h-6 w-6 mr-2"
+                    width={24}
+                    height={24}
                   />
                   VIPPS
                 </div>
@@ -157,8 +161,7 @@ const PaymentMethodModal = () => {
                   className="h-6 w-6 text-gray-400"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -166,7 +169,7 @@ const PaymentMethodModal = () => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </Button>
             </div>
           </>
         )}

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { useCart } from "@/context/cartcontext";
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
 
 const ImageDisplay = ({ item }) => {
   const imageUrl = item.imageAsset?.image?.asset?.url;
@@ -14,18 +14,18 @@ const ImageDisplay = ({ item }) => {
       <Image
         src={imageUrl}
         alt={imageAlt}
-        width={800}
-        height={800}
-        layout="responsive"
+        width={500}
+        height={500}
         loading="lazy"
       />
+      <p>{imageCaption}</p>
     </div>
   ) : null;
 };
 
 const MenuItem = ({ item }) => {
   const { addToCart, getItemCount } = useCart();
-
+  const router = useRouter();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -33,11 +33,11 @@ const MenuItem = ({ item }) => {
   }, [item._id, getItemCount]);
 
   const handleAddOrUpdate = () => {
-    console.log("Item ID:", item._id);
-    console.log("Item details:", item);
-    console.log("Quantity to add:", 1);
-
     addToCart(item._id, item, 1);
+    router.push({
+      pathname: '/productdetails',
+      query: { item: JSON.stringify(item) }
+    });
   };
 
   return (
@@ -49,12 +49,11 @@ const MenuItem = ({ item }) => {
         <ImageDisplay item={item} />
         <Button
           variant="outline"
-          className="mt-2 bg-orange-300 hover:bg-orange-400 text-white transition duration-200 ease-in-out rounded px-4 py-1"
+          className="mt-2 bg-orange-300 hover:bg-orange-400 text-black transition duration-200 ease-in-out rounded px-4 py-1"
           onClick={handleAddOrUpdate}
         >
           Add to Cart
         </Button>
-        {count > 0 && <p className="text-sm text-gray-600">In cart: {count}</p>}
       </div>
     </div>
   );
