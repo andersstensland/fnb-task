@@ -13,7 +13,6 @@ const Menu = () => {
     <>
       <Navbar />
       <SecondNavbar />
-      <TopBar />
       <FetchMenu />
       {/* Render cart component on added order remove if order length is 0 */}
       {getItemCount(cart) > 0 && (

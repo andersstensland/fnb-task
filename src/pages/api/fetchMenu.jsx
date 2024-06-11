@@ -1,46 +1,39 @@
 import MenuCategory from "@/components/menu/menucategory";
 import MenuNavbar from "@/components/menu/menunavbar";
-import { useCart } from "@/context/cartcontext";
 import { fetchMenuCategories } from "@/lib/fetchMenu";
+import TopBar from "@/components/menu/topbar";
 import { useState } from "react";
 import useSWR from "swr";
-import Link from "next/link";
+import "@/styles/globals.css";
 
 const FetchMenu = ({ initialData }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
+  const [language, setLanguage] = useState("en");
   const { data: menuCategories, error } = useSWR(
-    "menuCategoriesKey",
-    fetchMenuCategories,
-    {
-      initialData,
-      revalidateOnFocus: false,
-    }
+    ["menuCategoriesKey", language], // Include language in the SWR key
+    () => fetchMenuCategories(language),
+    { fallbackData: initialData, revalidateOnFocus: false }
   );
 
-  // Define an update function or provide the functionality needed
-  const handleUpdate = (item) => {
-    // Implement update logic (could be a state update or an API call)
-    console.log("Update item:", item);
+  const handleLanguageChange = (newLanguage) => {
+    console.log("Language changed to", newLanguage);
+    setLanguage(newLanguage);
   };
 
-  const handleCategoryChange = (categoryId) => {
-    setActiveCategoryId(categoryId);
-  };
-
-  if (error) return <div>Failed to load</div>;
-  if (!menuCategories) return <div>Loading...</div>;
-
+  console.log("Menu categories in", language, ":", menuCategories);
   return (
     <div>
+      <TopBar onLanguageChange={handleLanguageChange} />
       <MenuNavbar
         categories={menuCategories}
-        onCategoryChange={handleCategoryChange}
+        onCategoryChange={setActiveCategoryId}
         activeCategoryId={activeCategoryId}
       />
       <div className="container mx-auto p-4 ">
         <MenuCategory
           categories={menuCategories}
-          onUpdate={handleUpdate}
+          language={language}
+          onUpdate={() => {}}
           activeCategoryId={activeCategoryId}
         />
       </div>
@@ -49,7 +42,7 @@ const FetchMenu = ({ initialData }) => {
 };
 
 export async function getStaticProps() {
-  const menuCategories = await fetchMenuCategories();
+  const menuCategories = await fetchMenuCategories(language);
   return {
     props: {
       initialData: menuCategories,

@@ -6,7 +6,12 @@ export default {
     {
       name: 'name',
       title: 'Name',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {name: 'nb', title: 'Norwegian (Bokmål)', type: 'string'},
+        {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'string'},
+        {name: 'en', title: 'English', type: 'string'},
+      ],
     },
     {
       name: 'price',
@@ -16,6 +21,16 @@ export default {
     {
       name: 'description',
       title: 'Description',
+      type: 'object',
+      fields: [
+        {name: 'nb', title: 'Norwegian (Bokmål)', type: 'text'},
+        {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'text'},
+        {name: 'en', title: 'English', type: 'text'},
+      ],
+    },
+    {
+      name: 'allergies',
+      title: 'Allergies',
       type: 'text',
     },
     {

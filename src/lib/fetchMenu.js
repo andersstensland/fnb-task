@@ -1,37 +1,41 @@
 import client from "@/app/sanity/client";
 
-export function fetchMenuCategories() {
+export function fetchMenuCategories(language) {
   const query = `
-  *[_type == "menuCategory"] {
-    _id,
-    name,
-    "subcategories": subcategories[]->{
+    *[_type == "menuCategory"] {
       _id,
-      name,
-      description,
-      "items": items[]->{
+      "name": name.${language},
+      "subcategories": subcategories[]->{
         _id,
-        name,
-        price,
-        description,
-        allergies,
-        "imageAsset": imageAsset->{
+        "name": name.${language},
+        "items": items[]->{
           _id,
-          title,
-          description,
-          "image": {
-            "asset": image.asset->{
-              _id,
-              url
-            },
-          caption,
-          alt
+          "name": name.${language},
+          "description": description.${language},
+          price,
+          allergies,
+          "toppings": toppings[] {
+            "name": name,
+            cost
+          },
+          "imageAsset": imageAsset->{
+            _id,
+            "title": title.${language},
+            "description": description.${language},
+            "image": {
+              "asset": image.asset->{
+                _id,
+                url
+              },
+              "caption": caption.${language},
+              "alt": alt.${language}
+            }
           }
         },
         toppings
       }
     }
-  }
   `;
-  return client.fetch(query);
+  console.log(query); // Useful for debugging to see the final query string
+  return client.fetch(query, { params: { language } });
 }

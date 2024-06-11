@@ -16,9 +16,9 @@ const ImageDisplay = ({ item }) => {
         alt={imageAlt}
         width={500}
         height={500}
-        layout="responsive"
         loading="lazy"
       />
+      <p>{imageCaption}</p>
     </div>
   ) : null;
 };
