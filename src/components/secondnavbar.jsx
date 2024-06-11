@@ -27,14 +27,15 @@ export default function SecondNavbar() {
   return (
     <nav className="w-full bg-gray-200 p-2">
       <ul className="flex justify-between items-center">
-        <li className="w-full h-full font-bold flex flex-row gap-2">
+        <li className="w-full h-full flex flex-row gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6">
+            className="w-6 h-6"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -56,7 +57,8 @@ export default function SecondNavbar() {
                 <div>
                   <RadioGroup
                     onValueChange={handleValueChange}
-                    value={selectedValue}>
+                    value={selectedValue}
+                  >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="asap"
@@ -80,7 +82,8 @@ export default function SecondNavbar() {
                     <form className="max-w-[8.5rem] mx-auto mt-4">
                       <label
                         htmlFor="time"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
                         Select time:
                       </label>
                       <div className="flex">
@@ -99,7 +102,8 @@ export default function SecondNavbar() {
                             className="w-4 h-4 text-gray-500 dark:text-gray-400"
                             aria-hidden="true"
                             fill="currentColor"
-                            viewBox="0 0 24 24">
+                            viewBox="0 0 24 24"
+                          >
                             <path
                               fillRule="evenodd"
                               d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
