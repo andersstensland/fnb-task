@@ -38,14 +38,16 @@ export default function Payment() {
               <Button
                 onClick={handleBack}
                 className="absolute left-0 p-0 w-10 h-10 flex items-center justify-center"
-                variant="ghost">
+                variant="ghost"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6">
+                  className="w-6 h-6"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -60,19 +62,13 @@ export default function Payment() {
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
             <RadioGroup defaultValue="option-one">
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="option-one"
-                  id="option-one"
-                />
+                <RadioGroupItem value="option-one" id="option-one" />
                 <Label htmlFor="option-one">
                   As soon as possible (25-35min)
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="option-two"
-                  id="option-two"
-                />
+                <RadioGroupItem value="option-two" id="option-two" />
 
                 <DeliveryTimeModal
                   trigger={
@@ -88,26 +84,21 @@ export default function Payment() {
               <Label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
               </Label>
-              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-2 gap-2">
                 <Button
                   className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 text-lg font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
-                  onClick={() => handleOptionClick("delivery")}>
+                  onClick={() => handleOptionClick("delivery")}
+                >
                   Delivery
                 </Button>
-                <Button
-                  className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 mt-2 md:mt-0 text-lg font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
-                  onClick={() => handleOptionClick("pickup")}>
-                  Select Pickup Location
-                </Button>
+                <PickupModal />
               </div>
             </div>
 
             <OrderSummary />
 
             <div className="w-full mb-4">
-              <Label
-                className="block text-sm font-bold mb-2"
-                htmlFor="message">
+              <Label className="block text-sm font-bold mb-2" htmlFor="message">
                 Leave a message (optional)
               </Label>
               <Textarea
