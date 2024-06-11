@@ -21,7 +21,9 @@ const MenuCategory = ({ categories, onUpdate, activeCategoryId }) => {
               <h2 className="text-2xl font-bold mb-2">{category.name}</h2>
               {subcategories.length > 0 ? (
                 subcategories.map((subcategory) => (
-                  <div key={subcategory._id} className="mb-4">
+                  <div
+                    key={subcategory._id}
+                    className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <h3 className="text-xl font-semibold mb-2">
                       {subcategory.name || "Unnamed Subcategory"}
                     </h3>
