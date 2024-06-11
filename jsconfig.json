@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": ".", // Sets the base directory relative to this config file
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["src/components/*"]
+      "@/*": ["src/*"], // Points to everything inside the 'src' directory
+      "@/components/*": ["src/components/*"], // Points specifically to the 'components' folder inside 'src'
+      "@/context/*": ["src/context/*"] // Points specifically to the 'context' folder inside 'src'
     }
   }
 }
