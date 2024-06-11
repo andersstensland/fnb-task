@@ -1,12 +1,11 @@
-function LanguageSelector({ onChange, currentLanguage, languages }) {
+function LanguageSelector({ onChange, currentLanguage }) {
   return (
     <select value={currentLanguage} onChange={(e) => onChange(e.target.value)}>
-      {/*languages.map((lang) => (
-        <option key={lang.id} value={lang.id}>
-          {lang.title}
-        </option>
-      ))*/}
+      <option value="en">English</option>
+      <option value="nb">Norwegian Bokmål</option>
+      <option value="nn">Norwegian Nynorsk</option>
     </select>
   );
 }
+
 export default LanguageSelector;

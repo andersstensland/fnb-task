@@ -1,34 +1,34 @@
 import MenuCategory from "@/components/menu/menucategory";
 import MenuNavbar from "@/components/menu/menunavbar";
-import { fetchLanguages } from "@/lib/fetchLanguages";
 import { fetchMenuCategories } from "@/lib/fetchMenu";
+import TopBar from "@/components/menu/topbar";
 import { useState } from "react";
 import useSWR from "swr";
-import LanguageSelector from "@/components/languageselector"; // Create this component if not already existent
+import "@/styles/globals.css";
 
-const FetchMenu = ({ initialData, languages }) => {
+const FetchMenu = ({ initialData }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [language, setLanguage] = useState("en");
   const { data: menuCategories, error } = useSWR(
-    "menuCategoriesKey",
+    ["menuCategoriesKey", language], // Include language in the SWR key
     () => fetchMenuCategories(language),
-    { initialData, revalidateOnFocus: false }
+    { fallbackData: initialData, revalidateOnFocus: false }
   );
 
   const handleLanguageChange = (newLanguage) => {
+    console.log("Language changed to", newLanguage);
     setLanguage(newLanguage);
   };
 
+  console.log("Menu categories in", language, ":", menuCategories);
   return (
     <div>
+      <TopBar onLanguageChange={handleLanguageChange} />
       <MenuNavbar
         categories={menuCategories}
         onCategoryChange={setActiveCategoryId}
         activeCategoryId={activeCategoryId}
       />
-      {/*
-
-  */}
       <div className="container mx-auto p-4">
         <MenuCategory
           categories={menuCategories}
@@ -42,7 +42,7 @@ const FetchMenu = ({ initialData, languages }) => {
 };
 
 export async function getStaticProps() {
-  const menuCategories = await fetchMenuCategories();
+  const menuCategories = await fetchMenuCategories(language);
   return {
     props: {
       initialData: menuCategories,
