@@ -2,6 +2,14 @@ import React from "react";
 import MenuItem from "./menuitem";
 
 const MenuCategory = ({ categories, onUpdate, activeCategoryId }) => {
+  console.log(categories);
+
+  // Check if categories are loaded and if the active category ID is set
+  if (!categories || categories.length === 0) {
+    return <p>Loading categories or no categories available...</p>;
+  }
+
+  // Filter and map categories based on active category ID
   return (
     <div className="my-4">
       {categories
