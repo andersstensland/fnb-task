@@ -14,6 +14,7 @@ export function fetchMenuCategories() {
         name,
         price,
         description,
+        allergies,
         "imageAsset": imageAsset->{
           _id,
           title,
@@ -26,7 +27,8 @@ export function fetchMenuCategories() {
           caption,
           alt
           }
-        }
+        },
+        toppings
       }
     }
   }

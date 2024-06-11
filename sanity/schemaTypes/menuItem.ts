@@ -19,10 +19,37 @@ export default {
       type: 'text',
     },
     {
+      name: 'allergies',
+      title: 'Allergies',
+      type: 'text',
+    },
+    {
       name: 'imageAsset',
       title: 'Image Asset',
       type: 'reference',
       to: [{type: 'imageAsset'}],
+    },
+    {
+      name: 'toppings',
+      title: 'Toppings',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+            },
+            {
+              name: 'cost',
+              title: 'Cost',
+              type: 'number',
+            },
+          ],
+        },
+      ],
     },
   ],
 }

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { useCart } from "@/context/cartcontext";
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
 
 const ImageDisplay = ({ item }) => {
   const imageUrl = item.imageAsset?.image?.asset?.url;
@@ -25,7 +25,7 @@ const ImageDisplay = ({ item }) => {
 
 const MenuItem = ({ item }) => {
   const { addToCart, getItemCount } = useCart();
-
+  const router = useRouter();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -33,11 +33,11 @@ const MenuItem = ({ item }) => {
   }, [item._id, getItemCount]);
 
   const handleAddOrUpdate = () => {
-    console.log("Item ID:", item._id);
-    console.log("Item details:", item);
-    console.log("Quantity to add:", 1);
-
     addToCart(item._id, item, 1);
+    router.push({
+      pathname: '/productdetails',
+      query: { item: JSON.stringify(item) }
+    });
   };
 
   return (
