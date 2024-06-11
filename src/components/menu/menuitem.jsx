@@ -4,10 +4,11 @@ import { Button } from "../ui/button";
 import { useCart } from "@/context/cartcontext";
 import { useEffect } from "react";
 
-const ImageDisplay = ({ item }) => {
+const ImageDisplay = ({ item, language = "en" }) => {
   const imageUrl = item.imageAsset?.image?.asset?.url;
-  const imageAlt = item.imageAsset?.alt ?? "Image description not available";
-  const imageCaption = item.imageAsset?.caption ?? "No caption";
+  const imageAlt =
+    item.imageAsset?.alt[language] ?? "Image description not available";
+  const imageCaption = item.imageAsset?.caption[language] ?? "No caption";
 
   return imageUrl ? (
     <div className="my-2">
@@ -18,11 +19,12 @@ const ImageDisplay = ({ item }) => {
         height={500}
         loading="lazy"
       />
+      <p>{imageCaption}</p>
     </div>
   ) : null;
 };
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, language = "en" }) => {
   const { addToCart, getItemCount } = useCart();
 
   const [count, setCount] = useState(0);
@@ -42,7 +44,7 @@ const MenuItem = ({ item }) => {
   return (
     <div className="flex flex-col justify-between my-2 p-4 bg-white shadow">
       <div className="flex flex-col justify-between">
-        <h2 className="text-lg font-semibold">{item.name}</h2>
+        <h2 className="text-lg font-semibold">{item.name[language]}</h2>
         <span className="text-lg font-bold">{item.price},-</span>
         <p className="text-sm text-gray-700">{item.description}</p>
         <ImageDisplay item={item} />

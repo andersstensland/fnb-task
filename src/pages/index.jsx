@@ -8,10 +8,10 @@ export default function Home() {
       <div className="flex flex-col max-h-screen">
         <Navbar />
         <div className="flex-grow p-4">
-          <h3 className="font-bold text-lg mt-4 mb-4">
+          <h3 className="font-bold text-lg mt-1 mb-4">
             In Cabin Delivery Information
           </h3>
-          <p className="mb-4 text-md">
+          <p className="mb-2 text-md">
             We hope you have a pleasant stay on board. To make your journey even
             more relaxing we have made a selection of food, beverages, and
             tax-free goods available for you to order from the comfort of your
@@ -46,7 +46,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-gray-100 p-4 rounded shadow-md flex-1 p-4 m-4">
+        <div className="bg-gray-100 p-4 rounded shadow-md flex-1 p-4 mx-4">
           <h4 className="font-bold text-md mb-2">Fjord Club Members</h4>
           <p className="text-sm mb-4">
             Log in to access exclusive benefits and offers.

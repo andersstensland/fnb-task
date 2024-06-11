@@ -6,45 +6,62 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      description: 'The title of the image',
+      type: 'object',
+      fields: [
+        {name: 'nb', title: 'Norwegian (Bokmål)', type: 'string'},
+        {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'string'},
+        {name: 'en', title: 'English', type: 'string'},
+      ],
     },
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
-      description: 'A description of the image',
+      type: 'object',
+      fields: [
+        {name: 'nb', title: 'Norwegian (Bokmål)', type: 'text'},
+        {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'text'},
+        {name: 'en', title: 'English', type: 'text'},
+      ],
     },
     {
       name: 'image',
       title: 'Image',
       type: 'image',
       options: {
-        hotspot: true, // Enables hotspot positioning for responsive images
+        hotspot: true,
       },
       fields: [
         {
           name: 'caption',
           title: 'Caption',
-          type: 'string',
+          type: 'object',
+          fields: [
+            {name: 'nb', title: 'Norwegian (Bokmål)', type: 'string'},
+            {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'string'},
+            {name: 'en', title: 'English', type: 'string'},
+          ],
           options: {
-            isHighlighted: true, // Puts the field in a prominent position
+            isHighlighted: true,
           },
         },
         {
           name: 'alt',
           title: 'Alternative Text',
-          type: 'string',
+          type: 'object',
+          fields: [
+            {name: 'nb', title: 'Norwegian (Bokmål)', type: 'string'},
+            {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'string'},
+            {name: 'en', title: 'English', type: 'string'},
+          ],
           description: 'Important for SEO and accessibility.',
-          validation: (Rule: any) =>
-            Rule.error('You must fill out the alternative text.').required(),
+          validation: (Rule) => Rule.required().error('You must fill out the alternative text.'),
         },
       ],
     },
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en', // Defaulting to English in previews, adjust as needed
       media: 'image',
     },
   },

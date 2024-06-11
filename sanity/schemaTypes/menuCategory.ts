@@ -6,7 +6,12 @@ export default {
     {
       name: 'name',
       title: 'Name',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {name: 'nb', title: 'Norwegian (Bokmål)', type: 'string'},
+        {name: 'nn', title: 'Norwegian (Nynorsk)', type: 'string'},
+        {name: 'en', title: 'English', type: 'string'},
+      ],
     },
     {
       name: 'subcategories',

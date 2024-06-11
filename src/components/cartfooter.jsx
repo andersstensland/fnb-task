@@ -9,7 +9,7 @@ export default function CartFooter() {
 
   return (
     <>
-      <div className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-white shadow-md rounded-md">
+      <div className="fixed bottom-2 left-2 right-2 bg-teal-500 p-4 flex justify-between items-center text-black shadow-md rounded-md">
         <div className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

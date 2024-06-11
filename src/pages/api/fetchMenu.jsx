@@ -1,46 +1,39 @@
 import MenuCategory from "@/components/menu/menucategory";
 import MenuNavbar from "@/components/menu/menunavbar";
-import { useCart } from "@/context/cartcontext";
+import { fetchLanguages } from "@/lib/fetchLanguages";
 import { fetchMenuCategories } from "@/lib/fetchMenu";
 import { useState } from "react";
 import useSWR from "swr";
-import Link from "next/link";
+import LanguageSelector from "@/components/languageselector"; // Create this component if not already existent
 
-const FetchMenu = ({ initialData }) => {
+const FetchMenu = ({ initialData, languages }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
+  const [language, setLanguage] = useState("en");
   const { data: menuCategories, error } = useSWR(
     "menuCategoriesKey",
-    fetchMenuCategories,
-    {
-      initialData,
-      revalidateOnFocus: false,
-    }
+    () => fetchMenuCategories(language),
+    { initialData, revalidateOnFocus: false }
   );
 
-  // Define an update function or provide the functionality needed
-  const handleUpdate = (item) => {
-    // Implement update logic (could be a state update or an API call)
-    console.log("Update item:", item);
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
   };
-
-  const handleCategoryChange = (categoryId) => {
-    setActiveCategoryId(categoryId);
-  };
-
-  if (error) return <div>Failed to load</div>;
-  if (!menuCategories) return <div>Loading...</div>;
 
   return (
     <div>
       <MenuNavbar
         categories={menuCategories}
-        onCategoryChange={handleCategoryChange}
+        onCategoryChange={setActiveCategoryId}
         activeCategoryId={activeCategoryId}
       />
+      {/*
+
+  */}
       <div className="container mx-auto p-4">
         <MenuCategory
           categories={menuCategories}
-          onUpdate={handleUpdate}
+          language={language}
+          onUpdate={() => {}}
           activeCategoryId={activeCategoryId}
         />
       </div>

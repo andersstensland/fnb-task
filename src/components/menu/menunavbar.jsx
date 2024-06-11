@@ -5,6 +5,9 @@ export default function MenuNavbar({
   onCategoryChange,
   activeCategoryId,
 }) {
+  console.log(categories);
+  let lang = "en";
+
   return (
     <nav className="w-full p-4 border-b overflow-x-auto">
       <ul className="flex justify-start items-center space-x-4">
