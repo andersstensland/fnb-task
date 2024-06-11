@@ -17,19 +17,20 @@ const ProductDetails = () => {
   const item = query.item ? JSON.parse(query.item) : {};
   const [quantity, setQuantity] = useState(1);
   const [totalCost, setTotalCost] = useState(item.price || 0);
-  const [checkedToppings, setCheckedToppings] = useState({});
+  const [checkedAddToppings, setCheckedAddToppings] = useState({});
+  const [checkedRemoveToppings, setCheckedRemoveToppings] = useState({});
   const [allergiesExpanded, setAllergiesExpanded] = useState(false); // State to track accordion expansion
   const { addToCart } = useCart(); 
 
   useEffect(() => {
     const basePrice = item.price || 0;
-    const toppingsCost = Object.keys(checkedToppings).reduce(
-      (acc, topping) => acc + (checkedToppings[topping] ? item.toppings.find(t => t.name === topping).cost : 0),
+    const addToppingsCost = Object.keys(checkedAddToppings).reduce(
+      (acc, topping) => acc + (checkedAddToppings[topping] ? item.toppings.find(t => t.name === topping).cost : 0),
       0
     );
-    const newTotalCost = (basePrice + toppingsCost) * quantity;
+    const newTotalCost = (basePrice + addToppingsCost) * quantity;
     setTotalCost(newTotalCost);
-  }, [quantity, checkedToppings]);
+  }, [quantity, checkedAddToppings]);
 
   const handleQuantityChange = (delta) => {
     let newQuantity = quantity + delta;
@@ -37,8 +38,15 @@ const ProductDetails = () => {
     setQuantity(newQuantity);
   };
 
-  const handleToppingToggle = (topping) => {
-    setCheckedToppings((prevChecked) => ({
+  const handleAddToppingToggle = (topping) => {
+    setCheckedAddToppings((prevChecked) => ({
+      ...prevChecked,
+      [topping.name]: !prevChecked[topping.name],
+    }));
+  };
+
+  const handleRemoveToppingToggle = (topping) => {
+    setCheckedRemoveToppings((prevChecked) => ({
       ...prevChecked,
       [topping.name]: !prevChecked[topping.name],
     }));
@@ -49,20 +57,20 @@ const ProductDetails = () => {
     setAllergiesExpanded(expanded);
   };
 
-  const ToppingItem = ({ items }) => (
+  const ToppingItem = ({ items, onToggle, removable }) => (
     <div className="flex flex-col justify-between py-2">
       {items.map((topping) => (
         <div key={topping.name} className="flex justify-between items-center">
           <Label className="flex justify-between items-center rounded-md w-full">
             <span>{topping.name}</span>
-            <span className="ml-auto pr-4">{topping.cost} NOK</span>
+            {removable && <span className="ml-auto pr-4">{topping.cost} NOK</span>}
           </Label>
           <input
             type="checkbox"
             id={topping.name}
             className="mt-2"
-            checked={!!checkedToppings[topping.name]}
-            onChange={() => handleToppingToggle(topping)}
+            checked={!!onToggle[topping.name]}
+            onChange={() => onToggle(topping)}
           />
         </div>
       ))}
@@ -72,7 +80,7 @@ const ProductDetails = () => {
   const handleAddBasket = (item) => {
     const itemWithToppings = {
       ...item,
-      selectedToppings: Object.keys(checkedToppings).filter(topping => checkedToppings[topping]),
+      selectedToppings: Object.keys(checkedAddToppings).filter(topping => checkedAddToppings[topping]),
       totalCost,
       quantity
     };
@@ -127,11 +135,11 @@ const ProductDetails = () => {
       </div>
       <div className="mt-4">
         <h3 className="font-semibold">Remove Toppings:</h3>
-        <ToppingItem items={item.toppings || []} />
+        <ToppingItem items={item.toppings || []} onToggle={handleRemoveToppingToggle} removable={false} />
       </div>
       <div className="mt-4">
         <h3 className="font-semibold">Add toppings:</h3>
-        <ToppingItem items={item.toppings || []} />
+        <ToppingItem items={item.toppings || []} onToggle={handleAddToppingToggle} removable />
       </div>
       <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl">
         <div className="flex justify-between items-center mx-2">
