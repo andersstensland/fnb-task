@@ -33,8 +33,8 @@ const OrderItemCard = ({ item }) => {
       {item.selectedAddToppings && item.selectedAddToppings.length > 0 && (
         <div className="mb-2 text-sm text-gray-600">
           {item.selectedAddToppings.map((topping) => (
-            <div key={topping}>
-              + {topping} ({item.toppings.find(t => t.name === topping).cost} NOK)
+            <div key={topping.name}>
+              + {topping.name} {topping.cost ?? 0} ,-
             </div>
           ))}
         </div>
@@ -42,9 +42,7 @@ const OrderItemCard = ({ item }) => {
       {item.selectedRemoveToppings && item.selectedRemoveToppings.length > 0 && (
         <div className="mb-2 text-sm text-gray-600">
           {item.selectedRemoveToppings.map((topping) => (
-            <div key={topping}>
-              - {topping}
-            </div>
+            <div key={topping}> - {topping}</div>
           ))}
         </div>
       )}

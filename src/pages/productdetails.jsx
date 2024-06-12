@@ -103,24 +103,27 @@ const ProductDetails = () => {
   );
 
   const handleAddBasket = (item) => {
+    const selectedAddToppings = Object.keys(checkedAddToppings)
+      .filter((topping) => checkedAddToppings[topping])
+      .map((topping) => {
+        const toppingDetails = item.toppings.find((t) => t.name === topping);
+        return toppingDetails
+          ? { name: topping, cost: toppingDetails.cost }
+          : { name: topping, cost: 0 }; // Default cost if not found
+      });
+  
     const itemWithToppings = {
       ...item,
-      selectedAddToppings: Object.keys(checkedAddToppings).filter(
-        (topping) => checkedAddToppings[topping]
-      ),
+      selectedAddToppings,
       selectedRemoveToppings: Object.keys(checkedRemoveToppings).filter(
         (topping) => checkedRemoveToppings[topping]
       ),
       totalCost,
       quantity,
-      toppings: item.toppings // Ensure toppings are included
     };
     addToCart(item._id, itemWithToppings, quantity);
-    router.back();
+    router.push('/menu'); // Redirect to the confirmation page
   };
-  
-
-  
 
   const imageUrl = item.imageAsset?.image?.asset?.url;
   const imageAlt = item.imageAsset?.alt ?? "Image description not available";
@@ -209,6 +212,7 @@ const ProductDetails = () => {
           Add to basket
         </Button>
       </div>
+
     </div>
     </>
   );

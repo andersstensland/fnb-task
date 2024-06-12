@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import "@/styles/globals.css";
-import Link from "next/link";
 import { useCart } from "@/context/cartcontext";
 import {
   Accordion,
@@ -10,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function Confirmation() {
   const { cart, getTotalCost, getItemCount } = useCart();
@@ -21,6 +20,10 @@ export default function Confirmation() {
     const orderArray = Object.keys(cart).map((key) => cart[key]);
     setOrderSummary(orderArray);
   }, [cart]);
+
+  useEffect(() => {
+    console.log("Order Summary:", orderSummary);
+  }, [orderSummary]);
 
   const calculateTotalAmount = () => {
     return getTotalCost();
@@ -46,7 +49,8 @@ export default function Confirmation() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth="2">
+              strokeWidth="2"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -67,9 +71,7 @@ export default function Confirmation() {
 
         <div className="w-full max-w-md mb-12">
           <div className="text-left w-full p-4 bg-white bg-opacity-70 rounded-lg shadow-lg">
-            <Accordion
-              type="single"
-              collapsible>
+            <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>
                   {calculateTotalItems()} items - Total:{" "}
@@ -84,6 +86,39 @@ export default function Confirmation() {
                           <span className="float-right">
                             {item.price * item.qty},00
                           </span>
+                        </div>
+                        {/* Display selected toppings */}
+                        <div className="ml-6">
+                          {item.selectedAddToppings &&
+                            item.selectedAddToppings.length > 0 && (
+                              <div>
+                              
+                                <ul>
+                                  {item.selectedAddToppings.map(
+                                    (topping, index) => (
+                                      <li key={index}>
+                                       + {topping.name} {topping.cost},-
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+                            <hr className="border-t border-gray-300 my-4" />
+                          {/* Display removed toppings */}
+                          {item.selectedRemoveToppings &&
+                            item.selectedRemoveToppings.length > 0 && (
+                              <div>
+                                
+                                <ul>
+                                  {item.selectedRemoveToppings.map(
+                                    (topping, index) => (
+                                      <li key={index}>- {topping}</li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
                         </div>
                         <hr className="border-t border-gray-300 my-4" />
                       </div>
@@ -107,12 +142,14 @@ export default function Confirmation() {
           <div className="space-y-4">
             <Button
               variant="outline"
-              className="bg-gray-300 text-black font-bold w-full py-3">
+              className="bg-gray-300 text-black font-bold w-full py-3"
+            >
               <Link href="/orderhistory">Order history</Link>
             </Button>
             <Button
               variant="solid"
-              className="bg-[#FDBA74] text-black font-bold w-full py-3">
+              className="bg-[#FDBA74] text-black font-bold w-full py-3"
+            >
               <Link href="/menu">See the menu</Link>
             </Button>
           </div>
