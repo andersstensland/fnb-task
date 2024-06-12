@@ -2,8 +2,9 @@ import client from "@/app/sanity/client";
 
 export function fetchMenuCategories(language) {
   const query = `
-    *[_type == "menuCategory"] {
+    *[_type == "menuCategory"] | order(order asc) {
       _id,
+      order,
       "name": name.${language},
       "subcategories": subcategories[]->{
         _id,

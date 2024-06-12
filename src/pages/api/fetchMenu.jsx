@@ -7,7 +7,7 @@ import useSWR from "swr";
 
 const FetchMenu = ({ initialData }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(
-    "219dfd47-f704-4d59-b1b2-94cf4fc42871"
+    "c9fde139-3dba-491e-92be-5f473c62202b"
   );
   const [language, setLanguage] = useState("en");
   const { data: menuCategories, error } = useSWR(

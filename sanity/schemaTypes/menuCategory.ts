@@ -14,6 +14,12 @@ export default {
       ],
     },
     {
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Enter a number to set the order of the categories',
+    },
+    {
       name: 'subcategories',
       title: 'Subcategories',
       type: 'array',
