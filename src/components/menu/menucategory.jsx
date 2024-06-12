@@ -21,23 +21,26 @@ const MenuCategory = ({ categories, onUpdate, activeCategoryId }) => {
               <h2 className="text-2xl font-bold mb-2">{category.name}</h2>
               {subcategories.length > 0 ? (
                 subcategories.map((subcategory) => (
-                  <div
-                    key={subcategory._id}
-                    className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <h3 className="text-xl font-semibold mb-2">
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2 mt-12">
                       {subcategory.name || "Unnamed Subcategory"}
                     </h3>
-                    {subcategory.items && subcategory.items.length > 0 ? (
-                      subcategory.items.map((item) => (
-                        <MenuItem
-                          key={item._id}
-                          item={item}
-                          onUpdate={onUpdate}
-                        />
-                      ))
-                    ) : (
-                      <p>No items in this subcategory.</p>
-                    )}
+                    <div
+                      key={subcategory._id}
+                      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                    >
+                      {subcategory.items && subcategory.items.length > 0 ? (
+                        subcategory.items.map((item) => (
+                          <MenuItem
+                            key={item._id}
+                            item={item}
+                            onUpdate={onUpdate}
+                          />
+                        ))
+                      ) : (
+                        <p>No items in this subcategory.</p>
+                      )}
+                    </div>
                   </div>
                 ))
               ) : (

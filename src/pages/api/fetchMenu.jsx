@@ -4,10 +4,11 @@ import { fetchMenuCategories } from "@/lib/fetchMenu";
 import TopBar from "@/components/menu/topbar";
 import { useState } from "react";
 import useSWR from "swr";
-import "@/styles/globals.css";
 
 const FetchMenu = ({ initialData }) => {
-  const [activeCategoryId, setActiveCategoryId] = useState(1);
+  const [activeCategoryId, setActiveCategoryId] = useState(
+    "219dfd47-f704-4d59-b1b2-94cf4fc42871"
+  );
   const [language, setLanguage] = useState("en");
   const { data: menuCategories, error } = useSWR(
     ["menuCategoriesKey", language], // Include language in the SWR key
@@ -29,7 +30,7 @@ const FetchMenu = ({ initialData }) => {
         onCategoryChange={setActiveCategoryId}
         activeCategoryId={activeCategoryId}
       />
-      <div className="container mx-auto p-4 ">
+      <div className="container mx-auto p-4 bg-gray-50 pb-12">
         <MenuCategory
           categories={menuCategories}
           language={language}
