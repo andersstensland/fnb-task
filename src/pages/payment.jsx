@@ -75,7 +75,20 @@ export default function Payment() {
                 className="absolute left-0 p-0 w-10 h-10 flex items-center justify-center"
                 variant="ghost"
               >
-                {/* Back Button SVG */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
               </Button>
               <h1 className="text-xl font-bold my-4 mx-auto">Order Summary</h1>
             </div>
@@ -122,11 +135,26 @@ export default function Payment() {
 
             <OrderSummary />
 
-            <div className="my-4">
-              <h2 className="text-lg font-semibold">Delivery Details</h2>
-              <p>Delivery Time: {displayDeliveryTime()}</p>
-              <p>Pickup Option: {pickupOption || "Not set"}</p>
+            <div className="my-4 p-6 bg-gray-100 text-gray-800 rounded-lg shadow-md">
+              <div className="flex items-center mb-4">
+                <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16.24 5.5L19 2l2.76 3.5M6 10l3-3 2 2-2 2-3 3M4 6h.01"></path>
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"></circle>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6h4"></path>
+                </svg>
+                <h2 className="text-xl font-semibold">Delivery Details</h2>
+              </div>
+              <div className="mb-2">
+                <p className="text-lg"><span className="font-bold">Delivery Time:</span> {displayDeliveryTime()}</p>
+              </div>
+              <div>
+                <p className="text-lg "><span className="font-bold">Pickup Option:</span> {pickupOption || "Not set"}</p>
+              </div>
             </div>
+
+
 
             <div className="w-full mb-4">
               <Label className="block text-sm font-bold mb-2" htmlFor="message">
