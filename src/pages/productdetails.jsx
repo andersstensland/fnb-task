@@ -209,7 +209,68 @@ const ProductDetails = () => {
             >
               Add to basket
             </Button>
+=======
+        {imageUrl ? (
+          <div className="my-4">
+            <Image
+              src={imageUrl}
+              alt={imageAlt}
+              width={800}
+              height={800}
+              layout="responsive"
+            />
           </div>
+        ) : (
+          <p className="my-4">Image not available</p>
+        )}
+        <div className="text-xl font-semibold mt-2">{item.price} NOK</div>
+        <p className="mt-2">{item.description}</p>
+        <div className="mt-4">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1" onChange={handleAccordionChange}>
+              <AccordionTrigger>Allergies</AccordionTrigger>
+              <AccordionContent>
+                <p>{item.allergies}</p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        <div className="mt-4">
+          <h3 className="font-semibold">Remove Toppings:</h3>
+          <RemoveToppingItem items={item.toppings || []} />
+        </div>
+        <div className="mt-4 pb-4">
+          <h3 className="font-semibold">Extra toppings:</h3>
+          <AddToppingItem items={item.toppings || []} />
+        </div>
+        <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl">
+          <div className="flex justify-between items-center mx-2">
+            <div className="flex flex-col">
+              <span>Price</span>
+              <span>{totalCost} NOK</span>
+            </div>
+            <div className="flex items-center">
+              <Button
+                onClick={() => handleQuantityChange(-1)}
+                className="text-xl bg-customSecondaryOrange"
+              >
+                −
+              </Button>
+              <span className="mx-2">{quantity}</span>
+              <Button
+                onClick={() => handleQuantityChange(1)}
+                className="text-xl bg-customSecondaryOrange"
+              >
+                +
+              </Button>
+            </div>
+          </div>
+          <Button
+            onClick={() => handleAddBasket(item)}
+            className="bg-white text-black px-8 py-2 rounded-md w-full mt-2"
+          >
+            Add to basket
+          </Button>
         </div>
       </div>
     </>

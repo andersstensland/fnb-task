@@ -1,3 +1,4 @@
+// pages/payment.js
 import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
 import OrderSummary from "@/components/payment/ordersummary";
@@ -15,8 +16,7 @@ export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [message, setMessage] = useState("");
-
+  const [message, setMessage] = useState(""); // Add this line
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
     console.log(cost);
@@ -70,7 +70,6 @@ export default function Payment() {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
-
                 <DeliveryTimeModal
                   trigger={
                     <Label htmlFor="option-two">Choose time to pre-order</Label>
@@ -109,6 +108,10 @@ export default function Payment() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your message here..."
               />
+            </div>
+
+            <div className="w-full mb-20">
+              {/* Here is the space created below the Textarea */}
             </div>
 
             {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
