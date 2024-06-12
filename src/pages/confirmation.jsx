@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/router"; // Import the useRouter hook
 
 export default function Confirmation() {
-  const { cart, getTotalCost, getItemCount } = useCart();
+  const { cart, getTotalCost, getItemCount, clearCart } = useCart();
   const router = useRouter(); // Initialize the useRouter hook
 
   const [orderSummary, setOrderSummary] = useState([]);
@@ -35,6 +35,11 @@ export default function Confirmation() {
 
   const calculateTotalItems = () => {
     return getItemCount(cart);
+  };
+
+  const handleSeeMenuClick = () => {
+    clearCart();
+    router.push("/menu");
   };
 
   return (
@@ -113,12 +118,13 @@ export default function Confirmation() {
 
         <div className="w-full max-w-md mb-8">
           <div className="space-y-4">
-          <Button
+            <Button
               variant="solid"
               className="bg-gradient-to-r from-orange-400 to-orange-500 text-white font-bold w-full py-6 text-xl rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300"
-              >
-              <Link href="/menu">See the menu</Link>
-           </Button>
+              onClick={handleSeeMenuClick}
+            >
+              See the menu
+            </Button>
           </div>
         </div>
       </div>
