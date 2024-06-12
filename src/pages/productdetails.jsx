@@ -36,7 +36,6 @@ const ProductDetails = () => {
     const newTotalCost = (basePrice + addToppingsCost) * quantity;
     setTotalCost(newTotalCost);
   }, [quantity, checkedAddToppings]);
-  
 
   const handleQuantityChange = (delta) => {
     let newQuantity = quantity + delta;
@@ -113,18 +112,31 @@ const ProductDetails = () => {
       ),
       totalCost,
       quantity,
-      toppings: item.toppings // Ensure toppings are included
+      toppings: item.toppings, // Ensure toppings are included
     };
     addToCart(item._id, itemWithToppings, quantity);
     router.back();
   };
-  
 
-  
+  const ImageDisplay = ({ item }) => {
+    const imageUrl = item.imageAsset?.image?.asset?.url;
+    const imageAlt = item.imageAsset?.alt ?? "Image description not available";
+    const imageCaption = item.imageAsset?.caption ?? "No caption";
 
-  const imageUrl = item.imageAsset?.image?.asset?.url;
-  const imageAlt = item.imageAsset?.alt ?? "Image description not available";
-  const imageCaption = item.imageAsset?.caption ?? "No caption";
+    return imageUrl ? (
+      <div className="my-2">
+        <img
+          src={imageUrl}
+          alt={imageAlt}
+          style={{
+            width: "100%", // Makes the image responsive to the width of its container
+            height: "300px", // Maintains the aspect ratio automatically
+            objectFit: "contain", // Ensures the image fits within the frame without distortion
+          }}
+        />
+      </div>
+    ) : null;
+  };
 
   useEffect(() => {
     console.log("Allergies:", item.allergies);
@@ -137,79 +149,69 @@ const ProductDetails = () => {
 
   return (
     <>
-    <Navbar /> {/* Include the Navbar component */}
-    <div className="container mx-auto p-4 max-w-screen-lg pb-24">
-      <button 
-        onClick={() => router.back()} 
-        className="absolute top-13 right-4 p-1 text-2xl"
-      >
-        ✖️
-      </button>
-      <h2 className="text-2xl font-bold">{item.name}</h2>
-      {imageUrl ? (
-        <div className="my-4">
-          <Image
-            src={imageUrl}
-            alt={imageAlt}
-            width={800}
-            height={800}
-            layout="responsive"
-          />
-          <p>{imageCaption}</p>
-        </div>
-      ) : (
-        <p className="my-4">Image not available</p>
-      )}
-      <div className="text-xl font-semibold mt-2">{item.price} NOK</div>
-      <p className="mt-2">{item.description}</p>
-      <div className="mt-4">
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1" onChange={handleAccordionChange}>
-            <AccordionTrigger>Allergies</AccordionTrigger>
-            <AccordionContent>
-              <p>{item.allergies}</p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Remove Toppings:</h3>
-        <RemoveToppingItem items={item.toppings || []} />
-      </div>
-      <div className="mt-4 pb-4">
-        <h3 className="font-semibold">Extra toppings:</h3>
-        <AddToppingItem items={item.toppings || []} />
-      </div>
-      <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl">
-        <div className="flex justify-between items-center mx-2">
-          <div className="flex flex-col">
-            <span>Price</span>
-            <span>{totalCost} NOK</span>
-          </div>
-          <div className="flex items-center">
-            <Button
-              onClick={() => handleQuantityChange(-1)}
-              className="text-xl bg-customSecondaryOrange"
-            >
-              −
-            </Button>
-            <span className="mx-2">{quantity}</span>
-            <Button
-              onClick={() => handleQuantityChange(1)}
-              className="text-xl bg-customSecondaryOrange"
-            >
-              +
-            </Button>
-          </div>
-        </div>
-        <Button
-          onClick={() => handleAddBasket(item)}
-          className="bg-white text-black px-8 py-2 rounded-md w-full mt-2"
+      <Navbar /> {/* Include the Navbar component */}
+      <div className="container mx-auto p-4 max-w-screen-lg pb-24 relative">
+        <button
+          onClick={() => router.back()}
+          className="absolute top-13 right-4 p-1 text-2xl"
         >
-          Add to basket
-        </Button>
+          ✖️
+        </button>
+        <h2 className="text-2xl font-bold">{item.name}</h2>
+        <ImageDisplay item={item} />
+        <div className="text-xl font-semibold mt-2">{item.price} NOK</div>
+        <p className="mt-2">{item.description}</p>
+        <div className="mt-4">
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1" onChange={handleAccordionChange}>
+              <AccordionTrigger>Allergies</AccordionTrigger>
+              <AccordionContent>
+                <p>{item.allergies}</p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        <div className="mt-4">
+          <h3 className="font-semibold">Remove Toppings:</h3>
+          <RemoveToppingItem items={item.toppings || []} />
+        </div>
+        <div className="mt-4 pb-4">
+          <h3 className="font-semibold">Extra toppings:</h3>
+          <AddToppingItem items={item.toppings || []} />
+        </div>
+        <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl md:mx-auto md:max-w-xl">
+          <div className="flex justify-between items-center mx-2">
+            <div className="flex flex-col">
+              <span>Price</span>
+              <span>{totalCost} NOK</span>
+            </div>
+            <div className="flex items-center">
+              <Button
+                onClick={() => handleQuantityChange(-1)}
+                className="text-xl bg-customSecondaryOrange"
+              >
+                −
+              </Button>
+              <span className="mx-2">{quantity}</span>
+              <Button
+                onClick={() => handleQuantityChange(1)}
+                className="text-xl bg-customSecondaryOrange"
+              >
+                +
+              </Button>
+            </div>
+          </div>
+          <div className="flex justify-center mt-2">
+            <Button
+              onClick={() => handleAddBasket(item)}
+              className="bg-white text-black px-8 py-2 rounded-md w-full"
+              style={{ width: "100%" }} // Legg til denne stilen
+            >
+              Add to basket
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
     </>
   );
 };
