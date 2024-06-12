@@ -66,7 +66,6 @@ export const CartProvider = ({ children }) => {
   
   
 
-
   const updateQuantity = (itemId, quantity) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
@@ -85,6 +84,10 @@ export const CartProvider = ({ children }) => {
     setCart(newCart);
   };
 
+  const clearCart = () => {
+    setCart({});
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -95,6 +98,7 @@ export const CartProvider = ({ children }) => {
         getItemCount,
         getTotalCost,
         getQty,
+        clearCart,
       }}
     >
       {children}
