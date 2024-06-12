@@ -4,7 +4,6 @@ import { fetchMenuCategories } from "@/lib/fetchMenu";
 import TopBar from "@/components/menu/topbar";
 import { useState } from "react";
 import useSWR from "swr";
-import "@/styles/globals.css";
 
 const FetchMenu = ({ initialData }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
