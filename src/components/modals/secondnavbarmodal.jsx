@@ -12,11 +12,12 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/context/cartcontext";
+import { Button } from "@/components/ui/button";
 
 const SecondNavbarModal = () => {
   const { updateDeliveryTime, deliveryTime } = useCart();
-  const [selectedValue, setSelectedValue] = useState("asap"); // Default to ASAP
-  const [selectedTime, setSelectedTime] = useState(""); // State for storing the selected time
+  const [selectedValue, setSelectedValue] = useState("asap");
+  const [selectedTime, setSelectedTime] = useState("");
 
   const handleRadioChange = (value) => {
     setSelectedValue(value);
@@ -36,9 +37,12 @@ const SecondNavbarModal = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <div className="bg-orange-300 p-2 rounded-md text-black font-bold mr-2 cursor-pointer">
-          Change
-        </div>
+        <Button
+          variant="outline"
+          className="p-2 bg-orange-300 rounded-md text-black font-bold mr-2 cursor-pointer text-center w-full"
+        >
+          Change Time
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

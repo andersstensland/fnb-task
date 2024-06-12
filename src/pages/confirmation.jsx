@@ -12,7 +12,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Confirmation() {
-  const { cart, getTotalCost, getItemCount, clearCart } = useCart();
+  const {
+    cart,
+    getTotalCost,
+    getItemCount,
+    clearCart,
+    deliveryTime,
+    pickupOption,
+  } = useCart();
   const router = useRouter(); // Initialize the useRouter hook
 
   const [orderSummary, setOrderSummary] = useState([]);
@@ -50,11 +57,11 @@ export default function Confirmation() {
       <Navbar />
       <div className="flex flex-col items-center p-4 bg-gray-100 min-h-screen">
         <div className="w-full max-w-md mb-12">
-          <h1 className="text-2xl font-extrabold text-center mt-8 mb-6">
+          <h1 className="text-xl font-extrabold text-center mt-8 mb-6">
             Thank you for ordering with us.
           </h1>
 
-          <div className="relative w-full mb-12 p-8 bg-white shadow-lg rounded-lg flex items-center mx-auto">
+          <div className="relative w-full mb-2 p-8 bg-white shadow-lg rounded-lg flex items-center mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 text-red-700 mr-4"
@@ -70,8 +77,19 @@ export default function Confirmation() {
               />
             </svg>
             <div>
-              <p className="text-lg font-bold mb-1">Estimated Delivery Time</p>
-              <p className="text-2xl font-extrabold text-red-700">20-30 min</p>
+              <p className="text-lg font-bold mb-1">Estimated Time</p>
+              <p className="text-2xl font-extrabold text-red-700">
+                {deliveryTime}
+              </p>
+            </div>
+          </div>
+
+          <div className="relative w-full mb-12 p-8 bg-white shadow-lg rounded-lg flex items-center mx-auto">
+            <div>
+              <p className="text-lg font-bold mb-1">Delivery Option</p>
+              <p className="text-2xl font-extrabold text-red-700">
+                {pickupOption}
+              </p>
             </div>
           </div>
 
@@ -104,24 +122,22 @@ export default function Confirmation() {
                           {item.selectedAddToppings &&
                             item.selectedAddToppings.length > 0 && (
                               <div>
-                              
                                 <ul>
                                   {item.selectedAddToppings.map(
                                     (topping, index) => (
                                       <li key={index}>
-                                       + {topping.name} {topping.cost},-
+                                        + {topping.name} {topping.cost},-
                                       </li>
                                     )
                                   )}
                                 </ul>
                               </div>
                             )}
-                            <hr className="border-t border-gray-300 my-4" />
+                          <hr className="border-t border-gray-300 my-4" />
                           {/* Display removed toppings */}
                           {item.selectedRemoveToppings &&
                             item.selectedRemoveToppings.length > 0 && (
                               <div>
-                                
                                 <ul>
                                   {item.selectedRemoveToppings.map(
                                     (topping, index) => (
@@ -156,10 +172,10 @@ export default function Confirmation() {
           <div className="space-y-4">
             <Button
               variant="solid"
-              className="bg-gradient-to-r from-orange-400 to-orange-500 text-white font-bold w-full py-6 text-xl rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300"
+              className="bg-orange-300 text-black font-bold w-full py-6 text-lg shadow-lg transform transition-transform duration-300 "
               onClick={handleSeeMenuClick}
             >
-              See the menu
+              Back to menu
             </Button>
           </div>
         </div>

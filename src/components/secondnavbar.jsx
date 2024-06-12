@@ -25,7 +25,7 @@ export default function SecondNavbar() {
           </svg>
           Delivery 25 - 35 min
         </li>
-        <li className="text-white w-full flex justify-end">
+        <li className="w-2/5 flex justify-end">
           <SecondNavbarModal onTimeSelect={handleTimeSelect} />
         </li>
       </ul>
