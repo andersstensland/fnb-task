@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/context/cartcontext";
 
 export function PickupModal() {
-  const [selectedPickupLocation, setSelectedPickupLocation] = useState(null);
+  const { updatePickupOption } = useCart();
 
-  const handleSelectPickupLocation = (location) => {
-    setSelectedPickupLocation(location); // Set the selected location
+  const handlePickupOption = (newPickup) => {
+    updatePickupOption(newPickup);
   };
 
   return (
@@ -37,14 +38,14 @@ export function PickupModal() {
           <div
             key={location}
             className="flex items-center justify-between space-x-4 p-4 rounded-lg bg-white shadow-md cursor-pointer"
-            onClick={() => handleSelectPickupLocation(location)}
+            onClick={() => handlePickupOption(location)}
           >
             <Label className="text-base font-semibold">{location}</Label>
             <input
               type="radio"
               name="pickup-point"
               checked={selectedPickupLocation === location}
-              onChange={() => handleSelectPickupLocation(location)}
+              onChange={() => handlePickupOption(location)}
             />
           </div>
         ))}
