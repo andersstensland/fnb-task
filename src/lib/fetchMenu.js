@@ -37,6 +37,5 @@ export function fetchMenuCategories(language) {
       }
     }
   `;
-  console.log(query); // Useful for debugging to see the final query string
   return client.fetch(query, { params: { language } });
 }
