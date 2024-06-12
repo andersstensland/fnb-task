@@ -15,6 +15,7 @@ export default function Payment() {
   const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
@@ -104,7 +105,7 @@ export default function Payment() {
               <Textarea
                 id="message"
                 className="w-full h-24 p-2 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 shadow-sm"
-                value={""}
+                value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your message here..."
               />
