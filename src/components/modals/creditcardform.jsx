@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useCart } from "@/context/cartcontext";
 
 const CreditCardForm = ({ onBack }) => {
-  const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
+  const { cart, updateQuantity, getTotalCost, setDeliveryCost } = useCart();
   const router = useRouter();
+
+  // Check if getTotalCost is defined
+  console.log("getTotalCost:", getTotalCost);
+
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvc, setCvc] = useState("");
+
+  const handleCardNumberChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    if (value.length > 16) value = value.slice(0, 16); // Limit length to 16 digits
+
+    // Format the input value in groups of 4 digits
+    const formattedValue = value.replace(/(\d{4})(?=\d)/g, "$1 ");
+    setCardNumber(formattedValue);
+  };
+
+  const handleExpiryDateChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    if (value.length > 4) value = value.slice(0, 4); // Limit length to 4 digits
+
+    // Format the input value as MM/YY
+    const formattedValue = value.replace(/(\d{2})(\d{2})/, "$1/$2");
+    setExpiryDate(formattedValue);
+  };
+
+  const handleCvcChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    if (value.length > 3) value = value.slice(0, 3); // Limit length to 3 digits
+    setCvc(value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,14 +48,15 @@ const CreditCardForm = ({ onBack }) => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <button onClick={onBack} className="text-gray-400">
+        <button
+          onClick={onBack}
+          className="text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+            stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -74,8 +106,11 @@ const CreditCardForm = ({ onBack }) => {
               </label>
               <input
                 type="text"
+                value={cardNumber}
+                onChange={handleCardNumberChange}
                 className="mt-1 block w-full border border-black rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-xl p-4"
                 placeholder="1234 5678 0123 4567"
+                maxLength="19" // Max length is 19 to account for spaces
               />
             </div>
             <div className="flex space-x-4">
@@ -85,8 +120,11 @@ const CreditCardForm = ({ onBack }) => {
                 </label>
                 <input
                   type="text"
+                  value={expiryDate}
+                  onChange={handleExpiryDateChange}
                   className="mt-1 block w-full border border-black rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-xl p-4"
                   placeholder="MM/YY"
+                  maxLength="5" // Max length is 5 to account for the slash
                 />
               </div>
               <div>
@@ -95,16 +133,18 @@ const CreditCardForm = ({ onBack }) => {
                 </label>
                 <input
                   type="text"
+                  value={cvc}
+                  onChange={handleCvcChange}
                   className="mt-1 block w-full border border-black rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-xl p-4"
                   placeholder="CVC"
+                  maxLength="3"
                 />
               </div>
             </div>
             <button
               type="submit"
-              className="w-full bg-yellow-500 text-black p-4 rounded-md text-lg"
-            >
-              Pay {getTotalPrice} KR
+              className="w-full bg-yellow-500 text-black p-4 rounded-md text-lg">
+              Pay {getTotalCost()} KR
             </button>
           </div>
         </form>
