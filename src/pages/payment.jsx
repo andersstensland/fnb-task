@@ -28,29 +28,35 @@ export default function Payment() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center min-h-screen px-4 w-full">
+      <div className="flex flex-col items-center min-h-screen px-2 md:px-4 w-full">
         <PaymentMethodModal />
-        <div className="w-full max-w-4xl mx-auto">
-          <div className="flex items-center">
-            <Button onClick={handleBack} className="mr-4" variant="ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
+        <div className="w-full max-w-xl mx-auto p-4">
+          {" "}
+          {/* More compact size and padding */}
+          <div className="relative w-full">
+            <div className="flex justify-center items-center relative">
+              <Button
+                onClick={handleBack}
+                className="absolute left-0 p-0 w-10 h-10 flex items-center justify-center"
+                variant="ghost"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-            </Button>
-            <h1 className="text-xl font-bold my-4 text-center">
-              Order Summary
-            </h1>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </Button>
+              <h1 className="text-xl font-bold my-4 mx-auto">Order Summary</h1>
+            </div>
           </div>
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
@@ -72,16 +78,15 @@ export default function Payment() {
               </div>
             </RadioGroup>
           </div>
-
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Payment</Label>
             <div className="w-full mb-4">
               <Label className="block text-sm font-bold mb-2">
                 Choose where you want to eat!
               </Label>
-              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between md:space-x-2 gap-2">
                 <Button
-                  className="bg-white text-black w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+                  className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 text-lg font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
                   onClick={() => handleOptionClick("delivery")}
                 >
                   Delivery

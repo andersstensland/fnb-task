@@ -31,7 +31,8 @@ export function fetchMenuCategories(language) {
               "alt": alt.${language}
             }
           }
-        }
+        },
+        toppings
       }
     }
   `;

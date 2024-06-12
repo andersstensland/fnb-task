@@ -24,7 +24,7 @@ export function PickupModal() {
       <AlertDialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-white text-black w-full md:w-40 px-8 py-4 text-xl font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+          className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 text-lg font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
         >
           Select Pickup Location
         </Button>

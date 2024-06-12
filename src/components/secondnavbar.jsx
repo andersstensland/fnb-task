@@ -27,7 +27,7 @@ export default function SecondNavbar() {
   return (
     <nav className="w-full bg-gray-200 p-2">
       <ul className="flex justify-between items-center">
-        <li className="w-full h-full font-bold flex flex-row gap-2">
+        <li className="w-full h-full flex flex-row gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -44,10 +44,10 @@ export default function SecondNavbar() {
           </svg>
           Delivery 25 - 35 min
         </li>
-        <li className="text-white w-1/3">
+        <li className="text-white w-full flex justify-end">
           <AlertDialog>
             <AlertDialogTrigger>
-              <div className="bg-orange-300 p-2 rounded-md text-black font-bold">
+              <div className="bg-orange-300 p-2 rounded-md text-black font-bold mr-2">
                 Change
               </div>
             </AlertDialogTrigger>
