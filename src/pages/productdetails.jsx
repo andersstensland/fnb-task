@@ -116,7 +116,7 @@ const ProductDetails = () => {
       toppings: item.toppings // Ensure toppings are included
     };
     addToCart(item._id, itemWithToppings, quantity);
-    router.push("/menu");
+    router.back();
   };
   
 
