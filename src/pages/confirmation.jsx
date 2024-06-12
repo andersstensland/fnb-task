@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Confirmation() {
   const { cart, getTotalCost, getItemCount, clearCart } = useCart();

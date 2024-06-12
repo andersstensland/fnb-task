@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { PickupModal } from "@/components/modals/pickupmodal";
 import { useEffect } from "react";
+import { useCart } from "@/context/cartcontext";
 
 export default function Payment() {
   const {
