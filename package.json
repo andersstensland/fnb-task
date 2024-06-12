@@ -30,6 +30,7 @@
     "react-hook-form": "^7.51.5",
     "sanity": "^3.43.0",
     "styled-components": "^6.1.11",
+    "svr": "^2.3.28",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
