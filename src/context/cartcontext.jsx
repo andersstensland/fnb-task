@@ -7,18 +7,32 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({});
   const [deliveryCost, setDeliveryCost] = useState(0);
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [pickupOption, setPickupOption] = useState("");
 
-  // Load and save cart from/to localStorage
+  // Load cart and delivery options from localStorage
   useEffect(() => {
     const cartData = localStorage.getItem("cart");
+    const savedDeliveryTime = localStorage.getItem("deliveryTime");
+    const savedPickupOption = localStorage.getItem("pickupOption");
+
     if (cartData) {
       setCart(JSON.parse(cartData));
     }
+    if (savedDeliveryTime) {
+      setDeliveryTime(savedDeliveryTime);
+    }
+    if (savedPickupOption) {
+      setPickupOption(savedPickupOption);
+    }
   }, []);
 
+  // Save cart and delivery options to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem("deliveryTime", deliveryTime);
+    localStorage.setItem("pickupOption", pickupOption);
+  }, [cart, deliveryTime, pickupOption]);
 
   const getItemCount = (cart) => {
     if (!cart) return;
@@ -36,7 +50,15 @@ export const CartProvider = ({ children }) => {
       0
     );
   };
-  
+
+  const updateDeliveryTime = (time) => {
+    setDeliveryTime(time);
+  };
+
+  // update pickup option
+  const updatePickupOption = (option) => {
+    setPickupOption(option);
+  };
 
   const addToCart = (itemId, itemDetails, quantity) => {
     if (quantity === undefined) {
@@ -47,11 +69,14 @@ export const CartProvider = ({ children }) => {
       console.error("Invalid quantity:", quantity);
       return; // Exit the function if quantity is not valid
     }
-    if (typeof itemDetails.totalCost !== "number" || isNaN(itemDetails.totalCost)) {
+    if (
+      typeof itemDetails.totalCost !== "number" ||
+      isNaN(itemDetails.totalCost)
+    ) {
       console.error("Invalid total cost:", itemDetails.totalCost);
       return; // Exit the function if total cost is not valid
     }
-  
+
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       if (newCart[itemId]) {
@@ -62,9 +87,6 @@ export const CartProvider = ({ children }) => {
       return newCart;
     });
   };
-  
-  
-  
 
   const updateQuantity = (itemId, quantity) => {
     setCart((prevCart) => {
@@ -98,6 +120,12 @@ export const CartProvider = ({ children }) => {
         getItemCount,
         getTotalCost,
         getQty,
+        deliveryTime,
+        setDeliveryTime,
+        pickupOption,
+        setPickupOption,
+        updateDeliveryTime,
+        updatePickupOption,
         clearCart,
       }}
     >
