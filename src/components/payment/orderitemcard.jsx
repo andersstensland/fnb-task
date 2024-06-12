@@ -15,7 +15,7 @@ const OrderItemCard = ({ item }) => {
     if (count > 0) {
       addToCart(item._id, item, -1);
     }
-    if (count == 0) {
+    if (count === 0) {
       removeFromCart(item._id);
     }
   };
@@ -25,12 +25,29 @@ const OrderItemCard = ({ item }) => {
   };
 
   return (
-    <div className="relative border rounded-lg shadow-md my-2 p-4 pt-12 pb-12 flex items-start justify-between">
-      {/* Card content layout adjusted for visual spacing */}
-      <div>
+    <div className="relative border rounded-lg shadow-md my-2 p-4 pt-12 pb-12 flex flex-col items-start justify-between">
+      <div className="mb-2">
         <span className="text-lg font-semibold">{item.name}</span>
-        <span className="text-sm block">{item.price},00</span>
+        <span className="text-sm block">{item.totalCost},00 NOK</span>
       </div>
+      {item.selectedAddToppings && item.selectedAddToppings.length > 0 && (
+        <div className="mb-2 text-sm text-gray-600">
+          {item.selectedAddToppings.map((topping) => (
+            <div key={topping}>
+              + {topping} ({item.toppings.find(t => t.name === topping).cost} NOK)
+            </div>
+          ))}
+        </div>
+      )}
+      {item.selectedRemoveToppings && item.selectedRemoveToppings.length > 0 && (
+        <div className="mb-2 text-sm text-gray-600">
+          {item.selectedRemoveToppings.map((topping) => (
+            <div key={topping}>
+              - {topping}
+            </div>
+          ))}
+        </div>
+      )}
       <div className="flex items-center">
         <Button
           className="text-black bg-customOrange rounded mr-2"
@@ -46,7 +63,6 @@ const OrderItemCard = ({ item }) => {
           +
         </Button>
       </div>
-      {/* Remove button with SVG */}
       <Button
         onClick={handleRemoveItem}
         className="absolute top-0 right-0 p-2 text-black"

@@ -22,19 +22,19 @@ const OrderSummary = () => {
       </div>
       <hr className="mt-1.5 mb-6 h-0.5 border-t-0 bg-neutral-300 dark:bg-/10" />
       {Object.values(cart).length > 0 ? (
-        Object.values(cart).map((item) =>
-          item && item._id ? (
+    Object.values(cart).map((item) =>
+        item && item._id ? (
             <OrderItemCard
-              key={item._id}
-              item={item}
-              quantity={item.qty}
-              updateQuantity={(newQty) => updateQuantity(item._id, newQty)}
+                key={item._id}
+                item={item}
+                quantity={item.qty}
+                updateQuantity={(newQty) => updateQuantity(item._id, newQty)}
             />
-          ) : null
-        )
-      ) : (
-        <p>No items in your cart.</p>
-      )}
+        ) : null
+    )
+) : (
+    <p>No items in your cart.</p>
+)}
 
       <div className="flex justify-between items-center font-bold text-xl mt-4 mb-3 p-4 border-t border-b border-gray-300">
         <span>Total</span>
