@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import "@/styles/globals.css";
-import Link from "next/link";
 import { useCart } from "@/context/cartcontext";
 import {
   Accordion,
@@ -10,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useRouter } from "next/router"; // Import the useRouter hook
+import Link from "next/link";
 
 export default function Confirmation() {
   const { cart, getTotalCost, getItemCount, clearCart } = useCart();
@@ -28,6 +26,10 @@ export default function Confirmation() {
     const { message } = router.query;
     setMessage(message || ""); // Set the message state
   }, [cart, router.query]); // Add router.query to the dependency array
+
+  useEffect(() => {
+    console.log("Order Summary:", orderSummary);
+  }, [orderSummary]);
 
   const calculateTotalAmount = () => {
     return getTotalCost();
@@ -95,6 +97,39 @@ export default function Confirmation() {
                           <span className="float-right">
                             {item.price * item.qty},00
                           </span>
+                        </div>
+                        {/* Display selected toppings */}
+                        <div className="ml-6">
+                          {item.selectedAddToppings &&
+                            item.selectedAddToppings.length > 0 && (
+                              <div>
+                              
+                                <ul>
+                                  {item.selectedAddToppings.map(
+                                    (topping, index) => (
+                                      <li key={index}>
+                                       + {topping.name} {topping.cost},-
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+                            <hr className="border-t border-gray-300 my-4" />
+                          {/* Display removed toppings */}
+                          {item.selectedRemoveToppings &&
+                            item.selectedRemoveToppings.length > 0 && (
+                              <div>
+                                
+                                <ul>
+                                  {item.selectedRemoveToppings.map(
+                                    (topping, index) => (
+                                      <li key={index}>- {topping}</li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
                         </div>
                         <hr className="border-t border-gray-300 my-4" />
                       </div>

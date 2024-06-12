@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
 import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import OrderSummary from "@/components/payment/ordersummary";
@@ -52,7 +53,11 @@ export default function Payment() {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
-                {/* Delivery Time Modal Trigger */}
+                <DeliveryTimeModal
+                  trigger={
+                    <Label htmlFor="option-two">Choose time to pre-order</Label>
+                  }
+                />
               </div>
             </RadioGroup>
           </div>

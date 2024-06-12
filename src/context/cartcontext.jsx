@@ -40,28 +40,30 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (itemId, itemDetails, quantity) => {
     if (quantity === undefined) {
-        console.error("Quantity was undefined, defaulting to 1");
-        quantity = 1;
+      console.error("Quantity was undefined, defaulting to 1");
+      quantity = 1;
     }
     if (typeof quantity !== "number" || isNaN(quantity)) {
-        console.error("Invalid quantity:", quantity);
-        return; // Exit the function if quantity is not valid
+      console.error("Invalid quantity:", quantity);
+      return; // Exit the function if quantity is not valid
     }
     if (typeof itemDetails.totalCost !== "number" || isNaN(itemDetails.totalCost)) {
-        console.error("Invalid total cost:", itemDetails.totalCost);
-        return; // Exit the function if total cost is not valid
+      console.error("Invalid total cost:", itemDetails.totalCost);
+      return; // Exit the function if total cost is not valid
     }
   
     setCart((prevCart) => {
-        const newCart = { ...prevCart };
-        if (newCart[itemId]) {
-            newCart[itemId].qty += quantity;
-        } else {
-            newCart[itemId] = { ...itemDetails, qty: quantity };
-        }
-        return newCart;
+      const newCart = { ...prevCart };
+      if (newCart[itemId]) {
+        newCart[itemId].qty += quantity;
+      } else {
+        newCart[itemId] = { ...itemDetails, qty: quantity };
+      }
+      return newCart;
     });
   };
+  
+  
   
 
   const updateQuantity = (itemId, quantity) => {
