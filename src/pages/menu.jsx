@@ -6,6 +6,7 @@ import FetchMenu from "./api/fetchMenu";
 import Link from "next/link";
 import { useCart } from "@/context/cartcontext";
 
+
 const Menu = () => {
   const { getItemCount, cart } = useCart();
 

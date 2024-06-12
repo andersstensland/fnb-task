@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useCart } from "@/context/cartcontext";
+import Navbar from "@/components/navbar";
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const ProductDetails = () => {
   const [totalCost, setTotalCost] = useState(item.price || 0);
   const [checkedAddToppings, setCheckedAddToppings] = useState({});
   const [checkedRemoveToppings, setCheckedRemoveToppings] = useState({});
-  const [allergiesExpanded, setAllergiesExpanded] = useState(false); // State to track accordion expansion
+  const [allergiesExpanded, setAllergiesExpanded] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const ProductDetails = () => {
     const newTotalCost = (basePrice + addToppingsCost) * quantity;
     setTotalCost(newTotalCost);
   }, [quantity, checkedAddToppings]);
+  
 
   const handleQuantityChange = (delta) => {
     let newQuantity = quantity + delta;
@@ -61,22 +63,39 @@ const ProductDetails = () => {
     setAllergiesExpanded(expanded);
   };
 
-  const ToppingItem = ({ items, onToggle, removable }) => (
+  const AddToppingItem = ({ items }) => (
     <div className="flex flex-col justify-between py-2">
       {items.map((topping) => (
         <div key={topping.name} className="flex justify-between items-center">
           <Label className="flex justify-between items-center rounded-md w-full">
             <span>{topping.name}</span>
-            {removable && (
-              <span className="ml-auto pr-4">{topping.cost} NOK</span>
-            )}
+            <span className="ml-auto pr-4">{topping.cost} NOK</span>
           </Label>
           <input
             type="checkbox"
             id={topping.name}
             className="mt-2"
-            checked={!!onToggle[topping.name]}
-            onChange={() => onToggle(topping)}
+            checked={!!checkedAddToppings[topping.name]}
+            onChange={() => handleAddToppingToggle(topping)}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  const RemoveToppingItem = ({ items }) => (
+    <div className="flex flex-col justify-between py-2">
+      {items.map((topping) => (
+        <div key={topping.name} className="flex justify-between items-center">
+          <Label className="flex justify-between items-center rounded-md w-full">
+            <span>{topping.name}</span>
+          </Label>
+          <input
+            type="checkbox"
+            id={topping.name}
+            className="mt-2"
+            checked={!!checkedRemoveToppings[topping.name]}
+            onChange={() => handleRemoveToppingToggle(topping)}
           />
         </div>
       ))}
@@ -86,15 +105,22 @@ const ProductDetails = () => {
   const handleAddBasket = (item) => {
     const itemWithToppings = {
       ...item,
-      selectedToppings: Object.keys(checkedAddToppings).filter(
+      selectedAddToppings: Object.keys(checkedAddToppings).filter(
         (topping) => checkedAddToppings[topping]
+      ),
+      selectedRemoveToppings: Object.keys(checkedRemoveToppings).filter(
+        (topping) => checkedRemoveToppings[topping]
       ),
       totalCost,
       quantity,
+      toppings: item.toppings // Ensure toppings are included
     };
-    addToCart(item._id, itemWithToppings, quantity); // Add to cart
+    addToCart(item._id, itemWithToppings, quantity);
     router.back();
   };
+  
+
+  
 
   const imageUrl = item.imageAsset?.image?.asset?.url;
   const imageAlt = item.imageAsset?.alt ?? "Image description not available";
@@ -110,10 +136,12 @@ const ProductDetails = () => {
   }, [item]);
 
   return (
+    <>
+    <Navbar /> {/* Include the Navbar component */}
     <div className="container mx-auto p-4 max-w-screen-lg pb-24">
-      <button
-        onClick={() => router.back()}
-        className="absolute top-4 right-4 p-2"
+      <button 
+        onClick={() => router.back()} 
+        className="absolute top-13 right-4 p-1 text-2xl"
       >
         ✖️
       </button>
@@ -132,7 +160,7 @@ const ProductDetails = () => {
       ) : (
         <p className="my-4">Image not available</p>
       )}
-      <div className="text-xl font-semibold mt-2">{totalCost} NOK</div>
+      <div className="text-xl font-semibold mt-2">{item.price} NOK</div>
       <p className="mt-2">{item.description}</p>
       <div className="mt-4">
         <Accordion type="single" collapsible>
@@ -146,19 +174,11 @@ const ProductDetails = () => {
       </div>
       <div className="mt-4">
         <h3 className="font-semibold">Remove Toppings:</h3>
-        <ToppingItem
-          items={item.toppings || []}
-          onToggle={handleRemoveToppingToggle}
-          removable={false}
-        />
+        <RemoveToppingItem items={item.toppings || []} />
       </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Add toppings:</h3>
-        <ToppingItem
-          items={item.toppings || []}
-          onToggle={handleAddToppingToggle}
-          removable
-        />
+      <div className="mt-4 pb-4">
+        <h3 className="font-semibold">Extra toppings:</h3>
+        <AddToppingItem items={item.toppings || []} />
       </div>
       <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl">
         <div className="flex justify-between items-center mx-2">
@@ -190,6 +210,7 @@ const ProductDetails = () => {
         </Button>
       </div>
     </div>
+    </>
   );
 };
 

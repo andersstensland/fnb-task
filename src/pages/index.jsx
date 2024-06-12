@@ -48,32 +48,38 @@ export default function Home() {
 
         <div className="p-4 mt-auto bg-white bg-opacity-50 shadow-t-md">
           <hr className="border-gray-200 my-4" />
-          <div className="flex justify-end">
-            <Link
-              href="/menu"
-              passHref>
-              <Button
-                
-                className="bg-orange-300">
-                See Menu
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1}
-                  stroke="currentColor"
-                  className="w-6 h-4">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                  />
-                </svg>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-1 items-center">
+              <Button className="bg-orange-300 text-black-500">
+                <Link href="/api/auth/login">Log in</Link>
               </Button>
-            </Link>
+            </div>
+            <div className="ml-auto">
+              <Link href="/menu" passHref>
+                <Button className="bg-orange-300 text-black-500">
+                  See Menu
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1}
+                    stroke="currentColor"
+                    className="w-6 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 }
+
+
