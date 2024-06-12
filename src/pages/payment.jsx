@@ -16,7 +16,6 @@ export default function Payment() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState(""); // Add this line
-
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
     console.log(cost);
