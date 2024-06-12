@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,10 +14,23 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/context/cartcontext";
 
 const SecondNavbarModal = () => {
-  const { updateDeliveryTime } = useCart();
+  const { updateDeliveryTime, deliveryTime } = useCart();
+  const [selectedValue, setSelectedValue] = useState("asap"); // Default to ASAP
+  const [selectedTime, setSelectedTime] = useState(""); // State for storing the selected time
 
-  const handleTimeChange = (newTime) => {
-    updateDeliveryTime(newTime); // Update the context and local storage
+  const handleRadioChange = (value) => {
+    setSelectedValue(value);
+    if (value === "asap") {
+      updateDeliveryTime("As soon as possible");
+    }
+  };
+
+  const handleTimeChange = (event) => {
+    const newTime = event.target.value;
+    setSelectedTime(newTime);
+    if (selectedValue === "pre-order") {
+      updateDeliveryTime(newTime);
+    }
   };
 
   return (
@@ -29,7 +43,7 @@ const SecondNavbarModal = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Delivery</AlertDialogTitle>
-          <RadioGroup onValueChange={setSelectedValue} value={selectedValue}>
+          <RadioGroup onValueChange={handleRadioChange} value={selectedValue}>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="asap" id="asap" />
               <Label htmlFor="asap">As soon as possible</Label>
@@ -53,7 +67,7 @@ const SecondNavbarModal = () => {
                 className="rounded-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 min="09:00"
                 max="18:00"
-                value={selectedTime}
+                value={deliveryTime || selectedTime}
                 onChange={handleTimeChange}
                 required
               />

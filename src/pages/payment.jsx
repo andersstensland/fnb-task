@@ -13,13 +13,28 @@ import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import { PickupModal } from "@/components/modals/pickupmodal";
 
 export default function Payment() {
-  const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
+  const {
+    cart,
+    updateQuantity,
+    getTotalPrice,
+    setDeliveryCost,
+    deliveryTime,
+    pickupOption,
+    updateDeliveryTime,
+  } = useCart();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState(""); // Add this line
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
-    console.log(cost);
+    setDeliveryCost(cost);
+  };
+
+  console.log(deliveryTime);
+  console.log(pickupOption);
+
+  // update delivery time function
+  const handleDeliveryTime = (time) => {
+    updateDeliveryTime(time);
   };
 
   const handleBack = () => {
@@ -32,7 +47,6 @@ export default function Payment() {
       <div className="flex flex-col items-center min-h-screen px-2 md:px-4 w-full">
         <PaymentMethodModal />
         <div className="w-full max-w-xl mx-auto p-4">
-          {" "}
           {/* More compact size and padding */}
           <div className="relative w-full">
             <div className="flex justify-center items-center relative">
@@ -62,7 +76,10 @@ export default function Payment() {
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
             <RadioGroup defaultValue="option-one">
-              <div className="flex items-center space-x-2">
+              <div
+                className="flex items-center space-x-2"
+                onChange={() => handleDeliveryTime("25-35min")}
+              >
                 <RadioGroupItem value="option-one" id="option-one" />
                 <Label htmlFor="option-one">
                   As soon as possible (25-35min)
@@ -96,6 +113,12 @@ export default function Payment() {
             </div>
 
             <OrderSummary />
+
+            <div className="my-4">
+              <h2 className="text-lg font-semibold">Delivery Details</h2>
+              <p>Delivery Time: {deliveryTime || "Not set"}</p>
+              <p>Pickup Option: {pickupOption || "Not set"}</p>
+            </div>
 
             <div className="w-full mb-4">
               <Label className="block text-sm font-bold mb-2" htmlFor="message">

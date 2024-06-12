@@ -15,9 +15,11 @@ import { useCart } from "@/context/cartcontext";
 
 export function PickupModal() {
   const { updatePickupOption } = useCart();
+  const [selectedPickupLocation, setSelectedPickupLocation] = useState("");
 
   const handlePickupOption = (newPickup) => {
-    updatePickupOption(newPickup);
+    setSelectedPickupLocation(newPickup); // Update local state
+    updatePickupOption(newPickup); // Update global state
   };
 
   return (
