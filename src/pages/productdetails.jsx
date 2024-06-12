@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCart } from "@/context/cartcontext"; 
+import { useCart } from "@/context/cartcontext";
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -20,12 +20,16 @@ const ProductDetails = () => {
   const [checkedAddToppings, setCheckedAddToppings] = useState({});
   const [checkedRemoveToppings, setCheckedRemoveToppings] = useState({});
   const [allergiesExpanded, setAllergiesExpanded] = useState(false); // State to track accordion expansion
-  const { addToCart } = useCart(); 
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const basePrice = item.price || 0;
     const addToppingsCost = Object.keys(checkedAddToppings).reduce(
-      (acc, topping) => acc + (checkedAddToppings[topping] ? item.toppings.find(t => t.name === topping).cost : 0),
+      (acc, topping) =>
+        acc +
+        (checkedAddToppings[topping]
+          ? item.toppings.find((t) => t.name === topping).cost
+          : 0),
       0
     );
     const newTotalCost = (basePrice + addToppingsCost) * quantity;
@@ -63,7 +67,9 @@ const ProductDetails = () => {
         <div key={topping.name} className="flex justify-between items-center">
           <Label className="flex justify-between items-center rounded-md w-full">
             <span>{topping.name}</span>
-            {removable && <span className="ml-auto pr-4">{topping.cost} NOK</span>}
+            {removable && (
+              <span className="ml-auto pr-4">{topping.cost} NOK</span>
+            )}
           </Label>
           <input
             type="checkbox"
@@ -80,12 +86,14 @@ const ProductDetails = () => {
   const handleAddBasket = (item) => {
     const itemWithToppings = {
       ...item,
-      selectedToppings: Object.keys(checkedAddToppings).filter(topping => checkedAddToppings[topping]),
+      selectedToppings: Object.keys(checkedAddToppings).filter(
+        (topping) => checkedAddToppings[topping]
+      ),
       totalCost,
-      quantity
+      quantity,
     };
     addToCart(item._id, itemWithToppings, quantity); // Add to cart
-    router.push("/menu");
+    router.back();
   };
 
   const imageUrl = item.imageAsset?.image?.asset?.url;
@@ -103,7 +111,10 @@ const ProductDetails = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-screen-lg pb-24">
-      <button onClick={() => router.back()} className="absolute top-4 right-4 p-2">
+      <button
+        onClick={() => router.back()}
+        className="absolute top-4 right-4 p-2"
+      >
         ✖️
       </button>
       <h2 className="text-2xl font-bold">{item.name}</h2>
@@ -128,18 +139,26 @@ const ProductDetails = () => {
           <AccordionItem value="item-1" onChange={handleAccordionChange}>
             <AccordionTrigger>Allergies</AccordionTrigger>
             <AccordionContent>
-                <p>{item.allergies}</p>
+              <p>{item.allergies}</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
       <div className="mt-4">
         <h3 className="font-semibold">Remove Toppings:</h3>
-        <ToppingItem items={item.toppings || []} onToggle={handleRemoveToppingToggle} removable={false} />
+        <ToppingItem
+          items={item.toppings || []}
+          onToggle={handleRemoveToppingToggle}
+          removable={false}
+        />
       </div>
       <div className="mt-4">
         <h3 className="font-semibold">Add toppings:</h3>
-        <ToppingItem items={item.toppings || []} onToggle={handleAddToppingToggle} removable />
+        <ToppingItem
+          items={item.toppings || []}
+          onToggle={handleAddToppingToggle}
+          removable
+        />
       </div>
       <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl">
         <div className="flex justify-between items-center mx-2">

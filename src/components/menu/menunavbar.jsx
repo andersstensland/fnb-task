@@ -7,6 +7,8 @@ export default function MenuNavbar({
 }) {
   console.log(categories);
 
+  console.log("Active category ID:", activeCategoryId);
+
   return (
     <nav className="w-full p-4 border-b overflow-x-auto">
       <ul className="flex justify-start items-center space-x-4">
@@ -14,9 +16,9 @@ export default function MenuNavbar({
           categories.map((category) => (
             <li
               key={category._id} // Use _id which is unique across the dataset
-              className={`font-bold text-black hover:text-orange-500 cursor-pointer ${
+              className={`font-bold text-black cursor-pointer ${
                 category._id === activeCategoryId
-                  ? "border-b-2 border-orange-300 pb-2"
+                  ? "border-b-2 border-orange-300"
                   : ""
               }`}
               onClick={() => onCategoryChange(category._id)} // Use _id for callback
