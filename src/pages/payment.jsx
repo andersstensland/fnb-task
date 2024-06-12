@@ -1,22 +1,19 @@
-// pages/payment.js
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
+import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import OrderSummary from "@/components/payment/ordersummary";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Textarea } from "@/components/ui/textarea";
-import { useCart } from "@/context/cartcontext";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import { PickupModal } from "@/components/modals/pickupmodal";
 
 export default function Payment() {
-  const { cart, updateQuantity, getTotalPrice, setDeliveryCost } = useCart();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [message, setMessage] = useState(""); // Add this line
+  const [message, setMessage] = useState("");
+
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
     console.log(cost);
@@ -26,14 +23,13 @@ export default function Payment() {
     router.back();
   };
 
+
   return (
     <>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen px-2 md:px-4 w-full">
         <PaymentMethodModal />
         <div className="w-full max-w-xl mx-auto p-4">
-          {" "}
-          {/* More compact size and padding */}
           <div className="relative w-full">
             <div className="flex justify-center items-center relative">
               <Button
@@ -41,20 +37,7 @@ export default function Payment() {
                 className="absolute left-0 p-0 w-10 h-10 flex items-center justify-center"
                 variant="ghost"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
+                {/* Back Button SVG */}
               </Button>
               <h1 className="text-xl font-bold my-4 mx-auto">Order Summary</h1>
             </div>
@@ -109,12 +92,6 @@ export default function Payment() {
                 placeholder="Write your message here..."
               />
             </div>
-
-            <div className="w-full mb-20">
-              {/* Here is the space created below the Textarea */}
-            </div>
-
-            {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
           </div>
         </div>
       </div>

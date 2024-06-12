@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cartcontext";
@@ -12,14 +12,20 @@ import Link from "next/link";
 
 export default function Confirmation() {
   const { cart, getTotalCost, getItemCount } = useCart();
+  const router = useRouter(); // Initialize the useRouter hook
 
   const [orderSummary, setOrderSummary] = useState([]);
+  const [message, setMessage] = useState(""); // State to store the message
 
   useEffect(() => {
     // Convert cart object to array
     const orderArray = Object.keys(cart).map((key) => cart[key]);
     setOrderSummary(orderArray);
-  }, [cart]);
+
+    // Retrieve the message from the router query object
+    const { message } = router.query;
+    setMessage(message || ""); // Set the message state
+  }, [cart, router.query]); // Add router.query to the dependency array
 
   useEffect(() => {
     console.log("Order Summary:", orderSummary);
@@ -137,6 +143,8 @@ export default function Confirmation() {
             </Accordion>
           </div>
         </div>
+
+        <p className="text-center mb-6 text-lg font-bold">{message}</p>
 
         <div className="w-full max-w-md mb-8">
           <div className="space-y-4">
