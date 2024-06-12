@@ -1,4 +1,3 @@
-// pages/payment.js
 import DeliveryTimeModal from "@/components/modals/deliverytimemodal";
 import Navbar from "@/components/navbar";
 import OrderSummary from "@/components/payment/ordersummary";
@@ -11,6 +10,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import PaymentMethodModal from "@/components/modals/paymentmethodmodal";
 import { PickupModal } from "@/components/modals/pickupmodal";
+import { useEffect } from "react";
 
 export default function Payment() {
   const {
@@ -24,17 +24,36 @@ export default function Payment() {
   } = useCart();
   const router = useRouter();
   const [message, setMessage] = useState(""); // Add this line
+
+  const [selectedDeliveryOption, setSelectedDeliveryOption] = useState("asap");
+
+  useEffect(() => {
+    // Set initial radio button state based on deliveryTime
+    setSelectedDeliveryOption(
+      deliveryTime === "25-35min" ? "asap" : "pre-order"
+    );
+  }, [deliveryTime]);
+
   const handleOptionClick = (option) => {
     const cost = option === "delivery" ? 50 : 0;
     setDeliveryCost(cost);
   };
 
-  console.log(deliveryTime);
-  console.log(pickupOption);
+  const displayDeliveryTime = () => {
+    if (selectedDeliveryOption === "asap") {
+      return "25-35min";
+    }
+    return deliveryTime;
+  };
 
-  // update delivery time function
-  const handleDeliveryTime = (time) => {
-    updateDeliveryTime(time);
+  const handleDeliveryOption = (value) => {
+    if (value === "asap") {
+      updateDeliveryTime("25-35min");
+      setSelectedDeliveryOption("asap");
+    } else {
+      updateDeliveryTime("Choose a time"); // Set a default or placeholder time until user selects a time
+      setSelectedDeliveryOption("pre-order");
+    }
   };
 
   const handleBack = () => {
@@ -75,11 +94,12 @@ export default function Payment() {
           </div>
           <div className="w-full mb-4">
             <Label className="block text-sm font-bold mb-2">Delivery</Label>
-            <RadioGroup defaultValue="option-one">
-              <div
-                className="flex items-center space-x-2"
-                onChange={() => handleDeliveryTime("25-35min")}
-              >
+            <RadioGroup
+              defaultValue="option-one"
+              value={selectedDeliveryOption}
+              onChange={(e) => handleDeliveryOption(e.target.value)}
+            >
+              <div className="flex items-center space-x-2">
                 <RadioGroupItem value="option-one" id="option-one" />
                 <Label htmlFor="option-one">
                   As soon as possible (25-35min)
@@ -116,7 +136,7 @@ export default function Payment() {
 
             <div className="my-4">
               <h2 className="text-lg font-semibold">Delivery Details</h2>
-              <p>Delivery Time: {deliveryTime || "Not set"}</p>
+              <p>Delivery Time: {displayDeliveryTime()}</p>
               <p>Pickup Option: {pickupOption || "Not set"}</p>
             </div>
 
@@ -133,11 +153,7 @@ export default function Payment() {
               />
             </div>
 
-            <div className="w-full mb-20">
-              {/* Here is the space created below the Textarea */}
-            </div>
-
-            {/* Pass deliveryOption, deliveryCost, and items to Paymentsummary */}
+            <div className="w-full mb-20"></div>
           </div>
         </div>
       </div>

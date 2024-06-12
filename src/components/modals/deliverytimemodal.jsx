@@ -43,8 +43,6 @@ const DeliveryTimeModal = ({ trigger }) => {
             type="time"
             id="time"
             className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            min="09:00" // Set minimum time based on business logic
-            max="22:00" // Set maximum time based on business logic
             value={deliveryTime || currentTime}
             onChange={handleTimeChange}
             required
