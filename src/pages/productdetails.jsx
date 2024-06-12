@@ -1,41 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCart } from "@/context/cartcontext";
-import Navbar from "@/components/navbar";
+import ToppingItem from "../productdetails/toppingitem";
+import { Button } from "../ui/button";
 
-const ProductDetails = () => {
-  const router = useRouter();
-  const { query } = router;
-  const item = query.item ? JSON.parse(query.item) : {};
+const ProductDetailsModal = ({ item, isOpen, onClose }) => {
+  const [size, setSize] = useState("Medium");
   const [quantity, setQuantity] = useState(1);
-  const [totalCost, setTotalCost] = useState(item.price || 0);
-  const [checkedAddToppings, setCheckedAddToppings] = useState({});
-  const [checkedRemoveToppings, setCheckedRemoveToppings] = useState({});
-  const [allergiesExpanded, setAllergiesExpanded] = useState(false);
-  const { addToCart } = useCart();
+  const [toppings, setToppings] = useState([]);
 
+  // Toggle body scroll on modal open/close
   useEffect(() => {
-    const basePrice = item.price || 0;
-    const addToppingsCost = Object.keys(checkedAddToppings).reduce(
-      (acc, topping) =>
-        acc +
-        (checkedAddToppings[topping]
-          ? item.toppings.find((t) => t.name === topping).cost
-          : 0),
-      0
-    );
-    const newTotalCost = (basePrice + addToppingsCost) * quantity;
-    setTotalCost(newTotalCost);
-  }, [quantity, checkedAddToppings]);
+    document.body.style.overflow = isOpen ? "hidden" : "visible";
+    return () => {
+      document.body.style.overflow = "visible"; // Reset on component unmount
+    };
+  }, [isOpen]);
 
   const handleQuantityChange = (delta) => {
     let newQuantity = quantity + delta;
@@ -43,146 +27,75 @@ const ProductDetails = () => {
     setQuantity(newQuantity);
   };
 
-  const handleAddToppingToggle = (topping) => {
-    setCheckedAddToppings((prevChecked) => ({
-      ...prevChecked,
-      [topping.name]: !prevChecked[topping.name],
-    }));
-  };
+  const totalCost = calculateTotalCost();
 
-  const handleRemoveToppingToggle = (topping) => {
-    setCheckedRemoveToppings((prevChecked) => ({
-      ...prevChecked,
-      [topping.name]: !prevChecked[topping.name],
-    }));
-  };
+  function calculateTotalCost() {
+    // Placeholder cost calculation
+    return 175 + toppings.reduce((acc, curr) => acc + curr.cost, 0);
+  }
 
-  const handleAccordionChange = (expanded) => {
-    console.log("Accordion Expanded:", expanded);
-    setAllergiesExpanded(expanded);
-  };
+  function handleAddBasket() {}
 
-  const AddToppingItem = ({ items }) => (
-    <div className="flex flex-col justify-between py-2">
-      {items.map((topping) => (
-        <div key={topping.name} className="flex justify-between items-center">
-          <Label className="flex justify-between items-center rounded-md w-full">
-            <span>{topping.name}</span>
-            <span className="ml-auto pr-4">{topping.cost} NOK</span>
-          </Label>
-          <input
-            type="checkbox"
-            id={topping.name}
-            className="mt-2"
-            checked={!!checkedAddToppings[topping.name]}
-            onChange={() => handleAddToppingToggle(topping)}
-          />
-        </div>
-      ))}
-    </div>
-  );
-
-  const RemoveToppingItem = ({ items }) => (
-    <div className="flex flex-col justify-between py-2">
-      {items.map((topping) => (
-        <div key={topping.name} className="flex justify-between items-center">
-          <Label className="flex justify-between items-center rounded-md w-full">
-            <span>{topping.name}</span>
-          </Label>
-          <input
-            type="checkbox"
-            id={topping.name}
-            className="mt-2"
-            checked={!!checkedRemoveToppings[topping.name]}
-            onChange={() => handleRemoveToppingToggle(topping)}
-          />
-        </div>
-      ))}
-    </div>
-  );
-
-  const handleAddBasket = (item) => {
-    const selectedAddToppings = Object.keys(checkedAddToppings)
-      .filter((topping) => checkedAddToppings[topping])
-      .map((topping) => {
-        const toppingDetails = item.toppings.find((t) => t.name === topping);
-        return toppingDetails
-          ? { name: topping, cost: toppingDetails.cost }
-          : { name: topping, cost: 0 }; // Default cost if not found
-      });
-  
-    const itemWithToppings = {
-      ...item,
-      selectedAddToppings,
-      selectedRemoveToppings: Object.keys(checkedRemoveToppings).filter(
-        (topping) => checkedRemoveToppings[topping]
-      ),
-      totalCost,
-      quantity,
-    };
-    addToCart(item._id, itemWithToppings, quantity);
-    router.push('/menu'); // Redirect to the confirmation page
-  };
-    return imageUrl ? (
-      <div className="my-2">
-        <img
-          src={imageUrl}
-          alt={imageAlt}
-          style={{
-            width: "100%", // Makes the image responsive to the width of its container
-            height: "300px", // Maintains the aspect ratio automatically
-            objectFit: "contain", // Ensures the image fits within the frame without distortion
-          }}
-        />
-      </div>
-    ) : null;
-  };
-
-  useEffect(() => {
-    console.log("Allergies:", item.allergies);
-  }, [item.allergies]);
-
-  useEffect(() => {
-    console.log("Item Data:", item);
-    console.log("Allergies:", item.allergies);
-  }, [item]);
-
-  return (
-    <>
-      <Navbar />
-      <div className="container mx-auto p-4 max-w-screen-lg pb-24 relative">
-        <button
-          onClick={() => router.back()}
-          className="absolute top-4 right-4 p-1 text-2xl"
-        >
+  return isOpen ? (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start pt-10">
+      <div className="relative bg-white rounded-lg w-full max-w-lg mx-auto overflow-auto h-[90vh] shadow-lg">
+        <button onClick={onClose} className="absolute top-22.5 right-0 p-4">
           ✖️
         </button>
-        <h2 className="text-2xl font-bold">{item.name}</h2>
-        <ImageDisplay item={item} />
-        <div className="text-xl font-semibold mt-2">{item.price} NOK</div>
-        <p className="mt-2">{item.description}</p>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="allergies">
-            <AccordionTrigger>Allergies</AccordionTrigger>
-            <AccordionContent>
-              <p>{item.allergies || "None"}</p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <h3 className="font-semibold mt-4">Remove Toppings:</h3>
-        <RemoveToppingItem items={item.toppings || []} />
-        <h3 className="font-semibold mt-4">Extra Toppings:</h3>
-        <AddToppingItem items={item.toppings || []} />
-        <div className="fixed inset-x-0 bottom-0 p-2 bg-customOrange rounded-t-xl  md:mx-auto md:max-w-xl">
-          <div className="flex justify-between items-center">
-            <div>
+        <div className="p-4">
+          <h2 className="text-2xl font-bold">{item.name}</h2>
+          <div className="my-4">
+            <img
+              src="path_to_pizza_image.png"
+              alt="Pineapple Ham Pizza"
+              className="w-full"
+            />
+          </div>
+          <div className="flex space-x-2">
+            {["Small", "Medium", "Large"].map((s) => (
+              <Button
+                key={s}
+                className={`py-1 px-4 border ${size === s ? "border-black" : "border-transparent"}`}
+                onClick={() => setSize(s)}
+              >
+                {s}
+              </Button>
+            ))}
+          </div>
+          <div className="text-xl font-semibold mt-2">{totalCost} NOK</div>
+          <p className="mt-2">Pizza with pineapple and ham</p>
+          <div className="mt-4">
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Allergies</AccordionTrigger>
+                <AccordionContent>{item.allergies}</AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold">Remove topping:</h3>
+            <ToppingItem item={item} topping={item.content} />
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold">Extra topping:</h3>
+            <ToppingItem item={item} topping={item.content} />
+          </div>
+        </div>
+
+        <div className="fixed w-full p-4 bg-customOrange bottom-0 rounded-t-xl">
+          <div className="flex justify-between">
+            <div className="flex flex-col my-2">
+              <span>Antall</span>
+              <span>{totalCost}</span>
+            </div>
+            <div className="flex items-center">
               <Button
                 onClick={() => handleQuantityChange(-1)}
                 className="text-xl bg-customSecondaryOrange"
               >
                 −
               </Button>
-              <span className="mx-2">{quantity}</span>
+              <span className="mx-4">{quantity}</span>
               <Button
                 onClick={() => handleQuantityChange(1)}
                 className="text-xl bg-customSecondaryOrange"
@@ -190,21 +103,17 @@ const ProductDetails = () => {
                 +
               </Button>
             </div>
-            <div>
-              <span>Price: {totalCost} NOK</span>
-            </div>
           </div>
           <Button
-            onClick={() => handleAddBasket(item)}
-            className="bg-white text-black px-8 py-2 rounded-md w-full mt-2"
+            onClick={() => handleAddBasket()}
+            className="bg-white text-black px-8 py-2 rounded-md w-full"
           >
-            Add to Basket
+            Add to basket
           </Button>
         </div>
       </div>
     </div>
-    </>
-  );
+  ) : null;
 };
 
-export default ProductDetails;
+export default ProductDetailsModal;
