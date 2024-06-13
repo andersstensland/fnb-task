@@ -17,10 +17,10 @@ bun dev
 Visit http://localhost:3000 in your browser to view the application. Begin editing by modifying pages/index.js — changes will reflect in real-time thanks to Next.js' hot reloading.
 
 ## 📘 Features
-# Content Management: Powered by Sanity CMS, the application dynamically manages menu items, categories, and detailed product descriptions.
-# State Management: Utilizes custom hooks like useSyncedState to persistently manage UI states across user sessions.
-# UI Enhancements: Tailored with Shadcn and Tailwind CSS, the app provides a responsive and visually appealing interface, enhancing user experience across devices.
-# Accessibility and Usability: Designed to be intuitive and accessible, ensuring a seamless ordering process for all users.
+#### Content Management: Powered by Sanity CMS, the application dynamically manages menu items, categories, and detailed product descriptions.
+#### State Management: Utilizes custom hooks like useSyncedState to persistently manage UI states across user sessions.
+#### UI Enhancements: Tailored with Shadcn and Tailwind CSS, the app provides a responsive and visually appealing interface, enhancing user experience across devices.
+#### Accessibility and Usability: Designed to be intuitive and accessible, ensuring a seamless ordering process for all users.
 
 ## 📚 Learn More
 Dive deeper into the technologies used in this project:
