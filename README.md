@@ -22,15 +22,6 @@ Visit http://localhost:3000 in your browser to view the application. Begin editi
 #### UI Enhancements: Tailored with Shadcn and Tailwind CSS, the app provides a responsive and visually appealing interface, enhancing user experience across devices.
 #### Accessibility and Usability: Designed to be intuitive and accessible, ensuring a seamless ordering process for all users.
 
-## 📚 Learn More
-Dive deeper into the technologies used in this project:
-
-Next.js Documentation - Learn about Next.js features and API.
-Sanity.io Docs - Discover how to manage structured content with Sanity CMS.
-Tailwind CSS Documentation - Understand utility-first styling with Tailwind CSS.
-Shadcn UI - Explore the UI component library for rapid development.
-
-## 🤝 Contributing
 Your contributions are what make the open-source community such an inspiring and enriching space. We appreciate contributions from everyone. Here’s how you can contribute:
 
 Fork the repository and create a pull request with your changes.
