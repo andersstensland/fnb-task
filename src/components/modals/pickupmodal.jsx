@@ -11,12 +11,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/context/cartcontext";
 
 export function PickupModal() {
-  const [selectedPickupLocation, setSelectedPickupLocation] = useState(null);
+  const { updatePickupOption } = useCart();
+  const [selectedPickupLocation, setSelectedPickupLocation] = useState("");
 
-  const handleSelectPickupLocation = (location) => {
-    setSelectedPickupLocation(location); // Set the selected location
+  const handlePickupOption = (newPickup) => {
+    setSelectedPickupLocation(newPickup); // Update local state
+    updatePickupOption("Pickup " + newPickup); // Update global state
   };
 
   return (
@@ -24,7 +27,7 @@ export function PickupModal() {
       <AlertDialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 text-lg font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
+          className="bg-white text-black w-full md:w-auto md:flex-1 px-4 py-2 text-md font-semibold border-2 border-orange-300 rounded-lg focus:bg-orange-300 focus:text-white focus:border-transparent"
         >
           Select Pickup Location
         </Button>
@@ -37,14 +40,14 @@ export function PickupModal() {
           <div
             key={location}
             className="flex items-center justify-between space-x-4 p-4 rounded-lg bg-white shadow-md cursor-pointer"
-            onClick={() => handleSelectPickupLocation(location)}
+            onClick={() => handlePickupOption(location)}
           >
             <Label className="text-base font-semibold">{location}</Label>
             <input
               type="radio"
               name="pickup-point"
               checked={selectedPickupLocation === location}
-              onChange={() => handleSelectPickupLocation(location)}
+              onChange={() => handlePickupOption(location)}
             />
           </div>
         ))}
